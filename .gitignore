@@ -7,5 +7,11 @@ libtool
 install-sh
 missing
 stamp-h1
+depcomp
 Makefile
 Makefile.in
+.deps
+.libs
+*.o
+*.lo
+*.la
