@@ -29,7 +29,8 @@ AM_PROG_LIBTOOL
 LIBTOOL="$LIBTOOL --silent"
 
 # Checks for header files.
-AC_CHECK_HEADERS([string iostream fstream])
+AC_CHECK_HEADERS([string iostream fstream sstream map exception cstdlib 
+cassert])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_STRUCT_TM
@@ -59,6 +60,9 @@ AC_OUTPUT([
     lib/Makefile
     lib/src/Makefile
     lib/include/Makefile
+    client/Makefile
+    client/src/Makefile
+    client/include/Makefile
 ])
 
 echo "----------------------------------------"
