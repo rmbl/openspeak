@@ -64,7 +64,7 @@ namespace openSpeak
 		  *  \param lvl The level to convert
 		  *	 \return String with the level
 		  */
-		 std::string lvlToString(const Level &lvl) const;
+		 std::string lvlToString(const Level &lvl, const bool &color = false) const;
 
 		 std::ofstream mFile;		/**< The output file stream */
 		 Level mMinLvl;				/**< The minimum logging level to write to stdout */

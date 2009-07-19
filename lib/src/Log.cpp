@@ -17,6 +17,7 @@
   */
 
 #include "Log.hpp"
+#include "Platform.hpp"
 #include <iostream>
 
 namespace openSpeak
@@ -50,23 +51,24 @@ namespace openSpeak
 
 	/* Write to stdout if wanted */
 		if (lvl >= mMinLvl && lvl != LVL_SILENT)
-			std::cout << " [" << lvlToString(lvl) << "] " << msg << "\n";
+			std::cout << " [" << lvlToString(lvl, true) << "] " << msg << "\n";
 	}
-		
-	std::string Log::lvlToString(const Level &lvl) const
+
+	std::string Log::lvlToString(const Level &lvl, const bool &color) const
 	{
 		switch (lvl)
 		{
 			case LVL_DEBUG:
-				return "DEBUG";
+				return (color)?"\033[0;34m DEBUG \033[0m":" DEBUG ";
 			case LVL_INFO:
-				return "INFO";
+				return (color)?"\033[0;32m INFO  \033[0m":" INFO  ";
 			case LVL_ERROR:
-				return "ERROR";
+				return (color)?"\033[1;31m ERROR \033[0m":" ERROR ";
 			case LVL_FATAL:
-				return "FATAL";
+				return (color)?"\033[0;31m FATAL \033[0m":" FATAL ";
 			default:
 				return "DEFAULT";
 		}
+	}
 	}
 }
