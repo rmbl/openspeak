@@ -48,26 +48,26 @@ namespace openSpeak
 		 *	\param filename The file we should log to
 		 *	\param minlvl Determines the minimum level to write to stdout
 		 */
-		Log(const std::string &filename, const Level &minlvl = LVL_INFO);
+		Log (const std::string &filename, const Level &minlvl = LVL_INFO);
 
 		/** \brief The destructor of the Log class */
-		~Log(void);
+		~Log (void);
 
 		/** \brief Log a message into file/to console
 		 *	\param msg The message we want to log
 		 *	\param lvl The level of the message
 		 */
-		void logMsg(const std::string &msg, const Level &lvl = LVL_INFO);
+		void logMsg (const std::string &msg, const Level &lvl = LVL_INFO);
 
 	 protected:
 		 /** \brief Get the logging level as a string
 		  *  \param lvl The level to convert
 		  *	 \return String with the level
 		  */
-		 std::string lvlToString(const Level &lvl, const bool &color = false) const;
+		 std::string lvlToString (const Level &lvl, const bool &color = false) const;
 
-		 std::ofstream mFile;		/**< The output file stream */
-		 Level mMinLvl;				/**< The minimum logging level to write to stdout */
+		 std::ofstream  mFile;	  /**< The output file stream */
+		 Level          mMinLvl;  /**< The minimum logging level to write to stdout */
 	};
 
 }

@@ -38,21 +38,21 @@ namespace openSpeak
 
      public:
 		/** \brief The constructor of the Singleton class */
-        Singleton(void)
+        Singleton (void)
         {
-            assert( !mSingleton );
-            mSingleton = static_cast<T*>(this);
+            assert (!mSingleton);
+            mSingleton = static_cast <T*> (this);
         }
 
 		/** \brief The destructor of the Singleton class */
-        ~Singleton(void)
+        ~Singleton (void)
         {
-            assert( mSingleton );
+            assert (mSingleton);
             mSingleton = 0;
         }
 
 		/** \brief Get the instance of the class */
-        static T* getSingleton(void) { return mSingleton; }
+        static T* getSingleton (void) { return mSingleton; }
     };
 
     template <typename T> T* Singleton <T>::mSingleton = 0;

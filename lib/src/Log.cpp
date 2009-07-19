@@ -17,55 +17,54 @@
   */
 
 #include "Log.hpp"
-#include "Platform.hpp"
 #include <iostream>
 
 namespace openSpeak
 {
 	
-	Log::Log(const std::string &filename, const Level &minlvl) : mMinLvl(minlvl)
+	Log::Log (const std::string &filename, const Level &minlvl) : mMinLvl (minlvl)
 	{
-		mFile.open(filename.c_str());
+		mFile.open (filename.c_str ());
 	}
 
-	Log::~Log()
+	Log::~Log ()
 	{
-		mFile.flush();
-		mFile.close();
+		mFile.flush ();
+		mFile.close ();
 	}
 
-	void Log::logMsg(const std::string &msg, const Level &lvl)
+	void Log::logMsg (const std::string &msg, const Level &lvl)
 	{
 	/* Get the current time */
 		time_t rawtime;
 		char buffer [80];
 		struct tm * timeinfo;
-		time(&rawtime);
-		timeinfo = localtime(&rawtime);
+		time (&rawtime);
+		timeinfo = localtime (&rawtime);
 
-		strftime (buffer,80,"[%x %X]",timeinfo);
+		strftime (buffer, 80, "[%x %X]", timeinfo);
 
 	/* Write it to the file */
-		mFile << buffer << " [" << lvlToString(lvl) << "] " << msg << "\n";
-		mFile.flush();
+		mFile << buffer << " [" << lvlToString (lvl) << "] " << msg << "\n";
+		mFile.flush ();
 
 	/* Write to stdout if wanted */
 		if (lvl >= mMinLvl && lvl != LVL_SILENT)
-			std::cout << " [" << lvlToString(lvl, true) << "] " << msg << "\n";
+			std::cout << " [" << lvlToString (lvl, true) << "] " << msg << "\n";
 	}
 
-	std::string Log::lvlToString(const Level &lvl, const bool &color) const
+	std::string Log::lvlToString (const Level &lvl, const bool &color) const
 	{
 		switch (lvl)
 		{
 			case LVL_DEBUG:
-				return (color)?"\033[0;34m DEBUG \033[0m":" DEBUG ";
+				return (color) ? "\033[0;34m DEBUG \033[0m" : " DEBUG ";
 			case LVL_INFO:
-				return (color)?"\033[0;32m INFO  \033[0m":" INFO  ";
+				return (color) ? "\033[0;32m INFO  \033[0m" : " INFO  ";
 			case LVL_ERROR:
-				return (color)?"\033[1;31m ERROR \033[0m":" ERROR ";
+				return (color) ? "\033[1;31m ERROR \033[0m" : " ERROR ";
 			case LVL_FATAL:
-				return (color)?"\033[0;31m FATAL \033[0m":" FATAL ";
+				return (color) ? "\033[0;31m FATAL \033[0m" : " FATAL ";
 			default:
 				return "DEFAULT";
 		}
