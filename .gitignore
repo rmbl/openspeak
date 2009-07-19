@@ -1,0 +1,11 @@
+*.m4
+autom4te.cache
+config.*
+configure
+ltmain.sh
+libtool
+install-sh
+missing
+stamp-h1
+Makefile
+Makefile.in
