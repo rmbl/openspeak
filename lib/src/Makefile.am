@@ -1,6 +1,7 @@
 lib_LTLIBRARIES = libopenspeak.la
 libopenspeak_la_SOURCES = \
 	dummy.cpp \
+	Config.cpp \
 	FileUtils.cpp \
 	LogMgr.cpp \
 	Log.cpp \

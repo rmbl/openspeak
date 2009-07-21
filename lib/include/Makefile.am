@@ -1,4 +1,5 @@
 noinst_HEADERS = \
+	Config.hpp \
 	Exception.hpp \
 	FileUtils.hpp \
 	LogMgr.hpp \
