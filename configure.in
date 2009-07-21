@@ -31,7 +31,10 @@ LIBTOOL="$LIBTOOL --silent"
 # Checks for header files.
 AC_CHECK_HEADERS([string iostream fstream sstream map vector exception \
 		cstdlib cassert])
-AC_CHECK_HEADERS([dirent.h linux/types.h limits.h])
+AC_CHECK_HEADERS([dirent.h limits.h sys/stat.h])
+
+#TODO: Move this into an if platform == linux
+AC_CHECK_HEADERS([linux/types.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_STRUCT_TM

@@ -40,6 +40,12 @@ namespace openSpeak
          */
         bool dirExists (const std::string &dir);
         
+        /** \brief Create the given directory
+         *  \param dir The directory to create
+         *  \throw openSpeak::Exception if creating the directory fails
+         */
+        void mkdir (const std::string &dir);
+        
         /** \brief Return the path to all (per user) configuration files
          *  \return The path to all (per user) configuration files
          */

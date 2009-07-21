@@ -17,6 +17,7 @@
   */
   
 #include "Platform.hpp"
+#include "Exception.hpp"
 #include "FileUtils.hpp"
 
 #include <fstream>
@@ -25,9 +26,13 @@
 
 #if defined (OS_PLATFORM_WIN32)
 #   include <windows.h>
-#elif defined (OS_PLATFORM_LINUX)
-#   include <linux/limits.h>
+#elif defined (OS_POSIX_COMPAT)
+#   include <sys/stat.h>
 #   include <dirent.h>
+#endif
+
+#ifdef OS_PLATFORM_LINUX
+#   include <linux/limits.h>
 #endif
 
 #define T(x) #x
@@ -59,6 +64,17 @@ namespace openSpeak
             return FindFirstFile (std::string (dir + "*").c_str(),
                     &FileData) != INVALID_HANDLE_VALUE;
 #endif
+        }
+
+        void mkdir (const std::string &dir)
+        {
+#ifdef OS_POSIX_COMPAT
+            if (::mkdir (dir.c_str(), 
+                    S_IRWXU | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH) == -1)
+#elif OS_PLATFORM_WIN32
+            if (_mkdir (dir.c_str ()) == -1)                
+#endif
+                EXCEPTION ("Can't create directory " + dir);
         }
 
         std::string getConfigPath ()
