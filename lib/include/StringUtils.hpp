@@ -92,6 +92,11 @@ namespace openSpeak
          *  \return Vector containing all pieces of the string
          */
         std::vector <std::string> split (const std::string &str, char where);
+        
+        /** \brief Remove whitespaces at the front and end of a string
+         *  \param str The string to trim
+         */
+        void trim (std::string &str);
     }
 
 }
