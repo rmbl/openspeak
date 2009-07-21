@@ -65,18 +65,8 @@ namespace openSpeak
         {
             if (str.empty ())
                 return;
-            
-            std::string::size_type pos = str.find_first_not_of (" \t\r\n");
-            if (pos != std::string::npos)
-                str.erase (0, pos);
-            else
-                str.erase (str.begin (), str.end ());
-                
-            pos = str.find_last_not_of (" \t\r\n");
-            if (pos != std::string::npos)
-                str.erase (pos + 1);
-            else
-                str.erase (str.begin (), str.end ());                        
+            str.erase (0, str.find_first_not_of (" \t\r\n"));    
+            str.erase (str.find_last_not_of (" \t\r\n") + 1);                  
         }
 
     }
