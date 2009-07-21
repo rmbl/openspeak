@@ -29,8 +29,9 @@ AM_PROG_LIBTOOL
 LIBTOOL="$LIBTOOL --silent"
 
 # Checks for header files.
-AC_CHECK_HEADERS([string iostream fstream sstream map exception \
+AC_CHECK_HEADERS([string iostream fstream sstream map vector exception \
 		cstdlib cassert])
+AC_CHECK_HEADERS([dirent.h linux/types.h limits.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_STRUCT_TM

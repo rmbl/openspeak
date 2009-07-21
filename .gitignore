@@ -15,3 +15,6 @@ Makefile.in
 *.o
 *.lo
 *.la
+
+# Binaries
+openspeak

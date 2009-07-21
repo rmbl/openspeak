@@ -60,7 +60,7 @@ fi
 
 echo "Processing configure.ac"
 
-libtoolize --copy --force || glibtoolize --copy --force
+libtoolize --copy --force -q || glibtoolize --copy --force
 aclocal
 autoheader
 automake --add-missing --copy --gnu
