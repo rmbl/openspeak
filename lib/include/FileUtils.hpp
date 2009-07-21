@@ -24,19 +24,39 @@
 
 namespace openSpeak
 {
-    
+
     namespace FileUtils
     {
+
+        /** \brief Checks if a file exists in the filesystem
+         *  \param file The file to check for
+         *  \return True if the file was found
+         */
+        bool fileExists (const std::string &file);
         
-        bool fileExists (std::string file);
+        /** \brief Check if a directory exists in the filesystem
+         *  \param dir The directory to check for
+         *  \return True if the directory was found
+         */
+        bool dirExists (const std::string &dir);
         
+        /** \brief Return the path to all (per user) configuration files
+         *  \return The path to all (per user) configuration files
+         */
         std::string getConfigPath (void);
         
+        /** \brief Return the path where the data is
+         *  \return The path where the data is
+         */
         std::string getDataPath (void);
         
+        /** \brief Return the current working dir
+         *  \return The path the binary is working in
+         */
         std::string getCurrentPath (void);
+
     }
-    
+
 }
 
 #endif

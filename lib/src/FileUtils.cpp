@@ -27,6 +27,7 @@
 #   include <windows.h>
 #elif defined (OS_PLATFORM_LINUX)
 #   include <linux/limits.h>
+#   include <dirent.h>
 #endif
 
 #define T(x) #x
@@ -37,7 +38,7 @@ namespace openSpeak
     namespace FileUtils
     {       
         
-        bool fileExists (std::string file)
+        bool fileExists (const std::string &file)
         {
             std::fstream ftest;
             ftest.open (file.c_str(), std::ios::in);
@@ -45,7 +46,21 @@ namespace openSpeak
             ftest.close ();
             return open;
         }
-        
+
+        bool dirExists (const std::string &dir)
+        {
+#ifdef OS_POSIX_COMPAT
+            DIR *fs = opendir (dir.c_str());
+            bool exists = fs != NULL;
+            closedir (fs);
+            return exists;
+#elif OS_PLATFORM_WIN32
+            WIN32_FIND_DATA FileData
+            return FindFirstFile (std::string (dir + "*").c_str(),
+                    &FileData) != INVALID_HANDLE_VALUE;
+#endif
+        }
+
         std::string getConfigPath ()
         {
 #ifdef OS_PLATFORM_LINUX
@@ -81,7 +96,6 @@ namespace openSpeak
             GetCurrentDirectory(MAX_PATH - 1, szDirectory);
             return std::string (szDirectory);
 #endif
-
         }
     }
 }
