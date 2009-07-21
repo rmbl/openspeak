@@ -53,7 +53,9 @@ if test "x${datadir}" = 'x${prefix}/share' -o "x${datarootdir}" = 'x${prefix}/sh
 fi
 
 OS_DATA_DIR=`eval echo ${datarootdir}/openspeak`
+OS_PREFIX=${prefix}
 AC_SUBST(OS_DATA_DIR)
+AC_SUBST(OS_PREFIX)
 
 AC_OUTPUT([
     Makefile
