@@ -29,6 +29,8 @@
 #   include <linux/limits.h>
 #endif
 
+#define T(x) #x
+
 namespace openSpeak
 {
     
@@ -61,7 +63,7 @@ namespace openSpeak
         {
 #ifdef OS_POSIX_COMPAT
             //TODO: Check if this define works
-            return "OS_PREFIX/share/openspeak/";
+            return OS_PREFIX + std::string ("/share/openspeak/");
 #elif OS_PLATFORM_WIN32 
             return getCurrentPath () + "\\data\\";
 #endif
