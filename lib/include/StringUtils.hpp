@@ -21,6 +21,7 @@
 
 #include <sstream>
 #include <cstdlib>
+#include <vector>
 
 namespace openSpeak
 {
@@ -30,60 +31,67 @@ namespace openSpeak
          *  \param t The variable we want to convert
          *  \return String with the variable
          */
-        template < typename T > std::string toString(const T &t)
+        template <typename T> std::string toString (const T &t)
         {
             std::stringstream tmp;
             tmp << t;
-            return tmp.str();
+            return tmp.str ();
         }
 
         /** \brief Convert any string to an uppercase one
          *  \param str The string to convert
          *  \return The converted string
          */
-        std::string toUpper(std::string &str);
+        std::string toUpper (std::string &str);
 
         /** \brief Convert any string to an uppercase one
          *  \param str The string to convert
          *  \return The converted string
          */
-        std::string toUpper(const std::string &str);
+        std::string toUpper (const std::string &str);
 
         /** \brief Convert any string into a boolean variable
          *  \param str The string to convert
          *  \return False if the string is false, 0 or empty
          */
-        inline bool toBool(const std::string &str) 
+        inline bool toBool (const std::string &str) 
         { 
-            return (!str.empty() && (str == "true" || str == "1" || str == "yes")); 
+            return (!str.empty () && (str == "true" || str == "1" || str == "yes")); 
         }
 
         /** \brief Convert any string into an integer variable
          *  \param str The string to convert
          *  \return The converted integer value
          */
-        inline int toInt(const std::string &str) { return atoi(str.c_str()); }
+        inline int toInt (const std::string &str) { return atoi (str.c_str ()); }
 
         /** \brief Convert any string into an unsigned short variable
          *  \param str The string to convert
          *  \return The converted unsigned short value
          */
-        inline ushort toUShort(const std::string &str) 
+        inline ushort toUShort (const std::string &str) 
         { 
-            return static_cast<ushort>(strtoul(str.c_str(), 0, 10)); 
+            return static_cast <ushort> (strtoul (str.c_str (), 0, 10)); 
         }
 
         /** \brief Convert any string into a long variable
          *  \param str The string to convert
          *  \return The converted long value
          */
-        inline long toLong(const std::string &str) { return atol(str.c_str()); }
+        inline long toLong (const std::string &str) { return atol (str.c_str ()); }
 
         /** \brief Convert any string into a floating point variable
          *  \param str The string to convert
          *  \return The converted floating point value
          */
-        inline float toFloat(const std::string &str) { return (float)atof(str.c_str()); }
+        inline float toFloat (const std::string &str) { return (float)atof (str.c_str ()); }
+        
+        /** \brief Split a string into several pieces
+         *  \param str The string to split
+         *  \param where Where to split the string
+         *  \return Vector containing all pieces of the string
+         */
+        std::vector <std::string> split (const std::string &str, char where);
     }
 
 }

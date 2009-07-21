@@ -25,19 +25,42 @@ namespace openSpeak
     namespace StringUtils
     {
 
-        std::string toUpper(std::string &str)
+        std::string toUpper (std::string &str)
         {
-            std::transform(str.begin(), str.end(), str.begin(), (int(*)(int)) std::toupper);
+            std::transform (str.begin (), str.end (), str.begin (), 
+                    (int(*)(int)) std::toupper);
             return str;
         }
 
         std::string toUpper(const std::string &str)
         {
             std::string tmp = str;
-            std::transform(tmp.begin(), tmp.end(), tmp.begin(), (int(*)(int)) std::toupper);
+            std::transform (tmp.begin (), tmp.end (), tmp.begin (),
+                    (int(*)(int)) std::toupper);
             return tmp;
         }
 
+        std::vector <std::string> split (const std::string &str, char where)
+        {
+            std::vector <std::string> tempvec;
+
+            std::string::size_type index = str.find (where);
+            tempvec.push_back (str.substr (0,index));
+            while (index != std::string::npos)
+            {
+                std::string::size_type nextpos = str.find (where, index);
+                std::string tmp = str.substr (index, nextpos - index);
+                if (!tmp.empty ())
+                    tempvec.push_back (tmp);
+
+                if (nextpos == std::string::npos)
+                    break;
+                else
+                    index = nextpos + 1;
+            }
+            return tempvec;
+        }
+
     }
-    
+
 }
