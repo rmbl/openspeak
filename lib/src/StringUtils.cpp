@@ -61,6 +61,32 @@ namespace openSpeak
             return tempvec;
         }
         
+        std::string join (const std::vector <std::string> vec, 
+                const std::string &join)
+        {
+            std::string tmp = "";
+            for (uint i = 0; i < vec.size (); ++i)
+            {
+                if (i > 0)
+                    tmp += join;
+                tmp += vec[i];
+            }
+            return tmp;
+        }
+        
+        std::string join (const std::vector <std::string> vec, uint length,
+                const std::string &join)
+        {
+            std::string tmp = "";
+            for (uint i = 0; i < vec.size () && i < length; ++i)
+            {
+                if (i > 0)
+                    tmp += join;
+                tmp += vec[i];
+            }
+            return tmp;            
+        }
+        
         void trim (std::string &str)
         {
             if (str.empty ())

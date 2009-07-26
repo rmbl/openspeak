@@ -129,8 +129,8 @@ namespace openSpeak
 
             if (str.size () > 1)
             {
-                section = str[0];
-                pair = str[1] + " = " + it->second + "\n";
+                section = StringUtils::join (str, str.size () - 1, ".");
+                pair = str.back () + " = " + it->second + "\n";
             }
             else
             {

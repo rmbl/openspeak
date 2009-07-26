@@ -93,6 +93,23 @@ namespace openSpeak
          */
         std::vector <std::string> split (const std::string &str, char where);
         
+        /** \brief Join a vector into a single string
+         *  \param vec The vector to join
+         *  \param join The string to join with
+         *  \return The joined string
+         */
+        std::string join (const std::vector <std::string> vec, 
+                const std::string &join = " ");
+        
+        /** \brief Join a vector into a single string
+         *  \param vec The vector to join
+         *  \param length The length of the vector to use
+         *  \param join The string to join with
+         *  \return The joined string
+         */
+        std::string join (const std::vector <std::string> vec, uint length,
+                const std::string &join = " ");
+        
         /** \brief Remove whitespaces at the front and end of a string
          *  \param str The string to trim
          */
