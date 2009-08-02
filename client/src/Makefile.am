@@ -1,4 +1,6 @@
 bin_PROGRAMS = openspeak
-openspeak_SOURCES = 
+openspeak_SOURCES = \
+		main.cpp
 
-openspeak_LDADD = libopenspeak.la
+openspeak_LDADD = ../../lib/src/libopenspeak.la
+INCLUDES = -I../../lib/include -I../include

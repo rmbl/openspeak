@@ -1,4 +1,5 @@
 noinst_HEADERS = \
+	CmdLineParser.hpp \
 	Config.hpp \
 	Exception.hpp \
 	FileUtils.hpp \

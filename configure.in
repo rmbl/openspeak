@@ -66,6 +66,9 @@ AC_OUTPUT([
     lib/Makefile
     lib/src/Makefile
     lib/include/Makefile
+    server/Makefile
+    server/src/Makefile
+    server/include/Makefile
     client/Makefile
     client/src/Makefile
     client/include/Makefile
