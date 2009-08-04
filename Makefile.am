@@ -1,4 +1,4 @@
-SUBDIRS = lib server client
+SUBDIRS = lib server clientlib client
 
 EXTRA_DIST = 
 	autogen.sh

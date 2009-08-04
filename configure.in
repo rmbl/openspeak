@@ -36,6 +36,9 @@ AC_CHECK_HEADERS([dirent.h limits.h sys/stat.h])
 #TODO: Move this into an if platform == linux
 AC_CHECK_HEADERS([linux/types.h])
 
+# Checks for library functions.
+AC_CHECK_FUNCS([mkdir opendir time])
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_STRUCT_TM
 AC_C_CONST
@@ -45,9 +48,9 @@ AC_TYPE_OFF_T
 AC_HEADER_TIME
 AC_STRUCT_TM
 
-
-# Checks for library functions.
-#AC_CHECK_FUNCS([])
+# Check for libraries
+AX_BOOST_BASE([1.33.0])
+AX_BOOST_SIGNALS
 
 # Set ${datadir}
 if test "x${datadir}" = 'x${prefix}/share' -o "x${datarootdir}" = 'x${prefix}/share'; then
@@ -69,6 +72,9 @@ AC_OUTPUT([
     server/Makefile
     server/src/Makefile
     server/include/Makefile
+    clientlib/Makefile
+    clientlib/src/Makefile
+    clientlib/include/Makefile
     client/Makefile
     client/src/Makefile
     client/include/Makefile
