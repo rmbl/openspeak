@@ -15,7 +15,7 @@
   *  with this program; if not, write to the Free Software Foundation, Inc.,
   *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
   */
-  
+
 #include "Platform.hpp"
 #include "Exception.hpp"
 #include "FileUtils.hpp"
@@ -39,10 +39,10 @@
 
 namespace openSpeak
 {
-    
+
     namespace FileUtils
-    {       
-        
+    {
+
         bool fileExists (const std::string &file)
         {
             std::fstream ftest;
@@ -54,12 +54,12 @@ namespace openSpeak
 
         bool dirExists (const std::string &dir)
         {
-#ifdef OS_POSIX_COMPAT
+#if defined (OS_POSIX_COMPAT)
             DIR *fs = opendir (dir.c_str());
             bool exists = fs != NULL;
             closedir (fs);
             return exists;
-#elif OS_PLATFORM_WIN32
+#elif defined (OS_PLATFORM_WIN32)
             WIN32_FIND_DATA FileData
             return FindFirstFile (std::string (dir + "*").c_str(),
                     &FileData) != INVALID_HANDLE_VALUE;
@@ -68,45 +68,53 @@ namespace openSpeak
 
         void mkdir (const std::string &dir)
         {
-#ifdef OS_POSIX_COMPAT
-            if (::mkdir (dir.c_str(), 
+#if defined (OS_POSIX_COMPAT)
+            if (::mkdir (dir.c_str(),
                     S_IRWXU | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH) == -1)
-#elif OS_PLATFORM_WIN32
-            if (_mkdir (dir.c_str ()) == -1)                
+#elif defined (OS_PLATFORM_WIN32)
+            if (_mkdir (dir.c_str ()) == -1)
 #endif
                 EXCEPTION ("Can't create directory " + dir);
         }
 
         std::string getConfigPath ()
         {
-#ifdef OS_PLATFORM_LINUX
+#if defined (OS_PLATFORM_LINUX)
             char* home = getenv ("HOME");
             return std::string (home) + "/.config/openspeak/";
-#elif OS_PLATFORM_WIN32
+#elif defined (OS_PLATFORM_WIN32)
             //TODO: Check this code on windows
             TCHAR szPath[MAX_PATH];
             SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA, NULL, 0, szPath);
             return std::string (szPath) + "\\openspeak\\";
 #endif
         }
-        
+
         std::string getDataPath ()
         {
-#ifdef OS_POSIX_COMPAT
-            //TODO: Check if this define works
+#if defined (OS_POSIX_COMPAT)
             return OS_PREFIX + std::string ("/share/openspeak/");
-#elif OS_PLATFORM_WIN32 
+#elif defined (OS_PLATFORM_WIN32)
             return getCurrentPath () + "\\data\\";
 #endif
         }
-        
+
+        std::string getLibPath ()
+        {
+#if defined (OS_POSIX_COMPAT)
+            return OS_PREFIX + std::string ("/lib/openspeak/");
+#elif defined (OS_POSIX_COMPAT)
+            return getCurrentPath () + "\\plugins\\";
+#endif
+        }
+
         std::string getCurrentPath ()
         {
-#ifdef OS_POSIX_COMPAT
+#if defined (OS_POSIX_COMPAT)
             char buf[PATH_MAX];
             getcwd (buf, PATH_MAX - 1);
             return std::string (buf);
-#elif OS_PLATFORM_WIN32
+#elif defined (OS_PLATFORM_WIN32)
             //TODO: Check this code on windows
             TCHAR szDirectory[MAX_PATH];
             GetCurrentDirectory(MAX_PATH - 1, szDirectory);

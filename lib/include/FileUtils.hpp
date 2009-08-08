@@ -55,7 +55,12 @@ namespace openSpeak
          *  \return The path where the data is
          */
         std::string getDataPath (void);
-        
+
+        /** \brief Return the path where plugins should be
+         *  \return The path where plugins should be
+         */
+        std::string getLibPath (void);
+
         /** \brief Return the current working dir
          *  \return The path the binary is working in
          */
