@@ -25,6 +25,7 @@
 #include "Types.hpp"
 
 #include <cstring>
+#include <iostream>
 
 namespace openSpeak
 {
@@ -54,7 +55,7 @@ namespace openSpeak
             mOptions.push_back (*option++);
     }
 
-    void CmdLineParser::parseArguments (int argc, char* argv[]) const
+    void CmdLineParser::parseArguments (int argc, char* argv[])
     {
         std::string option;
         const CmdLineOption* found;
@@ -70,15 +71,6 @@ namespace openSpeak
                     
             /* Search for the short option */
                 option = std::string (argv[i]).substr (1);
-                if (option == "h")
-                    showHelp (argv[0]);
-                else if (option == "v")
-                    showVersion ();
-                found = findOption (option);
-                
-            /* Throw error if it hasn't been found */
-                if (!found)
-                    EXCEPTION ("Unknown option " + std::string (argv[i]));
             }
             else if (strlen (argv[i]) > 2)
             {
@@ -87,19 +79,31 @@ namespace openSpeak
                     
             /* Search for the long option */
                 option = std::string (argv[i]).substr (2);
-                if (option == "help")
-                    showHelp (argv[0]);
-                else if (option == "version")
-                    showVersion ();
-                found = findOption (option);
-                
-            /* Throw error if it hasn't been found */
-                if (!found)
-                    EXCEPTION ("Unknown option " + std::string (argv[i]));
             }
             else
             {
                 EXCEPTION ("Argument " + std::string (argv[i]) + " is invalid");
+            }
+
+            if (option == "help" || option == "h")
+                showHelp (argv[0]);
+            else if (option == "version" || option == "v")
+                showVersion ();
+            found = findOption (option);
+
+        /* Throw error if it hasn't been found */
+            if (!found)
+                EXCEPTION ("Unknown option " + std::string (argv[i]));
+
+            if (found->Type != OPTION_ARG_NONE)
+            {
+                if (++i == argc)
+                    EXCEPTION ("Option " + std::string (argv[i]) + " takes an argument");
+                mValues.insert (std::make_pair (found->Long, argv[i]));
+            }
+            else
+            {
+                mValues.insert (std::make_pair (found->Long, "true"));
             }
         }
     }

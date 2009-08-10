@@ -58,6 +58,8 @@ namespace openSpeak
                     ": " + mMessage).c_str ();
         }
 
+        inline bool empty (void) const { return mMessage.empty (); }
+
 	 protected:
 		const std::string mMessage;		/**< The message */
 		const std::string mFile;		/**< The filename */

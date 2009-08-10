@@ -95,7 +95,7 @@ namespace openSpeak
          *	\param argc The number of arguments
          *	\param argv All arguments
          * */
-        void parseArguments (int argc, char* argv[]) const;
+        void parseArguments (int argc, char* argv[]);
         
         /** \brief Get the value of an option
          *  \param option The option for which to get the value
