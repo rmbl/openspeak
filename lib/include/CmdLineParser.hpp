@@ -61,9 +61,6 @@ namespace openSpeak
          *	\param version The version number of the application
          * */
         CmdLineParser (const std::string &apptitle, const std::string &version);
-
-        /** \brief The void destructor of the CmdLineParser class */
-        ~CmdLineParser (void);
         
         /** \brief Add a single CmdLineOption by giving all parameters. */ 
         void addOption (const char* Long, char Short, int Type, 

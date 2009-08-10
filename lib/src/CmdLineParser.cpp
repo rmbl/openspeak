@@ -35,11 +35,6 @@ namespace openSpeak
 
     }
 
-    CmdLineParser::~CmdLineParser()
-    {
-
-    }
-
     void CmdLineParser::addOption (const char* Long, char Short, int Type, 
             const char* HelpText, const char* ArgHelper)
     {
