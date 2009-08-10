@@ -56,7 +56,7 @@ namespace openSpeak
     {
     /* Loop as long as there are options in the array */
         while (option->Long != 0)        
-            mOptions.push_back (*option);
+            mOptions.push_back (*option++);
     }
 
     void CmdLineParser::parseArguments (int argc, char* argv[]) const
