@@ -24,7 +24,6 @@
 #include <string>
 #include <map>
 #include <boost/signal.hpp>
-#include <boost/function.hpp>
 
 namespace openSpeak
 {
@@ -40,6 +39,8 @@ namespace openSpeak
          */
         class EventMgr
         {
+            friend class Plugin;
+            
          private:
             /** \brief The type all event functions should've */
             typedef void (*EventFunction)(Event);
