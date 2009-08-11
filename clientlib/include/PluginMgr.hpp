@@ -38,7 +38,9 @@ namespace openSpeak
             /** \brief Map in which all plugin informations are saved */
             typedef std::map <std::string, Plugin*> PluginMap;
             
-         public:
+         public:         
+            /** \brief The deconstructor of the PluginMgr class */
+            ~PluginMgr (void);
          
             /** \brief Load all plugins
              * 

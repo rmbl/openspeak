@@ -32,6 +32,14 @@ namespace openSpeak
 
     namespace Client
     {
+        
+        PluginMgr::~PluginMgr ()
+        {
+        /* Close all handles when exiting */
+            for (PluginMap::const_iterator it = mPlugins.begin ();
+                    it != mPlugins.end (); ++it)
+                dlclose (it->second->Handle);
+        }
 
         void PluginMgr::loadPlugins (Config* cfg)
         {
