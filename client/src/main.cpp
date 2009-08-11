@@ -24,8 +24,6 @@
 #include "PluginMgr.hpp"
 #include "StringUtils.hpp"
 
-#include <cstring>
-
 using namespace openSpeak;
 
 int main (int argc, char** argv)
