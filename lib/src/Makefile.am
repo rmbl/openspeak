@@ -10,4 +10,4 @@ libopenspeak_la_SOURCES = \
 
 libopenspeak_la_LDFLAGS = -version-info 1:1:0
 INCLUDES = -I../include
-AM_CPPFLAGS = -DOS_PREFIX=\"$(OS_PREFIX)\"
+AM_CPPFLAGS = -DOS_PREFIX=\"$(OS_PREFIX)\" $(OS_CPPFLAGS)

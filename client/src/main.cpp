@@ -56,7 +56,7 @@ int main (int argc, char** argv)
     /* Create the log file */
         new LogMgr (confdir + "log/openspeak.log",
                 StringUtils::toBool (cmdline->getOption ("debug")) ?
-                Log::LVL_DEBUG : Log::LVL_SILENT);
+                Log::LVL_DEBUG : Log::LVL_ERROR);
         log = LogMgr::getSingleton ()->getDefaultLog ();
         log->logMsg (" ~*~ Started logging ~*~ ", Log::LVL_INFO);
 

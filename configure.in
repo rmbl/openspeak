@@ -61,8 +61,11 @@ fi
 
 OS_DATA_DIR=`eval echo ${datarootdir}/openspeak`
 OS_PREFIX=${prefix}
+OS_CPPFLAGS="-ggdb3"
+
 AC_SUBST(OS_DATA_DIR)
 AC_SUBST(OS_PREFIX)
+AC_SUBST(OS_CPPFLAGS)
 
 AC_OUTPUT([
     Makefile
@@ -78,6 +81,7 @@ AC_OUTPUT([
     client/Makefile
     client/src/Makefile
     client/include/Makefile
+    client/plugins/Makefile
 ])
 
 echo "----------------------------------------"
