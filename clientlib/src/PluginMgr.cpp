@@ -27,6 +27,8 @@
 #   include <dlfcn.h>
 #endif
 
+#include <cstring>
+
 namespace openSpeak
 {
 
@@ -38,7 +40,11 @@ namespace openSpeak
         /* Close all handles when exiting */
             for (PluginMap::const_iterator it = mPlugins.begin ();
                     it != mPlugins.end (); ++it)
-                dlclose (it->second->Handle);
+            {
+                void* handle = it->second->Handle;
+                it->second->Destroy (it->second);
+                dlclose (handle);
+            }
         }
 
         void PluginMgr::loadPlugins (Config* cfg)
@@ -64,24 +70,27 @@ namespace openSpeak
                     if (!handle)
                         EXCEPTION ("Loading plugin " + std::string (plugins.gl_pathv[i]) + " failed");
 
-                /* Get the getPlugin () function and save the Plugin* in the map */
-                    Plugin* (*func)(void) = (Plugin* (*)())dlsym (handle, "getPlugin");
-                    if (!func)
+                /* Get the createPlugin () function and save the Plugin* in the map */
+                    Plugin::createFunc* create = (Plugin::createFunc*)dlsym (handle, "createPlugin");
+                    Plugin::destroyFunc* destroy = (Plugin::destroyFunc*)dlsym (handle, "destroyPlugin");
+                    if (!create || !destroy)
                         EXCEPTION ("Plugin " + std::string (plugins.gl_pathv[i]) +
                                 " is not a valid openSpeak Plugin");
-
-                    Plugin* plug = func ();
+                                
+                    Plugin *plug = create ();                    
                     plug->Handle = handle;
                     plug->Loaded = false;
+                    plug->Destroy = destroy;
 
                 /* Strip the .so before saving */
-                    std::string soname = plugins.gl_pathv[i];
-                    soname = soname.substr (0, soname.size () - 4);
-                    plug->SOName = soname;
-                    mPlugins[soname] = plug;
+                    plug->SOName = plugins.gl_pathv[i];
+                    LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
+                            "SOName: " + plug->SOName, Log::LVL_DEBUG);
+                    //plug->SOName = plug->SOName.substr (0, plug->SOName.size () - 4);
+                    mPlugins[plug->SOName] = plug;
 
                     LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                            "Loaded plugin " + plug->Name + " " + plug->Version +
+                           "Loaded plugin " + plug->Name + " " + plug->Version +
                             " from " + plug->Author, Log::LVL_DEBUG);
                 }
             }

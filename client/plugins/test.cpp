@@ -18,18 +18,17 @@
 
 #include "Plugin.hpp"
 
-#include <iostream>
+using namespace openSpeak::Client;
 
-openSpeak::Client::Plugin *plugin;
-
-void __attribute__ ((constructor)) my_init ()
+class DummyPlugin : public Plugin
 {
-    plugin = new openSpeak::Client::Plugin ("Dummy Plugin", "0.1", 
-            "Philipp Gildein <rmbl@openspeak-project.org>");
-    plugin->Description = "Just a dummy plugin";
-}
+ public:
+    DummyPlugin (void)
+            : Plugin ("Dummy Plugin", "0.1",
+            "Philipp Gildein <rmbl@openspeak-project.org>")
+    {
+        Description = "Just a dummy plugin";
+    }
+};
 
-void __attribute__ ((destructor)) my_fini ()
-{
-    delete plugin;
-}
+PLUGIN (DummyPlugin);

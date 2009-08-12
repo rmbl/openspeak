@@ -43,7 +43,11 @@ namespace openSpeak
 
             /** \brief Vector to save all classes in */
             typedef std::vector <std::pair <std::string, void*> > ClassVector;
-            
+
+            /** \brief Function pointer to create and destroy functions */
+            typedef Plugin* createFunc (void);
+            typedef void destroyFunc (Plugin*);
+
             /** \brief Default empty constructor */
             Plugin (void) { }
 
@@ -56,7 +60,7 @@ namespace openSpeak
                     const std::string &author)
                     : Name (name), Version (version), Author (author)
             {
-                
+
             }
 
             /** \brief Register a function with an event
@@ -82,14 +86,25 @@ namespace openSpeak
             std::string Version;    /**< The version of the plugin */
             std::string Author;     /**< The author of the plugin */
             std::string Description;/**< The description of the plugin */
-            
+
             std::string SOName;     /**< Name of the shared object file */
-            void* Handle;           /**< Handle from the dlopen function */
-            bool Loaded;            /**< Is the plugin loaded? */
+            void        *Handle;    /**< Handle from the dlopen function */
+            bool        Loaded;     /**< Is the plugin loaded? */
+            destroyFunc *Destroy;   /**< Function pointer to the destroy function */
 
             EventVector Events;     /**< Vector containing all events */
             ClassVector Classes;    /**< Vector containing all classes */
         };
+
+#define PLUGIN(classname) \
+        extern "C" Plugin *createPlugin (void) \
+        { \
+            return new classname (); \
+        } \
+        extern "C" void destroyPlugin (Plugin *p) \
+        { \
+            delete p; \
+        }
 
     }
 
