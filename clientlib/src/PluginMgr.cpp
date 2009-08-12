@@ -34,10 +34,10 @@ namespace openSpeak
 
     namespace Client
     {
-        
+
         PluginMgr::~PluginMgr ()
         {
-        /* Close all handles when exiting */
+        /* Destroy all instances and close all handles when exiting */
             for (PluginMap::const_iterator it = mPlugins.begin ();
                     it != mPlugins.end (); ++it)
             {
@@ -68,36 +68,47 @@ namespace openSpeak
                 {
                     void* handle = dlopen (plugins.gl_pathv[i], RTLD_LAZY);
                     if (!handle)
-                        EXCEPTION ("Loading plugin " + std::string (plugins.gl_pathv[i]) + " failed");
-
+                    {
+                        LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
+                                "Loading plugin " + std::string (plugins.gl_pathv[i]) +
+                                " failed", Log::LVL_ERROR);
+                        continue;
+                    }
                 /* Get the createPlugin () function and save the Plugin* in the map */
-                    Plugin::createFunc* create = (Plugin::createFunc*)dlsym (handle, "createPlugin");
-                    Plugin::destroyFunc* destroy = (Plugin::destroyFunc*)dlsym (handle, "destroyPlugin");
+                    Plugin::createFunc* create = (Plugin::createFunc*)dlsym (
+                            handle, "createPlugin");
+                    Plugin::destroyFunc* destroy = (Plugin::destroyFunc*)dlsym (
+                            handle, "destroyPlugin");
                     if (!create || !destroy)
-                        EXCEPTION ("Plugin " + std::string (plugins.gl_pathv[i]) +
-                                " is not a valid openSpeak Plugin");
-                                
-                    Plugin *plug = create ();                    
+                    {
+                        LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
+                                "Plugin " + std::string (plugins.gl_pathv[i]) +
+                                " is not a valid openSpeak Plugin", Log::LVL_ERROR);
+                        dlclose (handle);
+                        continue;
+                    }
+
+                    Plugin *plug = create ();
                     plug->Handle = handle;
                     plug->Loaded = false;
                     plug->Destroy = destroy;
 
                 /* Strip the .so before saving */
                     plug->SOName = plugins.gl_pathv[i];
-                    LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                            "SOName: " + plug->SOName, Log::LVL_DEBUG);
-                    //plug->SOName = plug->SOName.substr (0, plug->SOName.size () - 4);
+                    std::string::size_type index = plug->SOName.find_last_of ('/');
+                    plug->SOName = plug->SOName.substr (index + 1,
+                            plug->SOName.size () - index - 4);
                     mPlugins[plug->SOName] = plug;
 
                     LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                           "Loaded plugin " + plug->Name + " " + plug->Version +
-                            " from " + plug->Author, Log::LVL_DEBUG);
+                           "Loaded plugin " + plug->Name + " (" +plug->SOName + ") " +
+                            plug->Version + " from " + plug->Author, Log::LVL_DEBUG);
                 }
             }
 
             globfree (&plugins);
 
-            // Check each of the libraries if they're enabled and load them if they are
+        /* Check each of the libraries if they're enabled and load them if they are */
             for (PluginMap::const_iterator it = mPlugins.begin ();
                     it != mPlugins.end (); ++it)
             {
