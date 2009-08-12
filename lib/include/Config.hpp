@@ -40,6 +40,10 @@ namespace openSpeak
         typedef std::map <std::string, std::string> ConfigMap;
 
      public:
+        /** \brief Iterator typedefs to ease the use */
+        typedef ConfigMap::const_iterator   ConstIterator;
+        typedef ConfigMap::iterator         Iterator;     
+     
         /** \brief The constructor of the Config class
          *  \param filename The file we want to parse
          */
@@ -72,11 +76,23 @@ namespace openSpeak
          *  \return Returns true if the option exists
          */
         bool optionExists (const std::string &option) const;
+        
+        /** \brief Return an iterator to iterate through all options
+         *  \return An iterator to the first element
+         */
+        inline ConstIterator begin (void) const { return mOptions.begin (); }
+        inline Iterator begin (void) { return mOptions.begin (); }
+        
+        /** \brief Return an iterator to the element behind the last element
+         *  \return An iterator to the element behind the last element
+         */
+        inline ConstIterator end (void) const { return mOptions.end (); }
+        inline Iterator end (void) { return mOptions.end (); }
 
      private:
         ConfigMap       mOptions;           /**< The map which contains all options */
-        std::fstream         mFile;              /**< The config file */
-        std::string          mFilename;          /**< The name of the current file */
+        std::fstream    mFile;              /**< The config file */
+        std::string     mFilename;          /**< The name of the current file */
         bool            mParsed;            /**< True if the file has already been parsed */
     };
 
