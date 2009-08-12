@@ -81,6 +81,7 @@ namespace openSpeak
             std::string Name;       /**< The name of the plugin */
             std::string Version;    /**< The version of the plugin */
             std::string Author;     /**< The author of the plugin */
+            std::string Description;/**< The description of the plugin */
             
             std::string SOName;     /**< Name of the shared object file */
             void* Handle;           /**< Handle from the dlopen function */
