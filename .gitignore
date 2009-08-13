@@ -15,6 +15,12 @@ Makefile.in
 *.o
 *.lo
 *.la
+*.so
+.*project
+# CMake stuff
+CMakeFiles*
+CMakeCache.txt
+cmake*
 
 # Binaries
 openspeak
