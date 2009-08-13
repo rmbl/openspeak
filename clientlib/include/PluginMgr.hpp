@@ -15,7 +15,7 @@
   *  with this program; if not, write to the Free Software Foundation, Inc.,
   *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
   */
-  
+
 #ifndef __OS_CLIENT_PLUGIN_MGR_HPP__
 #define __OS_CLIENT_PLUGIN_MGR_HPP__
 
@@ -28,7 +28,7 @@
 
 namespace openSpeak
 {
-    
+
     namespace Client
     {
 
@@ -37,32 +37,41 @@ namespace openSpeak
          private:
             /** \brief Map in which all plugin informations are saved */
             typedef std::map <std::string, Plugin*> PluginMap;
-            
-         public:         
+
+         public:
+            /** \brief The constructor of the PluginMgr class */
+            PluginMgr (void);
+
             /** \brief The deconstructor of the PluginMgr class */
             ~PluginMgr (void);
-         
+
             /** \brief Load all plugins
-             * 
+             *
              *  Load all plugins in the lib directory and enable the ones that
              *  are also enabled in the configuration file.
-             * 
+             *
              *  \param cfg The config file
              */
             void loadPlugins (Config *cfg);
-         
+
             /** \brief Load the plugin
              *  \param plugin The name of the plugin and its .so file
              */
             void loadPlugin (const std::string &plugin);
-         
+
             /** \brief Unload the plugin
              *  \param plugin The name of the plugin and its .so file
              */
             void unloadPlugin (const std::string &plugin);
-        
+
+            /** \brief Register an EventMgr with the PluginMgr to recieve the hooks
+             *  \param ptr Pointer to the EventMgr class
+             */
+            inline void registerEventMgr (EventMgr *ptr) { mEventMgr = ptr; }
+
          private:
-            PluginMap mPlugins;
+            PluginMap   mPlugins;       /**< Map containing all plugins */
+            EventMgr    *mEventMgr;     /**< EventMgr handling all plugin hooks */
         };
 
     }

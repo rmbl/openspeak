@@ -27,13 +27,16 @@
 #   include <dlfcn.h>
 #endif
 
-#include <cstring>
-
 namespace openSpeak
 {
 
     namespace Client
     {
+
+        PluginMgr::PluginMgr ()
+        {
+            mEventMgr = 0;
+        }
 
         PluginMgr::~PluginMgr ()
         {
@@ -49,6 +52,10 @@ namespace openSpeak
 
         void PluginMgr::loadPlugins (Config* cfg)
         {
+        /* Check if there is an eventmgr specified */
+            if (!mEventMgr)
+                EXCEPTION ("Can't load plugins without an event mgr registered");
+
         /* Search for .so files in the libdir using glob */
             std::string plugindir = FileUtils::getLibPath ();
             glob_t plugins;
@@ -124,11 +131,15 @@ namespace openSpeak
             PluginMap::const_iterator it = mPlugins.find (plugin);
             if (it == mPlugins.end ())
                 EXCEPTION ("Unknown plugin " + plugin);
-            if (it->second->Loaded)
+            else if (it->second->Loaded)
                 return;
 
         /* Load it if its not */
-            //TODO: Add events and classes
+            for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
+                    i != it->second->Events.end (); ++i)
+                mEventMgr->connect (i->first, i->second);
+            //TODO: Add classes
+
         }
 
         void PluginMgr::unloadPlugin (const std::string &plugin)
@@ -137,11 +148,14 @@ namespace openSpeak
             PluginMap::const_iterator it = mPlugins.find (plugin);
             if (it == mPlugins.end ())
                 EXCEPTION ("Unknown plugin " + plugin);
-            if (!it->second->Loaded)
+            else if (!it->second->Loaded)
                 return;
 
         /* Unload it if its not */
-            //TODO: Remove events and classes
+            for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
+                    i != it->second->Events.end (); ++i)
+                mEventMgr->disconnect (i->first, i->second);
+            //TODO: Add classes
         }
 
     }
