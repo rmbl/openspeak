@@ -39,7 +39,7 @@ namespace openSpeak
         {
             EventMap::const_iterator it = mEvents.find (event);
             if (it == mEvents.end ())
-                mEvents[event] = new boost::signal <void (Event)> ();
+                mEvents[event] = new boost::signals2::signal <void (Event)> ();
         }
         
         void EventMgr::connect (const std::string &event, EventFunction function)

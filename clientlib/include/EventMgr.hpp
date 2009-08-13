@@ -23,7 +23,7 @@
 
 #include <string>
 #include <map>
-#include <boost/signal.hpp>
+#include <boost/signals2.hpp>
 
 namespace openSpeak
 {
@@ -46,7 +46,7 @@ namespace openSpeak
             typedef void (*EventFunction)(Event);
          
             /** \brief The map where all signals are stored */
-            typedef std::map <std::string, boost::signal <void (Event)>* > EventMap;
+            typedef std::map <std::string, boost::signals2::signal <void (Event)>* > EventMap;
             
          public:
             /** \brief The constructor of the EventMgr class */
