@@ -17,7 +17,7 @@ This codebase is nowhere near the state of the older one. There is no real usabi
 and the client and server executables are basically just tests of the underlying 
 libraries.
 
-Dependecies:
+Dependencies:
 ============
 
 To build *openSpeak* you currently only need **Boost::Signals** apart from a C++ 
