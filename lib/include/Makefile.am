@@ -1,4 +1,5 @@
-noinst_HEADERS = \
+openspeak_includedir = $(includedir)/openspeak
+openspeak_include_HEADERS = \
 	CmdLineParser.hpp \
 	Config.hpp \
 	Exception.hpp \

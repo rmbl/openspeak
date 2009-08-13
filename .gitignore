@@ -17,10 +17,13 @@ Makefile.in
 *.la
 *.so
 .*project
+.settings
+
 # CMake stuff
 CMakeFiles*
-CMakeCache.txt
-cmake*
+*cmake*
+*CPack*
+install_manifest.txt
 
 # Binaries
 openspeak
