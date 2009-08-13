@@ -81,10 +81,10 @@ namespace openSpeak
                                 " failed", Log::LVL_ERROR);
                         continue;
                     }
-                /* Get the createPlugin () function and save the Plugin* in the map */
-                    Plugin::createFunc* create = (Plugin::createFunc*)dlsym (
+                /* Get the create and destroy functions and create the plugin */
+                    Plugin::createFunc *create = (Plugin::createFunc*)dlsym (
                             handle, "createPlugin");
-                    Plugin::destroyFunc* destroy = (Plugin::destroyFunc*)dlsym (
+                    Plugin::destroyFunc *destroy = (Plugin::destroyFunc*)dlsym (
                             handle, "destroyPlugin");
                     if (!create || !destroy)
                     {
@@ -99,6 +99,12 @@ namespace openSpeak
                     plug->Handle = handle;
                     plug->Loaded = false;
                     plug->Destroy = destroy;
+
+                /* Get the addEvents function and try to add events */
+                    Plugin::eventFunc *events = (Plugin::eventFunc*)dlsym(
+                            handle, "addEvents");
+                    if (events)
+                        events (plug);
 
                 /* Strip the .so before saving */
                     plug->SOName = plugins.gl_pathv[i];
