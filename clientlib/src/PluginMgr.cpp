@@ -100,12 +100,6 @@ namespace openSpeak
                     plug->Loaded = false;
                     plug->Destroy = destroy;
 
-                /* Get the addEvents function and try to add events */
-                    Plugin::eventFunc *events = (Plugin::eventFunc*)dlsym(
-                            handle, "addEvents");
-                    if (events)
-                        events (plug);
-
                 /* Strip the .so before saving */
                     plug->SOName = plugins.gl_pathv[i];
                     std::string::size_type index = plug->SOName.find_last_of ('/');

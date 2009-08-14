@@ -54,9 +54,6 @@ namespace openSpeak
             typedef Plugin* createFunc (void);
             typedef void destroyFunc (Plugin*);
 
-            /** \brief Function pointer to add all events */
-            typedef Plugin eventFunc (Plugin*);
-
             /** \brief Default empty constructor */
             Plugin (void) { }
 
@@ -118,16 +115,6 @@ namespace openSpeak
         extern "C" void destroyPlugin (openSpeak::Client::Plugin *p) \
         { \
             delete p; \
-        }
-
-#define EVENTS_BEGIN() \
-        extern "C" void addEvents (Plugin* plugin) \
-        {
-
-#define EVENT(name, function) \
-            plugin->registerEvent (name, function);
-
-#define EVENTS_END() \
         }
 
 #endif

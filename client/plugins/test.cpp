@@ -22,6 +22,11 @@
 
 using namespace openSpeak::Client;
 
+void testEvent2 (Event evt)
+{
+    std::cerr << "testEvent2";
+}
+
 class DummyPlugin : public Plugin
 {
  public:
@@ -30,6 +35,9 @@ class DummyPlugin : public Plugin
             "Philipp Gildein <rmbl@openspeak-project.org>")
     {
         Description = "Just a dummy plugin";
+        registerEvent ("activated", boost::bind (&DummyPlugin::testEvent,
+                this, _1));
+        registerEvent ("activated", &testEvent2);
     }
     
     void testEvent (Event evt)
@@ -38,14 +46,4 @@ class DummyPlugin : public Plugin
     }
 };
 
-void testEvent2 (Event evt)
-{
-    std::cerr << "testEvent2";
-}
-
 PLUGIN (DummyPlugin)
-
-EVENTS_BEGIN ()
-    EVENT ("activated", boost::bind (&DummyPlugin::testEvent, (DummyPlugin*)plugin, _1))
-    EVENT ("activated", &testEvent2)
-EVENTS_END ()
