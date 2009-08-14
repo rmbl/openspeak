@@ -21,6 +21,9 @@
 
 #include "EventMgr.hpp"
 #include <string>
+#include <vector>
+#include <boost/signals2.hpp>
+#include <boost/function.hpp>
 
 namespace openSpeak
 {
@@ -40,6 +43,9 @@ namespace openSpeak
             /** \brief Vector to save all events in */
             typedef std::vector <std::pair <std::string, EventMgr::EventFunction> >
                     EventVector;
+
+            /** \brief Vector to save all event connections in */
+            typedef std::vector <boost::signals2::connection> EventConnectionVector;
 
             /** \brief Vector to save all classes in */
             typedef std::vector <std::pair <std::string, void*> > ClassVector;
@@ -96,6 +102,7 @@ namespace openSpeak
             destroyFunc *Destroy;   /**< Function pointer to the destroy function */
 
             EventVector Events;     /**< Vector containing all events */
+            EventConnectionVector EventConnections; /**< Vector containing all event connections */
             ClassVector Classes;    /**< Vector containing all classes */
         };
 

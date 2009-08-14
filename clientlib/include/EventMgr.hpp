@@ -24,6 +24,7 @@
 #include <string>
 #include <map>
 #include <boost/signals2.hpp>
+#include <boost/function.hpp>
 
 namespace openSpeak
 {
@@ -33,51 +34,53 @@ namespace openSpeak
 
         /** \class EventMgr
          *  \brief Manages registered events and calls connected functions
-         * 
+         *
          *  The EventMgr class manages the registered events and calls the
          *  associated functions when an event gets fired.
          */
         class EventMgr
         {
             friend class Plugin;
-            
+
          private:
             /** \brief The type all event functions should've */
-            typedef void (*EventFunction)(Event);
-         
+            typedef boost::function <void (Event)> EventFunction;
+
             /** \brief The map where all signals are stored */
-            typedef std::map <std::string, boost::signals2::signal <void (Event)>* > EventMap;
-            
+            typedef std::map <std::string, boost::signals2::signal <void (Event)>* >
+                    EventMap;
+
          public:
             /** \brief The constructor of the EventMgr class */
             EventMgr (void);
-            
+
             /** \brief The destructor of the EventMgr class */
             ~EventMgr (void);
-            
-            /** \brief Create a new event 
+
+            /** \brief Create a new event
              *  \param event The name of the event
              */
             void create (const std::string &event);
-            
-            /** \brief Connect a function to an event 
+
+            /** \brief Connect a function to an event
              *  \param event The event to connect to
              *  \param function The function to connect to the event
              */
-            void connect (const std::string &event, EventFunction function);
-            
+            boost::signals2::connection connect (const std::string &event,
+                    EventFunction function);
+
             /** \brief Disconnect a function from an event
              *  \param event The event to disconnect the function from
              *  \param function The function to disconnect
              */
-            void disconnect (const std::string &event, EventFunction function = 0);
-            
+            void disconnect (boost::signals2::connection con);
+
             /** \brief Fire an event and call all connected functions
              *  \param event The event to fire
              *  \param evt The event supplied as the argument
              */
             void fireEvent (const std::string &event, Event evt);
-         
+
          private:
             EventMap mEvents;   /**< The map containing all events */
         };

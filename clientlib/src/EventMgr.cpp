@@ -19,6 +19,8 @@
 #include "Exception.hpp"
 #include "EventMgr.hpp"
 
+#include "LogMgr.hpp"
+
 namespace openSpeak
 {
 
@@ -34,30 +36,32 @@ namespace openSpeak
         {
 
         }
-        
+
         void EventMgr::create (const std::string &event)
         {
             EventMap::const_iterator it = mEvents.find (event);
             if (it == mEvents.end ())
                 mEvents[event] = new boost::signals2::signal <void (Event)> ();
         }
-        
-        void EventMgr::connect (const std::string &event, EventFunction function)
+
+        boost::signals2::connection EventMgr::connect (const std::string &event,
+                EventFunction function)
         {
+            LogMgr::getSingleton ()->getDefaultLog ()->logMsg ("Adding event from plugin ", Log::LVL_DEBUG);
+
             EventMap::const_iterator it = mEvents.find (event);
             if (it == mEvents.end ())
                 EXCEPTION ("Event doesn't exist");
-            
-            it->second->connect (function);
+
+            return it->second->connect (function);
         }
-        
-        void EventMgr::disconnect (const std::string &event, EventFunction function)
+
+        void EventMgr::disconnect (boost::signals2::connection con)
         {
-            EventMap::const_iterator it = mEvents.find (event);
-            if (it == mEvents.end ())
-                EXCEPTION ("Event doesn't exist");
-            
-            it->second->disconnect (function);            
+            if (!con.connected ())
+                EXCEPTION ("Event is not connected");
+
+            con.disconnect ();
         }
 
         void EventMgr::fireEvent (const std::string &event, Event evt)
@@ -65,10 +69,10 @@ namespace openSpeak
             EventMap::const_iterator it = mEvents.find (event);
             if (it == mEvents.end ())
                 EXCEPTION ("Event doesn't exist");
-            
+
             (*(it->second)) (evt);
         }
-    
+
     }
 
 }

@@ -140,10 +140,15 @@ namespace openSpeak
             else if (it->second->Loaded)
                 return;
 
+            LogMgr::getSingleton ()->getDefaultLog ()->logMsg ("Activating plugin "+plugin+
+                    " with " + StringUtils::toString (it->second->Events.size ()) + " events", Log::LVL_DEBUG);
+
         /* Load it if its not */
             for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
                     i != it->second->Events.end (); ++i)
-                mEventMgr->connect (i->first, i->second);
+                it->second->EventConnections.push_back (mEventMgr->connect (
+                        i->first, i->second));
+
             //TODO: Add classes
 
         }
@@ -158,9 +163,10 @@ namespace openSpeak
                 return;
 
         /* Unload it if its not */
-            for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
-                    i != it->second->Events.end (); ++i)
-                mEventMgr->disconnect (i->first, i->second);
+            for (Plugin::EventConnectionVector::const_iterator
+                    i = it->second->EventConnections.begin ();
+                    i != it->second->EventConnections.end (); ++i)
+                mEventMgr->disconnect (*i);
             //TODO: Add classes
         }
 

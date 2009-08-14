@@ -17,6 +17,8 @@
   */
 
 #include "Plugin.hpp"
+#include <boost/bind.hpp>
+#include <iostream>
 
 using namespace openSpeak::Client;
 
@@ -29,6 +31,21 @@ class DummyPlugin : public Plugin
     {
         Description = "Just a dummy plugin";
     }
+    
+    void testEvent (Event evt)
+    {
+        std::cerr << "DummyPlugin::testEvent";
+    }
 };
 
-PLUGIN (DummyPlugin);
+void testEvent2 (Event evt)
+{
+    std::cerr << "testEvent2";
+}
+
+PLUGIN (DummyPlugin)
+
+EVENTS_BEGIN ()
+    EVENT ("activated", boost::bind (&DummyPlugin::testEvent, (DummyPlugin*)plugin, _1))
+    EVENT ("activated", &testEvent2)
+EVENTS_END ()
