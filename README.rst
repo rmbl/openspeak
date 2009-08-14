@@ -18,9 +18,9 @@ and the client and server executables are basically just tests of the underlying
 libraries.
 
 Dependencies:
-============
+=============
 
-To build *openSpeak* you currently only need **Boost::Signals** apart from a C++ 
+To build *openSpeak* you currently only need **Boost >= 1.39** apart from a C++ 
 compiler and an autoconf compatible system.
 
 Installation:
