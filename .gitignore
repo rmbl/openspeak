@@ -21,6 +21,7 @@ Makefile.in
 
 # CMake stuff
 CMakeFiles*
+CMakeCache*
 *cmake*
 *CPack*
 install_manifest.txt

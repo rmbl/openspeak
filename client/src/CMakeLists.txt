@@ -6,3 +6,5 @@ include_directories (${openSpeak_SOURCE_DIR}/lib/include ${openSpeak_SOURCE_DIR}
 add_executable (openspeak main.cpp)
 set_target_properties (openspeak PROPERTIES COMPILE_FLAGS -ggdb3)
 target_link_libraries (openspeak openspeaklib openspeakclient ${Boost_SIGNALS_LIBRARY} dl)
+
+install (PROGRAMS openspeak DESTINATION bin)
