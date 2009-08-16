@@ -34,7 +34,7 @@ int main (int argc, char** argv)
     try
     {
     /* Parse the commandline */
-        cmdline = new CmdLineParser ("openSpeak Server", "0.1-svn");
+        cmdline = new CmdLineParser ("openSpeak Server", "0.1-git");
         CmdLineParser::CmdLineOption options[] = {
             { "debug", 'd', CmdLineParser::OPTION_ARG_NONE, "Display more informations", "" },
             0
@@ -81,13 +81,15 @@ int main (int argc, char** argv)
         ret = -1;
     }
 
-    if (log)
-        log->logMsg (" ~*~ Finished logging ~*~", Log::LVL_SILENT);
-
-    if (LogMgr::getSingleton ())
-        delete LogMgr::getSingleton ();
+    delete cmdline;
     if (config)
         delete config;
+
+    if (log)
+    {
+        log->logMsg (" ~*~ Finished logging ~*~", Log::LVL_SILENT);
+        delete LogMgr::getSingleton ();
+    }
 
     return ret;
 }

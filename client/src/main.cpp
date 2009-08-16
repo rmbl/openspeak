@@ -21,7 +21,7 @@
 #include "LogMgr.hpp"
 #include "Config.hpp"
 #include "CmdLineParser.hpp"
-#include "PluginMgr.hpp"
+#include "Core.hpp"
 #include "StringUtils.hpp"
 
 using namespace openSpeak;
@@ -31,12 +31,12 @@ int main (int argc, char** argv)
     CmdLineParser *cmdline = 0;
     Log *log = 0;
     Config *config = 0;
-    Client::PluginMgr *pluginmgr = 0;
+    Client::Core *core = 0;
 
     try
     {
     /* Parse the commandline */
-        cmdline = new CmdLineParser ("openSpeak", "0.1-svn");
+        cmdline = new CmdLineParser ("openSpeak", "0.1-git");
         CmdLineParser::CmdLineOption options[] = {
             { "debug", 'd', CmdLineParser::OPTION_ARG_NONE, "Display more informations", "" },
             0
@@ -65,11 +65,8 @@ int main (int argc, char** argv)
         config->parse ();
         log->logMsg ("Parsed config file " + confdir + "openspeak.conf", Log::LVL_DEBUG);
 
-    /* Create a PluginMgr and load all plugins */
-        log->logMsg ("Loading plugins", Log::LVL_DEBUG);
-        pluginmgr = new Client::PluginMgr ();
-        pluginmgr->loadPlugins (config);
-        log->logMsg ("Finished loading plugins", Log::LVL_DEBUG);
+    /* Create the client core to start the rest */
+        core = new Client::Core (config, cmdline, log);
     }
     catch (Exception ex)
     {
@@ -86,16 +83,16 @@ int main (int argc, char** argv)
             std::cout << "Catched unknown exception";
     }
 
-    if (log)
-        log->logMsg (" ~*~ Finished logging ~*~", Log::LVL_SILENT);
-
-    if (LogMgr::getSingleton ())
-        delete LogMgr::getSingleton ();
+    if (core)
+        delete core;
     if (config)
         delete config;
-    if (pluginmgr)
-        delete pluginmgr;
     delete cmdline;
+
+    if (log)
+        log->logMsg (" ~*~ Finished logging ~*~", Log::LVL_SILENT);
+    if (LogMgr::getSingleton ())
+        delete LogMgr::getSingleton ();
 
     return 0;
 }

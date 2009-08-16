@@ -1,5 +1,6 @@
 lib_LTLIBRARIES = libopenspeakclient.la
 libopenspeakclient_la_SOURCES = \
+                    Core.cpp \
 					EventMgr.cpp \
 					PluginMgr.cpp
 
