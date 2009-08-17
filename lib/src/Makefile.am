@@ -6,7 +6,8 @@ libopenspeak_la_SOURCES = \
 	FileUtils.cpp \
 	LogMgr.cpp \
 	Log.cpp \
-	StringUtils.cpp
+	StringUtils.cpp \
+	Thread.cpp
 
 libopenspeak_la_LDFLAGS = -version-info 1:1:0
 INCLUDES = -I../include

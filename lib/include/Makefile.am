@@ -9,4 +9,5 @@ openspeak_include_HEADERS = \
 	Platform.hpp \
 	Singleton.hpp \
 	StringUtils.hpp \
+	Thread.hpp \
 	Types.hpp

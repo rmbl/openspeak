@@ -51,6 +51,7 @@ AC_STRUCT_TM
 # Check for libraries
 AX_BOOST_BASE([1.39.0])
 AX_BOOST_SIGNALS2
+AX_BOOST_THREAD
 
 # Set ${datadir}
 if test "x${datadir}" = 'x${prefix}/share' -o "x${datarootdir}" = 'x${prefix}/share'; then
