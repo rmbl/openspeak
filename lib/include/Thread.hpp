@@ -25,23 +25,42 @@
 namespace openSpeak
 {
 
+    /** \brief Typedefs for easier access to heavily used boost::thread stuff */
     typedef boost::mutex::scoped_lock MutexLocker;
     typedef boost::mutex Mutex;
 
+    /** \class Thread
+     *  \brief Creates a new thread and runs the entry () function in it
+     *
+     *  The Thread class is an abstract base class which needs to be inherited
+     *  to easily create a new thread.
+     */
     class Thread
     {
      public:
-        Thread(void);
-        virtual ~Thread(void);
+        /** \brief The constructor of the Thread class */
+        Thread (void);
 
-        void run(void);
-        void sleep(uint milliseconds);
-        void join(void) const;
+        /** \brief The destructor of the Thread class */
+        virtual ~Thread (void);
 
-        virtual void entry(void) = 0;
+        /** \brief Create the thread and run the entry () function in it */
+        void run (void);
+
+        /** \brief Let the running thread sleep for a defined time
+         *  \param milliseconds The amount of milliseconds to sleep
+         */
+        void sleep (uint milliseconds);
+
+        /** \brief Wait for the thread to terminate */
+        void join (void) const;
+
+        /** \brief Abstract function which contents will get run inside the thread */
+        virtual void entry (void) = 0;
+
      protected:
-        boost::thread *mThread;
-        boost::mutex  mMutex;
+        boost::thread *mThread; /**< The thread object */
+        boost::mutex  mMutex;   /**< The protecting mutex */
     };
 
 }

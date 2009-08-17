@@ -22,27 +22,27 @@
 namespace openSpeak
 {
 
-	Thread::Thread()
+	Thread::Thread ()
             : mThread (0)
 	{
 	}
 
-	Thread::~Thread()
+	Thread::~Thread ()
 	{
 		if (mThread)
 			delete mThread;
 	}
 
-	void Thread::run()
+	void Thread::run ()
 	{
 		MutexLocker lock (mMutex);
 		if (mThread)
             EXCEPTION ("Thread was already created");
-            
+
 		mThread = new boost::thread (boost::bind (&Thread::entry, this));
 	}
 
-	void Thread::sleep(unsigned int ms)
+	void Thread::sleep (uint ms)
 	{
 		MutexLocker lock (mMutex);
         if (!mThread)
