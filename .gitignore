@@ -18,6 +18,7 @@ Makefile.in
 *.so
 .*project
 .settings
+*~
 
 # CMake stuff
 CMakeFiles*
