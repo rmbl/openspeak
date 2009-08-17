@@ -28,6 +28,20 @@ namespace openSpeak
         Core::Core (Config *cfg, CmdLineParser *cmdline, Log *log)
                 : mConfig (cfg), mCmdLine (cmdline), mLog (log)
         {
+        }
+
+        Core::~Core ()
+        {
+            logMsg ("Core: Shutting down", Log::LVL_INFO);
+            if (mPluginMgr)
+            {
+                delete mPluginMgr;
+                logMsg ("Core: Closed PluginMgr", Log::LVL_INFO);
+            }
+        }
+
+        void Core::entry ()
+        {
             logMsg ("Core: Starting up", Log::LVL_INFO);
 
             mPluginMgr = new PluginMgr ();
@@ -43,13 +57,6 @@ namespace openSpeak
             {
                 logMsg (ex.what (), Log::LVL_ERROR);
             }
-        }
-
-        Core::~Core ()
-        {
-            logMsg ("Core: Shutting down", Log::LVL_INFO);
-            delete mPluginMgr;
-            logMsg ("Core: Closed PluginMgr", Log::LVL_INFO);
         }
 
     }

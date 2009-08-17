@@ -67,6 +67,7 @@ int main (int argc, char** argv)
 
     /* Create the client core to start the rest */
         core = new Client::Core (config, cmdline, log);
+        core->run ();
     }
     catch (Exception ex)
     {
@@ -84,7 +85,10 @@ int main (int argc, char** argv)
     }
 
     if (core)
+    {
+        core->join ();
         delete core;
+    }
     if (config)
         delete config;
     delete cmdline;

@@ -21,6 +21,7 @@
 
 #include "EventMgr.hpp"
 #include "Singleton.hpp"
+#include "Thread.hpp"
 #include "Config.hpp"
 #include "CmdLineParser.hpp"
 #include "Log.hpp"
@@ -32,7 +33,13 @@ namespace openSpeak
     namespace Client
     {
 
-        class Core : public EventMgr, public Singleton <Core>
+        /** \class Core
+         *  \brief The center of the client backend
+         *
+         *  The Core class is the connection between the frontend (GUI) and
+         *  the backend stuff like the connection and the sound.
+         */
+        class Core : public EventMgr, public Singleton <Core>, public Thread
         {
          public:
             /** \brief The constructor of the Core class
@@ -43,7 +50,10 @@ namespace openSpeak
             Core (Config *cfg, CmdLineParser *cmdline, Log *log);
 
             /** \brief The destructor of the Core class */
-            ~Core (void);
+            virtual ~Core (void);
+
+            /** \brief The entry function for the Thread class */
+            virtual void entry (void);
 
             /* These two functions are currently unimplemented,
                they are just a hint at what will be added.
@@ -78,11 +88,11 @@ namespace openSpeak
             }
 
          protected:
-            Config          *mConfig;
-            CmdLineParser   *mCmdLine;
-            Log             *mLog;
+            Config          *mConfig;       /**< The used configuration file */
+            CmdLineParser   *mCmdLine;      /**< The commandline of the client */
+            Log             *mLog;          /**< The log to use */
 
-            PluginMgr       *mPluginMgr;
+            PluginMgr       *mPluginMgr;    /**< The pluginmgr managing the plugins */
         };
 
     }
