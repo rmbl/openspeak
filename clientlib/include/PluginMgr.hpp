@@ -22,6 +22,7 @@
 #include "Singleton.hpp"
 #include "Config.hpp"
 #include "Plugin.hpp"
+#include "PluginInterfaceProvider.hpp"
 
 #include <string>
 #include <map>
@@ -37,6 +38,9 @@ namespace openSpeak
          private:
             /** \brief Map in which all plugin informations are saved */
             typedef std::map <std::string, Plugin*> PluginMap;
+            
+            /** \brief Map in which all interface providers are saved */
+            typedef std::map <std::string, PluginInterfaceProvider*> PluginIFaceMap;
 
          public:
             /** \brief The constructor of the PluginMgr class */
@@ -67,11 +71,17 @@ namespace openSpeak
             /** \brief Register an EventMgr with the PluginMgr to recieve the hooks
              *  \param ptr Pointer to the EventMgr class
              */
-            inline void registerEventMgr (EventMgr *ptr) { mEventMgr = ptr; }
+            void registerEventMgr (EventMgr *ptr);
+            
+            /** \brief Register a PluginInterfaceProvider with the PluginMgr to recieve classes
+             *  \param provider Pointer to the PluginInterfaceProvider class
+             */
+            void registerIFaceProvider (PluginInterfaceProvider* provider);
 
          private:
-            PluginMap   mPlugins;       /**< Map containing all plugins */
-            EventMgr    *mEventMgr;     /**< EventMgr handling all plugin hooks */
+            PluginMap       mPlugins;       /**< Map containing all plugins */
+            PluginIFaceMap  mIFaces;        /**< Map containing all interface providers */
+            EventMgr        *mEventMgr;     /**< EventMgr handling all plugin hooks */
         };
 
     }

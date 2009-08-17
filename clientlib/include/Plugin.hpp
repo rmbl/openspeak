@@ -20,6 +20,7 @@
 #define __OS_CLIENT_PLUGIN_HPP__
 
 #include "EventMgr.hpp"
+#include "PluginInterfaceProvider.hpp"
 #include <string>
 #include <vector>
 #include <boost/signals2.hpp>
@@ -48,7 +49,7 @@ namespace openSpeak
             typedef std::vector <boost::signals2::connection> EventConnectionVector;
 
             /** \brief Vector to save all classes in */
-            typedef std::vector <std::pair <std::string, void*> > ClassVector;
+            typedef std::vector <std::pair <std::string, PluginInterface*> > ClassVector;
 
             /** \brief Function pointer to create and destroy functions */
             typedef Plugin* createFunc (void);
@@ -83,7 +84,7 @@ namespace openSpeak
              *  \param type The type of class to register
              *  \param classptr Pointer to the class
              */
-            void registerClass (const std::string &type, void* classptr)
+            void registerClass (const std::string &type, PluginInterface* classptr)
             {
                 Classes.push_back (std::make_pair (type, classptr));
             }

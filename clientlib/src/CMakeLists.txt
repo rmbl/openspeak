@@ -8,7 +8,7 @@ CHECK_LIBRARY_EXISTS (dl dlopen "" HAVE_LIBDL)
 
 include_directories (${openSpeak_SOURCE_DIR}/lib/include ${openSpeak_SOURCE_DIR}/clientlib/include ${Boost_INCLUDE_DIRS})
 
-add_library (openspeakclient SHARED EventMgr.cpp PluginMgr.cpp Core.cpp)
+add_library (openspeakclient SHARED EventMgr.cpp PluginMgr.cpp PluginInterfaceProvider.cpp Core.cpp)
 set_target_properties (openspeakclient PROPERTIES COMPILE_FLAGS -ggdb3)
 target_link_libraries (openspeakclient openspeaklib dl)
 

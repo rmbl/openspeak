@@ -21,6 +21,7 @@
 #include "FileUtils.hpp"
 #include "Types.hpp"
 #include "LogMgr.hpp"
+#include "PluginInterfaceProvider.hpp"
 
 #ifdef OS_POSIX_COMPAT
 #   include <glob.h>
@@ -137,13 +138,22 @@ namespace openSpeak
             LogMgr::getSingleton ()->getDefaultLog ()->logMsg ("Activating plugin "+plugin+
                     " with " + StringUtils::toString (it->second->Events.size ()) + " events", Log::LVL_DEBUG);
 
-        /* Load it if its not */
+        /* Load it if its not, begin with the events */
             for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
                     i != it->second->Events.end (); ++i)
                 it->second->EventConnections.push_back (mEventMgr->connect (
                         i->first, i->second));
 
-            //TODO: Add classes
+        /* And continue with the classes */
+            for (Plugin::ClassVector::const_iterator i = it->second->Classes.begin ();
+                    i != it->second->Classes.end (); ++i)
+            {
+                PluginIFaceMap::const_iterator iface = mIFaces.find (i->first);
+                if (iface == mIFaces.end ())
+                    EXCEPTION ("Unknown interface '" + i->first + "'");
+                
+                iface->second->addClass (i->second);
+            }
 
         }
 
@@ -162,6 +172,24 @@ namespace openSpeak
                     i != it->second->EventConnections.end (); ++i)
                 mEventMgr->disconnect (*i);
             //TODO: Add classes
+        }
+        
+        void PluginMgr::registerEventMgr (EventMgr *ptr)
+        {
+            if (!ptr)
+                EXCEPTION ("Recieved a null pointer");
+                
+            mEventMgr = ptr;
+        }
+        
+        void PluginMgr::registerIFaceProvider (PluginInterfaceProvider *provider)
+        {
+            if (!provider)
+                EXCEPTION ("Recieved a null pointer");
+            else if (provider->Type.empty ())
+                EXCEPTION ("Recieved pointer with empty type");
+            
+            mIFaces.insert (std::make_pair (provider->Type, provider));
         }
 
     }
