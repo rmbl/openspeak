@@ -27,6 +27,15 @@ CMakeCache*
 *CPack*
 install_manifest.txt
 
+# Visual Studio stuff
+*.sln*
+*.vcproj*
+*.dir
+*.ncb
+*.suo
+*Debug
+*Release
+
 # Binaries
 openspeak
 openspeakd
