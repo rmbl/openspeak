@@ -25,7 +25,9 @@
 #include <limits.h>
 
 #if defined (OS_PLATFORM_WIN32)
-#   include <windows.h>
+#	include <windows.h>
+#   include <direct.h>
+#	include <shlobj.h>
 #elif defined (OS_POSIX_COMPAT)
 #   include <sys/stat.h>
 #   include <dirent.h>
@@ -60,7 +62,7 @@ namespace openSpeak
             closedir (fs);
             return exists;
 #elif defined (OS_PLATFORM_WIN32)
-            WIN32_FIND_DATA FileData
+            WIN32_FIND_DATA FileData;
             return FindFirstFile (std::string (dir + "*").c_str(),
                     &FileData) != INVALID_HANDLE_VALUE;
 #endif
@@ -84,9 +86,9 @@ namespace openSpeak
             return std::string (home) + "/.config/openspeak/";
 #elif defined (OS_PLATFORM_WIN32)
             //TODO: Check this code on windows
-            TCHAR szPath[MAX_PATH];
-            SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA, NULL, 0, szPath);
-            return std::string (szPath) + "\\openspeak\\";
+            TCHAR szPath [MAX_PATH];
+            SHGetFolderPath (NULL, CSIDL_LOCAL_APPDATA, NULL, 0, szPath);
+            return std::string (szPath) + "/openspeak/";
 #endif
         }
 
@@ -95,7 +97,7 @@ namespace openSpeak
 #if defined (OS_POSIX_COMPAT)
             return OS_PREFIX + std::string ("/share/openspeak/");
 #elif defined (OS_PLATFORM_WIN32)
-            return getCurrentPath () + "\\data\\";
+            return getCurrentPath () + "/data/";
 #endif
         }
 
@@ -103,8 +105,8 @@ namespace openSpeak
         {
 #if defined (OS_POSIX_COMPAT)
             return OS_PREFIX + std::string ("/lib/openspeak/");
-#elif defined (OS_POSIX_COMPAT)
-            return getCurrentPath () + "\\plugins\\";
+#else
+            return getCurrentPath () + "/plugins/";
 #endif
         }
 
@@ -116,8 +118,8 @@ namespace openSpeak
             return std::string (buf);
 #elif defined (OS_PLATFORM_WIN32)
             //TODO: Check this code on windows
-            TCHAR szDirectory[MAX_PATH];
-            GetCurrentDirectory(MAX_PATH - 1, szDirectory);
+            TCHAR szDirectory [MAX_PATH];
+            GetCurrentDirectory (MAX_PATH - 1, szDirectory);
             return std::string (szDirectory);
 #endif
         }

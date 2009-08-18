@@ -18,6 +18,7 @@
 
 #include "StringUtils.hpp"
 #include <algorithm>
+#include <cctype>
 
 namespace openSpeak
 {

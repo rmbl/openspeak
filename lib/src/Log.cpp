@@ -18,6 +18,7 @@
 
 #include "Log.hpp"
 #include <iostream>
+#include <ctime>
 
 namespace openSpeak
 {
