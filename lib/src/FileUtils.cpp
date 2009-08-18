@@ -31,13 +31,12 @@
 #elif defined (OS_POSIX_COMPAT)
 #   include <sys/stat.h>
 #   include <dirent.h>
+#   include <glob.h>
 #endif
 
 #ifdef OS_PLATFORM_LINUX
 #   include <linux/limits.h>
 #endif
-
-#define T(x) #x
 
 namespace openSpeak
 {
@@ -77,6 +76,40 @@ namespace openSpeak
             if (_mkdir (dir.c_str ()) == -1)
 #endif
                 EXCEPTION ("Can't create directory " + dir);
+        }
+
+        StringVector findFiles (const std::string &pattern)
+        {
+            StringVector ret;
+#if defined (OS_POSIX_COMPAT)
+            glob_t globs;
+            int ret = glob (pattern.c_str (), GLOB_ERR, 0, &globs);
+            if (ret != 0 || plugins.gl_pathc == 0)
+                return ret;
+
+            for (uint i = 0; i < plugins.gl_pathc; ++i)
+            {
+                if (plugins.gl_pathv[i])
+                    ret.push_back (plugins.gl_pathv[i]);
+            }
+
+            globfree (&glob);
+#elif defined (OS_PLATFORM_WIN32)
+            WIN32_FIND_DATA find;
+            HANDLE hndl = FindFirstFile (pattern.c_str (), &find);
+            if (hndl == INVALID_HANDLE_VALUE)
+                return ret;
+
+            BOOL morefiles = TRUE;
+            while (morefiles)
+            {
+                ret.push_back (find.cFileName);
+                morefiles = FindNextFile (hndl, &find);
+            }
+
+            FindClose (hndl);
+#endif
+            return ret;
         }
 
         std::string getConfigPath ()

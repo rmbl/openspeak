@@ -27,6 +27,8 @@ namespace openSpeak
 
     namespace FileUtils
     {
+        /** \brief Often used vector */
+        typedef std::vector <std::string> StringVector;
 
         /** \brief Checks if a file exists in the filesystem
          *  \param file The file to check for
@@ -45,6 +47,11 @@ namespace openSpeak
          *  \throw openSpeak::Exception if creating the directory fails
          */
         void mkdir (const std::string &dir);
+
+        /** \brief Find files matching the pattern
+         *	\param pattern The pattern the files need to match
+         */
+        StringVector findFiles (const std::string &pattern);
         
         /** \brief Return the path to all (per user) configuration files
          *  \return The path to all (per user) configuration files
