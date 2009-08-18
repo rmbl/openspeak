@@ -23,10 +23,16 @@
 #include "LogMgr.hpp"
 #include "PluginInterfaceProvider.hpp"
 
-#ifdef OS_POSIX_COMPAT
+#if defined (OS_POSIX_COMPAT)
 #   include <glob.h>
 #   include <dlfcn.h>
+#elif defined (OS_PLATFORM_WIN32)
+#	include <windows.h>
+#	define dlclose FreeLibrary
+#	define dlsym GetProcAddress
+#	define dlopen(x,y) LoadLibrary(x)
 #endif
+
 
 namespace openSpeak
 {
@@ -45,7 +51,7 @@ namespace openSpeak
             for (PluginMap::const_iterator it = mPlugins.begin ();
                     it != mPlugins.end (); ++it)
             {
-                void* handle = it->second->Handle;
+                dlhandle_t handle = it->second->Handle;
                 it->second->Destroy (it->second);
                 dlclose (handle);
             }
@@ -74,7 +80,7 @@ namespace openSpeak
             {
                 if (plugins.gl_pathv[i])
                 {
-                    void* handle = dlopen (plugins.gl_pathv[i], RTLD_LAZY);
+                    dlhandle_t handle = dlopen (plugins.gl_pathv[i], RTLD_LAZY);
                     if (!handle)
                     {
                         LogMgr::getSingleton ()->getDefaultLog ()->logMsg (

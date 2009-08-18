@@ -61,7 +61,7 @@ namespace openSpeak
         const CmdLineOption* found;
         
     /* Loop through all arguments and parse them */
-        for (uint i = 1; i < argc; ++i)
+        for (uint i = 1; i < (uint)argc; ++i)
         {
         /* Check if it should be a short or long option */
             if (strlen (argv[i]) == 2)

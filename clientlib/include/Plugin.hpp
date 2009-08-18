@@ -19,12 +19,20 @@
 #ifndef __OS_CLIENT_PLUGIN_HPP__
 #define __OS_CLIENT_PLUGIN_HPP__
 
+#include "Platform.hpp"
 #include "EventMgr.hpp"
 #include "PluginInterfaceProvider.hpp"
 #include <string>
 #include <vector>
 #include <boost/signals2.hpp>
 #include <boost/function.hpp>
+
+#ifdef OS_PLATFORM_WIN32
+#	include <windows.h>
+	typedef HMODULE dlhandle_t;
+#else
+	typedef void* dlhandle_t;
+#endif
 
 namespace openSpeak
 {
@@ -95,7 +103,7 @@ namespace openSpeak
             std::string Description;/**< The description of the plugin */
 
             std::string SOName;     /**< Name of the shared object file */
-            void        *Handle;    /**< Handle from the dlopen function */
+            dlhandle_t  Handle;    /**< Handle from the dlopen function */
             bool        Loaded;     /**< Is the plugin loaded? */
             destroyFunc *Destroy;   /**< Function pointer to the destroy function */
 
