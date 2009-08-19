@@ -83,17 +83,17 @@ namespace openSpeak
             StringVector ret;
 #if defined (OS_POSIX_COMPAT)
             glob_t globs;
-            int ret = glob (pattern.c_str (), GLOB_ERR, 0, &globs);
-            if (ret != 0 || plugins.gl_pathc == 0)
+            int i = glob (pattern.c_str (), GLOB_ERR, 0, &globs);
+            if (i != 0 || globs.gl_pathc == 0)
                 return ret;
 
-            for (uint i = 0; i < plugins.gl_pathc; ++i)
+            for (i = 0; i < globs.gl_pathc; ++i)
             {
-                if (plugins.gl_pathv[i])
-                    ret.push_back (plugins.gl_pathv[i]);
+                if (globs.gl_pathv[i])
+                    ret.push_back (globs.gl_pathv[i]);
             }
 
-            globfree (&glob);
+            globfree (&globs);
 #elif defined (OS_PLATFORM_WIN32)
             WIN32_FIND_DATA find;
             HANDLE hndl = FindFirstFile (pattern.c_str (), &find);
