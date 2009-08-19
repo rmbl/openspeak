@@ -18,8 +18,9 @@
 
 #include "Exception.hpp"
 #include "EventMgr.hpp"
-
 #include "LogMgr.hpp"
+
+#include <boost/assign/ptr_map_inserter.hpp>
 
 namespace openSpeak
 {
@@ -41,7 +42,7 @@ namespace openSpeak
         {
             EventMap::const_iterator it = mEvents.find (event);
             if (it == mEvents.end ())
-                mEvents[event] = new boost::signals2::signal <void (Event)> ();
+                boost::assign::ptr_map_insert (mEvents) (event);
         }
 
         boost::signals2::connection EventMgr::connect (const std::string &event,
@@ -49,7 +50,7 @@ namespace openSpeak
         {
             LogMgr::getSingleton ()->getDefaultLog ()->logMsg ("Adding event from plugin ", Log::LVL_DEBUG);
 
-            EventMap::const_iterator it = mEvents.find (event);
+            EventMap::iterator it = mEvents.find (event);
             if (it == mEvents.end ())
                 EXCEPTION ("Event doesn't exist");
 
@@ -66,11 +67,11 @@ namespace openSpeak
 
         void EventMgr::fireEvent (const std::string &event, Event evt)
         {
-            EventMap::const_iterator it = mEvents.find (event);
+            EventMap::iterator it = mEvents.find (event);
             if (it == mEvents.end ())
                 EXCEPTION ("Event doesn't exist");
 
-            (*(it->second)) (evt);
+            (*it->second) (evt);
         }
 
     }
