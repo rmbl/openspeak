@@ -19,6 +19,7 @@
 #ifndef __OS_CONFIG_HPP__
 #define __OS_CONFIG_HPP__
 
+#include "Thread.hpp"
 #include <string>
 #include <fstream>
 #include <map>
@@ -94,6 +95,8 @@ namespace openSpeak
         std::fstream    mFile;              /**< The config file */
         std::string     mFilename;          /**< The name of the current file */
         bool            mParsed;            /**< True if the file has already been parsed */
+
+        Mutex           mMutex;             /**< Mutex to protect the data */
     };
 
 }

@@ -23,7 +23,7 @@
 
 namespace openSpeak
 {
-    
+
     Config::Config(const std::string &filename)
             : mFilename (filename), mParsed (false)
     {
@@ -64,12 +64,15 @@ namespace openSpeak
             mParsed = true;
             return;
         }
-        
+
         mFilename = file;
-        
+
     /* Parse the ini file */
         mFile.open (mFilename.c_str (), std::ios::in);
-        
+
+    /* Lock before touching the data */
+        MutexLocker lock (mMutex);
+
         std::string section, line, key;
         int lineno = 0;
         while (!mFile.eof ())
@@ -77,7 +80,7 @@ namespace openSpeak
             ++lineno;
             getline (mFile, line);
             StringUtils::trim (line);
-            
+
         /* Got a comment or empty line */
             if (line.empty () || line[0] == ';' || line[0] == '#')
             {
@@ -94,17 +97,17 @@ namespace openSpeak
                 std::vector <std::string> str = StringUtils::split (line, '=');
                 if (str.size () > 2)
                 {
-                    EXCEPTION ("Invalid line in " + mFilename + " (Line: " + 
+                    EXCEPTION ("Invalid line in " + mFilename + " (Line: " +
                             StringUtils::toString (lineno));
                 }
-                
+
                 StringUtils::trim (str[0]); StringUtils::trim (str[1]);
                 key = section + "." + str[0];
                 mOptions[key] = (str.size () == 2) ? str[1] : "";
             }
         }
-        
-        mFile.close ();        
+
+        mFile.close ();
         mParsed = true;
     }
 
@@ -112,12 +115,15 @@ namespace openSpeak
     {
         if (!mParsed)
             EXCEPTION ("Can't save a unparsed file");
-            
+
         if (mFile.is_open ())
             mFile.close ();
         mFile.clear ();
         mFile.open (mFilename.c_str (), std::ios::out);
-        
+
+    /* Lock before touching the data */
+        MutexLocker lock (mMutex);
+
     /* Sort all data by sections */
         ConfigMap sections;
         ConfigMap::iterator it;
@@ -137,13 +143,13 @@ namespace openSpeak
                 section = "";
                 pair = str[0] + " = " + it->second + "\n";
             }
-            
+
             if (sections.find (section) != sections.end ())
                 sections[section] += pair;
             else
                 sections.insert (std::make_pair (section, pair));
         }
-        
+
     /* Parse all data in the map and save it */
         for (it = sections.begin (); it != sections.end (); ++it)
         {
@@ -161,6 +167,8 @@ namespace openSpeak
 
     std::string Config::getOption (const std::string &option, const std::string &def)
     {
+        MutexLocker lock (mMutex);
+
         if (optionExists (option))
             return mOptions[option];
         else if (!def.empty ())
@@ -171,6 +179,8 @@ namespace openSpeak
 
     void Config::setOption (const std::string &option, const std::string &value)
     {
+        MutexLocker lock (mMutex);
+
         if (option.empty ())
             EXCEPTION ("Can't set an empty option");
 
