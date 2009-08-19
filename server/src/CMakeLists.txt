@@ -1,4 +1,4 @@
-include_directories (${openSpeak_SOURCE_DIR}/lib/include ${openSpeak_SOURCE_DIR}/server/include ${BOOST_INCLUDE_DIRS})
+include_directories (${openSpeak_SOURCE_DIR}/lib/include ${openSpeak_SOURCE_DIR}/server/include ${Boost_INCLUDE_DIRS})
 
 add_executable (openspeakd main.cpp)
 IF (CMAKE_COMPILER_IS_GNUCXX)
