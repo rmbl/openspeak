@@ -36,6 +36,8 @@ namespace openSpeak
 
 	void Log::logMsg (const std::string &msg, const Level &lvl)
 	{
+        MutexLocker lock (mMutex);
+
 	/* Get the current time */
 		time_t rawtime;
 		char buffer [80];

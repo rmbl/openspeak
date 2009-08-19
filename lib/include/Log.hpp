@@ -19,6 +19,7 @@
 #ifndef __OS_LOG_HPP__
 #define __OS_LOG_HPP__
 
+#include "Thread.hpp"
 #include <string>
 #include <fstream>
 
@@ -66,8 +67,10 @@ namespace openSpeak
 		  */
 		 std::string lvlToString (const Level &lvl, const bool &color = false) const;
 
-		 std::ofstream  mFile;	  /**< The output file stream */
-		 Level          mMinLvl;  /**< The minimum logging level to write to stdout */
+		 std::ofstream  mFile;	    /**< The output file stream */
+		 Level          mMinLvl;    /**< The minimum logging level to write to stdout */
+         Mutex          mMutex;     /**< Mutex to protected the log from several 
+                                    accesses at the same time */
 	};
 
 }
