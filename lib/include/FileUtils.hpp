@@ -20,28 +20,29 @@
 #define __OS_FILE_UTILS_HPP__
 
 #include "Platform.hpp"
+#include <vector>
 #include <string>
 
 namespace openSpeak
 {
 
+    /** \brief Often used vector */
+    typedef std::vector <std::string> StringVector;
+
     namespace FileUtils
     {
-        /** \brief Often used vector */
-        typedef std::vector <std::string> StringVector;
-
         /** \brief Checks if a file exists in the filesystem
          *  \param file The file to check for
          *  \return True if the file was found
          */
         bool fileExists (const std::string &file);
-        
+
         /** \brief Check if a directory exists in the filesystem
          *  \param dir The directory to check for
          *  \return True if the directory was found
          */
         bool dirExists (const std::string &dir);
-        
+
         /** \brief Create the given directory
          *  \param dir The directory to create
          *  \throw openSpeak::Exception if creating the directory fails
@@ -52,12 +53,12 @@ namespace openSpeak
          *	\param pattern The pattern the files need to match
          */
         StringVector findFiles (const std::string &pattern);
-        
+
         /** \brief Return the path to all (per user) configuration files
          *  \return The path to all (per user) configuration files
          */
         std::string getConfigPath (void);
-        
+
         /** \brief Return the path where the data is
          *  \return The path where the data is
          */

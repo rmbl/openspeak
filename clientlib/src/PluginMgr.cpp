@@ -64,10 +64,10 @@ namespace openSpeak
 
         /* Search for .so files in the libdir using glob */
             std::string plugindir = FileUtils::getLibPath ();
-            std::vector <std::string> plugins = FileUtils::findFiles (plugindir + "*.so");
+            StringVector plugins = FileUtils::findFiles (plugindir + "*.so");
 
         /* Loop through all found files and load them */
-            for (FileUtils::StringVector::const_iterator it = plugins.begin ();
+            for (StringVector::const_iterator it = plugins.begin ();
                     it != plugins.end (); ++it)
             {
                 dlhandle_t handle = dlopen ((*it).c_str (), RTLD_LAZY);
