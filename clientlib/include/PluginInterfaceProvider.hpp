@@ -20,6 +20,7 @@
 #define __OS_CLIENT_PLUGIN_INTERFACE_PROVIDER_HPP__
 
 #include "PluginInterface.hpp"
+#include "FileUtils.hpp"
 #include <string>
 #include <vector>
 
@@ -49,13 +50,36 @@ namespace openSpeak
             
             /** \brief Add a class to the interface by loading it from the Plugin
              *  \param plugin The plugin to load from
+             *  \throw Throws an exception if the pointer is null
              */
             void addClass (PluginInterface* plugin);
 
             /** \brief Remove a class from the interface
              *  \param plugin The plugin which contains the class
+             *  \throw Throws an exception if the pointer is null
              */
             void removeClass (PluginInterface *plugin);
+            
+            /** \brief Get a list with the names of all interfaces
+             *  \return List with the names of all interfaces
+             */
+            StringVector getInterfaces (void);
+            
+            /** \brief Use the specified interface for all operations
+             *  \param name The name of the interface to use
+             *  \throw Throws an exception if the interface is unknown
+             */
+            virtual void useInterface (const std::string &name) = 0;
+            
+            /** \brief Use a "default" interface
+             *  \throw Throws an exception if no interface is available
+             *          or the interface fails to load.
+             * 
+             *  Which interface to use is in the responsibility of the
+             *  subclass developers. Possiblities include using the first one
+             *  in the vector or including a list of favorites.
+             */
+            virtual void useDefaultInterface (void) = 0;
 
             std::string     Type;       /**< The type of interface to provide */
             

@@ -56,6 +56,17 @@ namespace openSpeak
             }
         }
         
+        StringVector PluginInterfaceProvider::getInterfaces ()
+        {
+            StringVector ret;
+            for (InterfaceVector::const_iterator it = mIFaces.begin (); 
+                    it != mIFaces.end (); ++it)
+            {
+                if (!(*it)->Name.empty ())
+                    ret.push_back ((*it)->Name);
+            }
+        }
+        
     }
     
 }
