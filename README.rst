@@ -21,15 +21,25 @@ Dependencies:
 =============
 
 To build *openSpeak* you currently only need **Boost >= 1.39** apart from a C++ 
-compiler and an autoconf compatible system.
+compiler and autoconf/automake/... or cmake.
 
 Installation:
 =============
+
+Autoconf/Automake:
+------------------
 
 Use ``./autogen.sh`` to create and run the configure script. Any options you would 
 normally supply to the configure script can be supplied to the autogen.sh script.
 A simple ``make`` compiles *openSpeak* after that and ``make install`` puts 
 everything into your prefix.
+
+CMake:
+------
+
+See cmake --help for available generators. If you just want to generate standard makefiles use ``cmake .``, otherwise use ``cmake -G <generator> .``.
+Load the created files with your IDE or use ``make`` to compile *openSpeak*.
+Using Makefiles, ``make install`` installs everything.
 
 Copyright:
 ==========
