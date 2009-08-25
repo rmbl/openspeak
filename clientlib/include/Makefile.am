@@ -5,4 +5,5 @@ openspeak_include_HEADERS = \
 	    EventMgr.hpp \
 		Plugin.hpp \
 		PluginMgr.hpp \
+		PluginInterface.hpp \
 		PluginInterfaceProvider.hpp

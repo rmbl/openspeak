@@ -19,6 +19,7 @@
 #ifndef __OS_CLIENT_PLUGIN_INTERFACE_PROVIDER_HPP__
 #define __OS_CLIENT_PLUGIN_INTERFACE_PROVIDER_HPP__
 
+#include "PluginInterface.hpp"
 #include <string>
 #include <vector>
 
@@ -27,10 +28,6 @@ namespace openSpeak
 
     namespace Client
     {
-        
-        class PluginInterface
-        {
-        };
  
         /** \class PluginInterfaceProvider 
          *  \brief Provides plugin classes with a specified interface
@@ -54,7 +51,6 @@ namespace openSpeak
              *  \param plugin The plugin to load from
              */
             void addClass (PluginInterface* plugin);
-
 
             /** \brief Remove a class from the interface
              *  \param plugin The plugin which contains the class
