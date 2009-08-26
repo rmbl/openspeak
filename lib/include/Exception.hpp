@@ -19,7 +19,7 @@
 #ifndef __OS_EXCEPTION_HPP__
 #define __OS_EXPEPTION_HPP__
 
-#include "Types.hpp"
+#include "Platform.hpp"
 #include "StringUtils.hpp"
 #include <exception>
 #include <iostream>
@@ -34,7 +34,7 @@ namespace openSpeak
 	 *	You can get the message of the exception and print it by hand 
      *  or let the class do everything.
 	 */
-	class Exception : public std::exception
+	class DLL_SPEC Exception : public std::exception
 	{
 	 public:
 		/** \brief The constructor of the Exception class

@@ -19,7 +19,7 @@
 #ifndef __OS_THREAD_HPP__
 #define __OS_THREAD_HPP__
 
-#include "Types.hpp"
+#include "Platform.hpp"
 #include <boost/thread.hpp>
 
 namespace openSpeak
@@ -35,7 +35,7 @@ namespace openSpeak
      *  The Thread class is an abstract base class which needs to be inherited
      *  to easily create a new thread.
      */
-    class Thread
+    class DLL_SPEC Thread
     {
      public:
         /** \brief The constructor of the Thread class */

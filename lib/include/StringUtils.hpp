@@ -19,7 +19,7 @@
 #ifndef __OS_STRING_UTILS_HPP__
 #define __OS_STRING_UTILS_HPP__
 
-#include "Types.hpp"
+#include "Platform.hpp"
 
 #include <sstream>
 #include <cstdlib>

@@ -19,6 +19,7 @@
 #ifndef __OS_LOG_HPP__
 #define __OS_LOG_HPP__
 
+#include "Platform.hpp"
 #include "Thread.hpp"
 #include <string>
 #include <fstream>
@@ -31,7 +32,7 @@ namespace openSpeak
 	 *
 	 *	The Log class logs every message given to a file and (if needed) to stdout.
 	 */
-	class Log
+	class DLL_SPEC Log
 	{
 	 public:
 		/** \brief The level of the log msg */

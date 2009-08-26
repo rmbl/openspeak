@@ -19,6 +19,7 @@
 #ifndef __OS_LOG_MGR_HPP__
 #define __OS_LOG_MGR_HPP__
 
+#include "Platform.hpp"
 #include "Log.hpp"
 #include "Singleton.hpp"
 #include <map>
@@ -33,7 +34,7 @@ namespace openSpeak
      * their creation and destruction process. It also helps finding
      * specific logs or the default one.
      */
-    class LogMgr : public openSpeak::Singleton<LogMgr>
+    class DLL_SPEC LogMgr : public openSpeak::Singleton<LogMgr>
     {
      private:
         /** \brief Map that will contain all logs and their corresponding names */

@@ -1,6 +1,6 @@
 include_directories (${openSpeak_SOURCE_DIR}/lib/include ${Boost_INCLUDE_DIRS})
 link_directories (${Boost_LIBRARY_DIRS})
-add_definitions (-DOS_PREFIX=\"/usr\")
+add_definitions (-DOS_PREFIX=\"/usr\" -DOS_BUILD_DLL)
 
 add_library (openspeaklib SHARED dummy.cpp CmdLineParser.cpp Config.cpp 
         FileUtils.cpp Log.cpp LogMgr.cpp StringUtils.cpp Thread.cpp)

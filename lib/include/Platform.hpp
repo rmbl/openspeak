@@ -19,7 +19,7 @@
 #ifndef __OS_PLATFORM_H__
 #define __OS_PLATFORM_H__
 
-#if defined( __WIN32__ ) || defined( _WIN32 ) || defined( cygwin ) || defined( mingw32 )
+#if defined (__WIN32__) || defined (_WIN32) || defined (cygwin) || defined (mingw32)
 
 #	define OS_PLATFORM_WIN32
 
@@ -28,15 +28,22 @@
 /* Disable some deprecated warnings on Windows (Visual C++) */
 #   ifdef _MSC_VER
 #	    define _CRT_SECURE_NO_WARNINGS
-#	    pragma warning (disable: 4100 4996 4276 4267 4099 4512 4127 4706)
+#	    pragma warning (disable: 4100 4996 4276 4267 4099 4512 4127 4706 4251)
 #   endif
 
+/* Set dllimport/export correctly */
+#if defined (OS_BUILD_DLL)
+#   define DLL_SPEC __declspec (dllexport)
+#else
+#   define DLL_SPEC __declspec (dllimport)
+#endif
+
 /* Enable debug logging if DEBUG is set */
-#	if (defined( DEBUG ) || defined( _DEBUG )) && !defined( OS_DEBUG )
+#	if (defined (DEBUG) || defined (_DEBUG)) && !defined (OS_DEBUG)
 #		define OS_DEBUG
 #	endif
 
-#elif defined( __APPLE_CC__)
+#elif defined (__APPLE_CC__)
 
 #	define OS_PLATFORM_APPLE
 #	define OS_POSIX_COMPAT
@@ -44,7 +51,7 @@
 #	define sockclose ::close
 #	define SOCKET int
 
-#elif defined ( __linux__ )
+#elif defined (__linux__)
 
 #	define OS_PLATFORM_LINUX
 #	define OS_POSIX_COMPAT
@@ -57,5 +64,11 @@
 #   error "Your platform and/or compiler is currently not supported!"
 
 #endif
+
+#ifndef DLL_SPEC
+#   define DLL_SPEC
+#endif
+
+#include "Types.hpp"
 
 #endif

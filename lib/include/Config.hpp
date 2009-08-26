@@ -19,6 +19,7 @@
 #ifndef __OS_CONFIG_HPP__
 #define __OS_CONFIG_HPP__
 
+#include "Platform.hpp"
 #include "Thread.hpp"
 #include <string>
 #include <fstream>
@@ -34,7 +35,7 @@ namespace openSpeak
      *  New options or changed options get saved back to the file after
      *  destroying the class or setting the option.
      */
-    class Config
+    class DLL_SPEC Config
     {
      private:
         /** \brief The map where we're saving all options in the config */

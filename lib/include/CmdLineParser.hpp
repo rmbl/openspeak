@@ -19,6 +19,7 @@
 #ifndef __OS_CMD_LINE_PARSER_H__
 #define __OS_CMD_LINE_PARSER_H__
 
+#include "Platform.hpp"
 #include <string>
 #include <map>
 #include <vector>
@@ -26,7 +27,7 @@
 namespace openSpeak
 {
 
-    class CmdLineParser
+    class DLL_SPEC CmdLineParser
     {
      public:
          /** \brief Different types of commandline arguments */
