@@ -32,6 +32,15 @@ namespace openSpeak
             PluginMgr::getSingleton ()->registerIFaceProvider (this);
         }
         
+        PluginInterfaceProvider::~PluginInterfaceProvider ()
+        {
+            while (!mIFaces.empty ())
+            {
+                delete *mIFaces.begin ();
+                mIFaces.erase (mIFaces.begin ());
+            }
+        }
+        
         void PluginInterfaceProvider::addClass (PluginInterface *plugin)
         {
             if (!plugin)

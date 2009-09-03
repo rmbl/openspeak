@@ -48,6 +48,12 @@ namespace openSpeak
              */
             PluginInterfaceProvider (const std::string &type);
             
+            /** \brief The destructor of the PluginInterfaceProvider class
+             * 
+             *  Cleans up all PluginInterfaces
+             */ 
+            virtual ~PluginInterfaceProvider (void);
+            
             /** \brief Add a class to the interface by loading it from the Plugin
              *  \param plugin The plugin to load from
              *  \throw Throws an exception if the pointer is null
