@@ -55,7 +55,7 @@ namespace openSpeak
          *  \param filename The filename of the default log
          *  \param minLvl The minimum logging level to write to stdout
          */
-        LogMgr (const std::string &path, const std::string &filename, 
+        LogMgr (const std::string &path, const std::string &filename,
                 const Log::Level &minLvl = Log::LVL_ERROR);
 
         /** \brief The destructor of the LogMgr class */
@@ -67,7 +67,7 @@ namespace openSpeak
          *  \param _default Make the log the default log?
          *  \return The new log
          */
-        Log* createLog (const std::string &filename, 
+        Log* createLog (const std::string &filename,
                 const Log::Level &minLvl = Log::LVL_ERROR, bool def = false);
 
         /** \brief Remove/Destroy a log
@@ -95,5 +95,17 @@ namespace openSpeak
     };
 
 }
+
+/** Some defines for easier work with the default log */
+#define LOG_DEBUG(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
+        x, openspeak::Log::LVL_DEBUG);
+#define LOG_INFO(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
+        x, openspeak::Log::LVL_INFO);
+#define LOG_ERROR(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
+        x, openspeak::Log::LVL_ERROR);
+#define LOG_FATAL(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
+        x, openspeak::Log::LVL_FATAL);
+#define LOG_SILENT(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
+        x, openspeak::Log::LVL_SILENT);
 
 #endif
