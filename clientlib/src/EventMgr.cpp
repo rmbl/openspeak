@@ -48,7 +48,7 @@ namespace openSpeak
         boost::signals2::connection EventMgr::connect (const std::string &event,
                 EventFunction function)
         {
-            LogMgr::getSingleton ()->getDefaultLog ()->logMsg ("Adding event from plugin ", Log::LVL_DEBUG);
+            LOG_DEBUG ("Adding event from plugin ");
 
             EventMap::iterator it = mEvents.find (event);
             if (it == mEvents.end ())

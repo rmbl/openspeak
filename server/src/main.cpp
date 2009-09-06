@@ -55,27 +55,25 @@ int main (int argc, char** argv)
         new LogMgr (confdir + "log/openspeakd.log",
                 StringUtils::toBool (cmdline->getOption ("debug")) ?
                 Log::LVL_DEBUG : Log::LVL_SILENT);
-        log = LogMgr::getSingleton ()->getDefaultLog ();
-        log->logMsg (" ~*~ Started logging ~*~ ", Log::LVL_SILENT);
+        LOG_SILENT (" ~*~ Started logging ~*~ ");
 
     /* Open the config file and parse it */
-        config = new Config ("openspeak.conf");
+        config = new Config ("openspeakd.conf");
         config->parse ();
-        log->logMsg ("Parsed config file " + confdir + "openspeak.conf",
-                Log::LVL_DEBUG);
+        LOG_DEBUG ("Parsed config file " + confdir + "openspeakd.conf");
     }
     catch (Exception ex)
     {
-        if (log && !ex.empty ())
-            log->logMsg ("Exception: " + std::string (ex.what ()), Log::LVL_FATAL);
+        if (LogMgr::getSingleton () && !ex.empty ())
+            LOG_FATAL ("Exception: " + std::string (ex.what ()));
         else if (!ex.empty ())
             ex.print ();
         ret = -1;
     }
     catch (...)
     {
-        if (log)
-            log->logMsg ("Catched unknown exception.", Log::LVL_FATAL);
+        if (LogMgr::getSingleton ())
+            LOG_FATAL ("Catched unknown exception.");
         else
             std::cout << "Catched unknown exception";
         ret = -1;
@@ -85,9 +83,9 @@ int main (int argc, char** argv)
     if (config)
         delete config;
 
-    if (log)
+    if (LogMgr::getSingleton ())
     {
-        log->logMsg (" ~*~ Finished logging ~*~", Log::LVL_SILENT);
+        LOG_SILENT (" ~*~ Finished logging ~*~");
         delete LogMgr::getSingleton ();
     }
 

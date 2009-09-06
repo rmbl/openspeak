@@ -73,9 +73,7 @@ namespace openSpeak
                 dlhandle_t handle = dlopen ((*it).c_str (), RTLD_LAZY);
                 if (!handle)
                 {
-                    LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                            "Loading plugin " + *it +" failed", 
-                            Log::LVL_ERROR);
+                    LOG_ERROR ("Loading plugin " + *it +" failed");
                     continue;
                 }
             /* Get the create and destroy functions and create the plugin */
@@ -85,9 +83,7 @@ namespace openSpeak
                         handle, "destroyPlugin");
                 if (!create || !destroy)
                 {
-                    LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                            "Plugin " + *it + " is not a valid openSpeak Plugin",
-                            Log::LVL_ERROR);
+                    LOG_ERROR ("Plugin " + *it + " is not a valid openSpeak Plugin");
                     dlclose (handle);
                     continue;
                 }
@@ -104,9 +100,8 @@ namespace openSpeak
                         plug->SOName.size () - index - 4);
                 mPlugins[plug->SOName] = plug;
 
-                LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                       "Loaded plugin " + plug->Name + " (" +plug->SOName + ") " +
-                        plug->Version + " from " + plug->Author, Log::LVL_DEBUG);
+                LOG_DEBUG ("Loaded plugin " + plug->Name + " (" +plug->SOName + ") " +
+                        plug->Version + " from " + plug->Author);
             }
 
         /* Check each of the libraries if they're enabled and load them if they are */
@@ -128,8 +123,8 @@ namespace openSpeak
             else if (it->second->Loaded)
                 return;
 
-            LogMgr::getSingleton ()->getDefaultLog ()->logMsg ("Activating plugin "+plugin+
-                    " with " + StringUtils::toString (it->second->Events.size ()) + " events", Log::LVL_DEBUG);
+            LOG_DEBUG ("Activating plugin "+plugin+" with " + StringUtils::toString 
+                    (it->second->Events.size ()) + " events");
 
         /* Load it if its not, begin with the events */
             for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
