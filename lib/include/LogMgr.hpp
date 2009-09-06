@@ -98,14 +98,14 @@ namespace openSpeak
 
 /** Some defines for easier work with the default log */
 #define LOG_DEBUG(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
-        x, openspeak::Log::LVL_DEBUG);
+        x, openSpeak::Log::LVL_DEBUG)
 #define LOG_INFO(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
-        x, openspeak::Log::LVL_INFO);
+        x, openSpeak::Log::LVL_INFO)
 #define LOG_ERROR(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
-        x, openspeak::Log::LVL_ERROR);
+        x, openSpeak::Log::LVL_ERROR)
 #define LOG_FATAL(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
-        x, openspeak::Log::LVL_FATAL);
+        x, openSpeak::Log::LVL_FATAL)
 #define LOG_SILENT(x) openSpeak::LogMgr::getSingleton ()->getDefaultLog ()->logMsg ( \
-        x, openspeak::Log::LVL_SILENT);
+        x, openSpeak::Log::LVL_SILENT)
 
 #endif
