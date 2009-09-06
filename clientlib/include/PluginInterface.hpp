@@ -39,7 +39,10 @@ namespace openSpeak
             PluginInterface (const std::string &name)
                     : Name (name)
             {                
-            }            
+            }
+            
+            /** \brief The destructor for the PluginInterface class */
+            virtual ~PluginInterface () { }    
             
             std::string Name;   /**< The name to use in config dialogs */
         };
