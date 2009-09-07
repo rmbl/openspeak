@@ -70,8 +70,7 @@ namespace openSpeak
                     EventFunction function);
 
             /** \brief Disconnect a function from an event
-             *  \param event The event to disconnect the function from
-             *  \param function The function to disconnect
+             *  \param con The connection that gets terminated
              */
             void disconnect (boost::signals2::connection con);
 

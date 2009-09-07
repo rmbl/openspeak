@@ -64,6 +64,7 @@ namespace openSpeak
 	 protected:
 		 /** \brief Get the logging level as a string
 		  *  \param lvl The level to convert
+          *  \param color Use colors or not
 		  *	 \return String with the level
 		  */
 		 std::string lvlToString (const Level &lvl, const bool &color = false) const;

@@ -19,6 +19,7 @@ Makefile.in
 .*project
 .settings
 *~
+docs*
 
 # CMake stuff
 CMakeFiles*

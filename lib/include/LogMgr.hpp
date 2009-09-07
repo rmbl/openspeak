@@ -64,7 +64,7 @@ namespace openSpeak
         /** \brief Create a new log
          *  \param filename The filename of the new log
          *  \param minLvl The minimum logging level to write to stdout
-         *  \param _default Make the log the default log?
+         *  \param def Make the log the default log?
          *  \return The new log
          */
         Log* createLog (const std::string &filename,

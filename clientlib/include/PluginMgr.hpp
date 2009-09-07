@@ -33,6 +33,12 @@ namespace openSpeak
     namespace Client
     {
 
+        /** \class PluginMgr
+         *  \brief Manages everything plugin related
+         * 
+         *  The PluginMgr class loads/unloads plugins and handles their 
+         *  registered events and classes.
+         */
         class PluginMgr : public Singleton <PluginMgr>
         {
          private:

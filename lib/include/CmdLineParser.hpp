@@ -27,6 +27,13 @@
 namespace openSpeak
 {
 
+    /** \class CmdLineParser
+     *  \brief Checks the commandline and allows access to variables
+     * 
+     *  The CmdLineParser class parses the commandline, checks it for correctness
+     *  according to the set of valid options supplied by the user and allows
+     *  accessing the values of these options.
+     */
     class DLL_SPEC CmdLineParser
     {
      public:
