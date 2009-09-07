@@ -19,6 +19,8 @@
 #include "Core.hpp"
 #include "Exception.hpp"
 
+#include "AudioInputProvider.hpp"
+
 namespace openSpeak
 {
 
@@ -43,10 +45,15 @@ namespace openSpeak
         void Core::entry ()
         {
             logMsg ("Core: Starting up", Log::LVL_INFO);
-
+        
+        /* Create PluginMgr and add Core as eventmgr */
             mPluginMgr = new PluginMgr ();
             mPluginMgr->registerEventMgr (this);
+            
+        /* Create all needed PluginInterfaceProviders */
+            AudioInputProvider *audioin = new AudioInputProvider ();
 
+        /* Try to load all plugins */
             try
             {
                 logMsg ("Core: Loading plugins", Log::LVL_INFO);
@@ -57,6 +64,9 @@ namespace openSpeak
             {
                 logMsg (ex.what (), Log::LVL_ERROR);
             }
+        
+        /* Delete all PluginInterfaceProviders after we're finished */
+            delete audioin;
         }
 
     }
