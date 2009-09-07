@@ -4,6 +4,8 @@ set (SOURCE
 	EventMgr.cpp
 	PluginMgr.cpp
 	PluginInterfaceProvider.cpp
+	AudioInputProvider.cpp
+	AudioOutputProvider.cpp
 	Core.cpp
 )
 
