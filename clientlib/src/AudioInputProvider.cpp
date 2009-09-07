@@ -29,7 +29,7 @@ namespace openSpeak
         AudioInputProvider::AudioInputProvider ()
             : PluginInterfaceProvider ("AudioInput")
         {
-            mDefaultInput = 0;
+            mInput = 0;
         }
         
         void AudioInputProvider::useInterface (const std::string &name)
@@ -44,8 +44,8 @@ namespace openSpeak
                 if ((*it)->Name == name)
                 {
                 /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
-                    mDefaultInput = dynamic_cast <AudioInput*> ((PluginInterface*)*it);
-                    if (!mDefaultInput)
+                    mInput = dynamic_cast <AudioInput*> ((PluginInterface*)*it);
+                    if (!mInput)
                     {
                         delete *mIFaces.begin ();
                         mIFaces.erase (mIFaces.end ()); 
@@ -60,16 +60,16 @@ namespace openSpeak
         
         void AudioInputProvider::useDefaultInterface ()
         {
-            mDefaultInput = 0;
+            mInput = 0;
                     
         /* Get the first one available */
             while (mIFaces.size () > 0)
             {
             /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
-                mDefaultInput = dynamic_cast <AudioInput*> (*mIFaces.begin ());
+                mInput = dynamic_cast <AudioInput*> (*mIFaces.begin ());
                 
             /* Delete the interface if it's incorrect */
-                if (!mDefaultInput)
+                if (!mInput)
                 {
                     LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
                             "Removing invalid interface " + (*mIFaces.begin ())->Name,
@@ -80,13 +80,15 @@ namespace openSpeak
             }
 
         /* Check if a valid interface was found */
-            if (!mDefaultInput)
+            if (!mInput)
                 EXCEPTION ("No valid interface available");
         }
         
         char* AudioInputProvider::getAudioInput () const
         {
-            return mDefaultInput->getAudioInput ();
+            if (!mInput)
+                EXCEPTION ("No interface chosen");
+            return mInput->getAudioInput ();
         }
             
     }

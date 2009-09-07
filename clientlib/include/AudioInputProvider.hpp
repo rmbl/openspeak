@@ -82,7 +82,7 @@ namespace openSpeak
             char* getAudioInput (void) const;
 
          protected:
-            AudioInput *mDefaultInput;  /**< The interface used to get audio input */
+            AudioInput *mInput;  /**< The interface used to get audio input */
         };
 
     }
