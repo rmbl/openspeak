@@ -7,4 +7,5 @@ openspeak_include_HEADERS = \
 		PluginMgr.hpp \
 		PluginInterface.hpp \
 		PluginInterfaceProvider.hpp \
-		AudioInputProvider.hpp
+		AudioInputProvider.hpp \
+		AudioOutputProvider.hpp

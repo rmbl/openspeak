@@ -5,6 +5,7 @@ set (SOURCE
 	PluginMgr.cpp
 	PluginInterfaceProvider.cpp
 	AudioInputProvider.cpp
+	AudioOutputProvider.cpp
 	Core.cpp
 )
 
