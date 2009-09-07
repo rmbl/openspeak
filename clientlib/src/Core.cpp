@@ -20,6 +20,7 @@
 #include "Exception.hpp"
 
 #include "AudioInputProvider.hpp"
+#include "AudioOutputProvider.hpp"
 
 namespace openSpeak
 {
@@ -52,6 +53,7 @@ namespace openSpeak
             
         /* Create all needed PluginInterfaceProviders */
             AudioInputProvider *audioin = new AudioInputProvider ();
+            AudioOutputProvider *audioout = new AudioOutputProvider ();
 
         /* Try to load all plugins */
             try
@@ -67,6 +69,7 @@ namespace openSpeak
         
         /* Delete all PluginInterfaceProviders after we're finished */
             delete audioin;
+            delete audioout;
         }
 
     }
