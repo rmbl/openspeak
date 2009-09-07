@@ -47,7 +47,8 @@ namespace openSpeak
          *  \brief Provides a public interface to one AudioInput class
          *
          *  The AudioInputProvider class provides a public interface for
-         *  functions of the AudioInput class.
+         *  functions of the AudioInput class which might be loaded from
+         *  a plugin.
          */
         class AudioInputProvider : public PluginInterfaceProvider
         {
@@ -81,8 +82,7 @@ namespace openSpeak
             char* getAudioInput (void) const;
 
          protected:
-            AudioInput *mDefaultInput;
-
+            AudioInput *mDefaultInput;  /**< The interface used to get audio input */
         };
 
     }
