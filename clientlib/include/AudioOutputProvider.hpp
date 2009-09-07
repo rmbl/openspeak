@@ -23,10 +23,25 @@
 
 namespace openSpeak
 {
-    
+
     namespace Client
     {
-     
+
+        /** \class AudioOutput
+         *  \brief Abstract class to implement an AudioOutput interface
+         */
+        class AudioOutput : public PluginInterface
+        {
+         public:
+            /** \brief The virtual deconstructor of the AudioInput class */
+            virtual ~AudioOutput (void) { }
+
+            /** \brief Set the next frame on the choosen interface
+             *  \param out The audio output frame
+             */
+            virtual void setAudioOutput (char* out) = 0;
+        };
+
         /** \class AudioOutputProvider
          *  \brief Provides a public interface to one AudioOutput class
          *
@@ -39,7 +54,7 @@ namespace openSpeak
          public:
             /** \brief The constructor of the AudioOutputProvider class */
             AudioOutputProvider (void);
-            
+
             /** \brief The deconstructor of the AudioOutputProvider class */
             virtual ~AudioOutputProvider (void) { }
 
@@ -68,9 +83,9 @@ namespace openSpeak
          protected:
             AudioOutput *mOutput;    /**< The interface used to output sound */
         };
-        
+
     }
-    
+
 }
 
 #endif

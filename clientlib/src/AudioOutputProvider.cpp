@@ -25,20 +25,20 @@ namespace openSpeak
 
     namespace Client
     {
-    
+
         AudioOutputProvider::AudioOutputProvider ()
             : PluginInterfaceProvider ("AudioOutput")
         {
             mOutput = 0;
         }
-        
+
         void AudioOutputProvider::useInterface (const std::string &name)
         {
             if (name.empty ())
                 EXCEPTION ("Given name is empty");
-            
+
         /* Search for the interface and set it for later usage */
-            for (InterfaceVector::const_iterator it = mIFaces.begin (); 
+            for (InterfaceVector::const_iterator it = mIFaces.begin ();
                     it != mIFaces.end (); ++it)
             {
                 if ((*it)->Name == name)
@@ -48,26 +48,26 @@ namespace openSpeak
                     if (!mOutput)
                     {
                         delete *mIFaces.begin ();
-                        mIFaces.erase (mIFaces.end ()); 
+                        mIFaces.erase (mIFaces.end ());
                         EXCEPTION ("Interface " + name + " is invalid");
                     }
                     break;
                 }
             }
-            
+
             EXCEPTION ("Interface " + name + " not found");
         }
-        
+
         void AudioOutputProvider::useDefaultInterface ()
         {
             mOutput = 0;
-                    
+
         /* Get the first one available */
             while (mIFaces.size () > 0)
             {
             /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
                 mOutput = dynamic_cast <AudioOutput*> (*mIFaces.begin ());
-                
+
             /* Delete the interface if it's incorrect */
                 if (!mOutput)
                 {
@@ -83,14 +83,14 @@ namespace openSpeak
             if (!mOutput)
                 EXCEPTION ("No valid interface available");
         }
-        
+
         void AudioOutputProvider::setAudioOutput (char *out) const
         {
             if (!mOutput)
                 EXCEPTION ("No interface chosen");
             mOutput->setAudioOutput (out);
         }
-            
+
     }
 
 }
