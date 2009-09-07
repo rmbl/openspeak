@@ -154,12 +154,22 @@ namespace openSpeak
             else if (!it->second->Loaded)
                 return;
 
-        /* Unload it if its not */
+        /* Unload it if its not, begin with the events */
             for (Plugin::EventConnectionVector::const_iterator
                     i = it->second->EventConnections.begin ();
                     i != it->second->EventConnections.end (); ++i)
                 mEventMgr->disconnect (*i);
-            //TODO: Add classes
+
+        /* And continue with the classes */
+            for (Plugin::ClassVector::const_iterator i = it->second->Classes.begin ();
+                    i != it->second->Classes.end (); ++i)
+            {
+                PluginIFaceMap::const_iterator iface = mIFaces.find (i->first);
+                if (iface == mIFaces.end ())
+                    EXCEPTION ("Unknown interface '" + i->first + "' found while unloading");
+
+                iface->second->removeClass (i->second);
+            }
         }
         
         void PluginMgr::registerEventMgr (EventMgr *ptr)
