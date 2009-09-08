@@ -19,6 +19,7 @@
 #ifndef __OS_CLIENT_AUDIO_INPUT_PROVIDER_HPP__
 #define __OS_CLIENT_AUDIO_INPUT_PROVIDER_HPP__
 
+#include "Platform.hpp"
 #include "PluginInterfaceProvider.hpp"
 #include "PluginInterface.hpp"
 
@@ -31,7 +32,7 @@ namespace openSpeak
         /** \class AudioInput
          *  \brief Abstract class to implement an AudioInput interface
          */
-        class AudioInput : public PluginInterface
+        class DLL_SPEC AudioInput : public PluginInterface
         {
          public:
             /** \brief The virtual deconstructor of the AudioInput class */

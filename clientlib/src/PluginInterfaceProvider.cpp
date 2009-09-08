@@ -74,6 +74,8 @@ namespace openSpeak
                 if (!(*it)->Name.empty ())
                     ret.push_back ((*it)->Name);
             }
+            
+            return ret;
         }
         
     }

@@ -19,6 +19,7 @@
 #ifndef __OS_CLIENT_PLUGIN_INTERFACE_HPP__
 #define __OS_CLIENT_PLUGIN_INTERFACE_HPP__
 
+#include "Platform.hpp"
 #include <string>
 
 namespace openSpeak
@@ -30,7 +31,7 @@ namespace openSpeak
         /** \class PluginInterface
          *  \brief Baseclass used to implement PluginInterfaces
          */
-        class PluginInterface
+        class DLL_SPEC PluginInterface
         {
          public:
             /** \brief The constructor of the PluginInterface class
