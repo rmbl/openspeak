@@ -6,6 +6,7 @@ set (SOURCE
 	PluginInterfaceProvider.cpp
 	AudioInputProvider.cpp
 	AudioOutputProvider.cpp
+	VoiceCodecProvider.cpp
 	Core.cpp
 )
 

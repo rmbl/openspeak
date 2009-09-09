@@ -5,7 +5,8 @@ libopenspeakclient_la_SOURCES = \
 					PluginMgr.cpp \
 					PluginInterfaceProvider.cpp \
 					AudioInputProvider.cpp \
-					AudioOutputProvider.cpp
+					AudioOutputProvider.cpp \
+					VoiceCodecProvider.cpp
 
 libopenspeakclient_la_LDFLAGS = -version-info 1:1:0
 libopenspeakclient_la_LIBADD = ../../lib/src/libopenspeak.la -ldl
