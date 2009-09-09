@@ -29,7 +29,6 @@ using namespace openSpeak;
 int main (int argc, char** argv)
 {
     CmdLineParser *cmdline = 0;
-    Log *log = 0;
     Config *config = 0;
     Client::Core *core = 0;
 
@@ -39,7 +38,7 @@ int main (int argc, char** argv)
         cmdline = new CmdLineParser ("openSpeak", "0.1-git");
         CmdLineParser::CmdLineOption options[] = {
             { "debug", 'd', CmdLineParser::OPTION_ARG_NONE, "Display more informations", "" },
-            0
+            {0}
         };
         cmdline->addOption (options);
         cmdline->parseArguments (argc, argv);
@@ -65,7 +64,7 @@ int main (int argc, char** argv)
         LOG_DEBUG ("Parsed config file " + confdir + "openspeak.conf");
 
     /* Create the client core to start the rest */
-        core = new Client::Core (config, cmdline, log);
+        core = new Client::Core (config, cmdline, LogMgr::getSingleton ()->getDefaultLog ());
         core->run ();
     }
     catch (Exception ex)

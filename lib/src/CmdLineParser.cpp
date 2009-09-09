@@ -97,7 +97,7 @@ namespace openSpeak
 
             if (found->Type != OPTION_ARG_NONE)
             {
-                if (++i == argc)
+                if (++i == (uint)argc)
                     EXCEPTION ("Option " + std::string (argv[i]) + " takes an argument");
                 mValues.insert (std::make_pair (found->Long, argv[i]));
             }

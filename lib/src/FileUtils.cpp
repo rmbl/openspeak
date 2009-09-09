@@ -87,10 +87,10 @@ namespace openSpeak
             if (i != 0 || globs.gl_pathc == 0)
                 return ret;
 
-            for (i = 0; i < globs.gl_pathc; ++i)
+            for (uint j = 0; j < globs.gl_pathc; ++j)
             {
-                if (globs.gl_pathv[i])
-                    ret.push_back (globs.gl_pathv[i]);
+                if (globs.gl_pathv[j])
+                    ret.push_back (globs.gl_pathv[j]);
             }
 
             globfree (&globs);

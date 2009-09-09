@@ -28,7 +28,6 @@ int main (int argc, char** argv)
 {
     int ret = 0;
     CmdLineParser *cmdline = 0;
-    Log *log = 0;
     Config *config = 0;
 
     try
@@ -37,7 +36,7 @@ int main (int argc, char** argv)
         cmdline = new CmdLineParser ("openSpeak Server", "0.1-git");
         CmdLineParser::CmdLineOption options[] = {
             { "debug", 'd', CmdLineParser::OPTION_ARG_NONE, "Display more informations", "" },
-            0
+            {0}
         };
         cmdline->addOption (options);
         cmdline->parseArguments (argc, argv);
