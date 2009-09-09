@@ -27,6 +27,31 @@ namespace openSpeak
     namespace Client
     {
         
+        /** \class VoiceCodec
+         *  \brief Abstract class to implement an VoiceCodec interface
+         */
+        class DLL_SPEC VoiceCodec : public PluginInterface
+        {
+         public:
+            /** \brief The virtual deconstructor of the VoiceCodec class */
+            virtual ~VoiceCodec (void) { }
+            
+            /** \brief Encode the voice frame
+             *  \param voice The voice frame
+             *  \return The encoded voice frame
+             *  \throw Exception if no interface is chosen
+             */
+            virtual char* encodeVoice (char* voice) = 0;
+            
+            /** \brief Decode the encoded voice frame
+             *  \param enc The encoded voice frame
+             *  \return The original voice frame
+             *  \throw Exception if no interface is chosen
+             */
+            virtual char* decodeVoice (char* enc) = 0;
+
+        };
+        
         /** \class VoiceCodecProvider
          *  \brief Provides a public interface to one VoiceCodec class
          *

@@ -84,6 +84,20 @@ namespace openSpeak
                 EXCEPTION ("No valid interface available");
         }
         
+        char* VoiceCodecProvider::encodeVoice (char* voice)
+        {
+            if (!mCodec)
+                EXCEPTION ("No interface chosen");
+            return mCodec->encodeVoice (voice);
+        }
+        
+        char* VoiceCodecProvider::decodeVoice (char* enc)
+        {
+            if (!mCodec)
+                EXCEPTION ("No interface chosen");
+            return mCodec->decodeVoice (enc);
+        }
+        
     }
     
 }
