@@ -7,7 +7,7 @@ IF (WIN32)
 ENDIF (WIN32)
 
 SET (Boost_USE_MULTITHREAD ON)
-FIND_PACKAGE (Boost 1.39 REQUIRED COMPONENTS thread date_time)
+FIND_PACKAGE (Boost 1.40 REQUIRED COMPONENTS thread date_time)
 
 IF (UNIX)
 	INCLUDE (CheckLibraryExists)
