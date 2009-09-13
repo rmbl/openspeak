@@ -45,7 +45,7 @@ namespace openSpeak
                 boost::assign::ptr_map_insert (mEvents) (event);
         }
 
-        boost::signals2::connection EventMgr::connect (const std::string &event,
+        EventMgr::EventConnection EventMgr::connect (const std::string &event,
                 EventFunction function)
         {
             LOG_DEBUG ("Adding event from plugin ");
@@ -57,7 +57,7 @@ namespace openSpeak
             return it->second->connect (function);
         }
 
-        void EventMgr::disconnect (boost::signals2::connection con)
+        void EventMgr::disconnect (EventConnection con)
         {
             if (!con.connected ())
                 EXCEPTION ("Event is not connected");

@@ -54,7 +54,7 @@ namespace openSpeak
                     EventVector;
 
             /** \brief Vector to save all event connections in */
-            typedef std::vector <boost::signals2::connection> EventConnectionVector;
+            typedef std::vector <EventMgr::EventConnection> EventConnectionVector;
 
             /** \brief Vector to save all classes in */
             typedef std::vector <std::pair <std::string, PluginInterface*> > ClassVector;

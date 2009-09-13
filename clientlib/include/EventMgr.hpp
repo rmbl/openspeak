@@ -46,9 +46,15 @@ namespace openSpeak
             /** \brief The type all event functions should've */
             typedef boost::function <void (Event)> EventFunction;
 
+            /** \brief The signal to call all events */
+            typedef boost::signals2::signal <void (Event)> EventSignal;
+
             /** \brief The map where all signals are stored */
-            typedef boost::ptr_map <std::string, boost::signals2::signal <void (Event)> >
-                    EventMap;
+            typedef boost::ptr_map <std::string, EventSignal> EventMap;
+
+         public:
+            /** \brief The connection between signal and function */
+            typedef boost::signals2::connection EventConnection;
 
          public:
             /** \brief The constructor of the EventMgr class */
@@ -66,13 +72,13 @@ namespace openSpeak
              *  \param event The event to connect to
              *  \param function The function to connect to the event
              */
-            boost::signals2::connection connect (const std::string &event,
+            EventConnection connect (const std::string &event,
                     EventFunction function);
 
             /** \brief Disconnect a function from an event
              *  \param con The connection that gets terminated
              */
-            void disconnect (boost::signals2::connection con);
+            void disconnect (EventConnection con);
 
             /** \brief Fire an event and call all connected functions
              *  \param event The event to fire
