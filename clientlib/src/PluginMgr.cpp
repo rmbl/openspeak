@@ -22,6 +22,7 @@
 #include "Types.hpp"
 #include "LogMgr.hpp"
 #include "PluginInterfaceProvider.hpp"
+#include "NLS.hpp"
 
 #if defined (OS_POSIX_COMPAT)
 #   include <dlfcn.h>
@@ -60,7 +61,7 @@ namespace openSpeak
         {
         /* Check if there is an eventmgr specified */
             if (!mEventMgr)
-                EXCEPTION ("Can't load plugins without an event mgr registered");
+                EXCEPTION (_("Can't load plugins without an event mgr registered"));
 
         /* Search for .so files in the libdir using glob */
             std::string plugindir = FileUtils::getLibPath ();
@@ -73,7 +74,7 @@ namespace openSpeak
                 dlhandle_t handle = dlopen ((*it).c_str (), RTLD_LAZY);
                 if (!handle)
                 {
-                    LOG_ERROR ("Loading plugin " + *it +" failed");
+                    LOG_ERROR (format (_("Loading plugin %1% failed")) % *it);
                     continue;
                 }
             /* Get the create and destroy functions and create the plugin */
@@ -83,7 +84,7 @@ namespace openSpeak
                         handle, "destroyPlugin");
                 if (!create || !destroy)
                 {
-                    LOG_ERROR ("Plugin " + *it + " is not a valid openSpeak Plugin");
+                    LOG_ERROR (format (_("Plugin %1% is not a valid openSpeak Plugin")) % *it);
                     dlclose (handle);
                     continue;
                 }
@@ -100,8 +101,8 @@ namespace openSpeak
                         plug->SOName.size () - index - 4);
                 mPlugins[plug->SOName] = plug;
 
-                LOG_DEBUG ("Loaded plugin " + plug->Name + " (" +plug->SOName + ") " +
-                        plug->Version + " from " + plug->Author);
+                LOG_DEBUG (format (_("Loaded plugin %1% (%2%) %3% from %4%")) % 
+                        plug->Name % plug->SOName % plug->Version % plug->Author);
             }
 
         /* Check each of the libraries if they're enabled and load them if they are */
@@ -119,12 +120,12 @@ namespace openSpeak
         /* Check if the plugin is loaded */
             PluginMap::const_iterator it = mPlugins.find (plugin);
             if (it == mPlugins.end ())
-                EXCEPTION ("Unknown plugin " + plugin);
+                EXCEPTION (format (_("Unknown plugin %1%")) % plugin);
             else if (it->second->Loaded)
                 return;
 
-            LOG_DEBUG ("Activating plugin "+plugin+" with " + StringUtils::toString 
-                    (it->second->Events.size ()) + " events");
+            LOG_DEBUG (format (_("Activating plugin %1% with %2% events")) %
+                    plugin % it->second->Events.size ());
 
         /* Load it if its not, begin with the events */
             for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
@@ -138,7 +139,7 @@ namespace openSpeak
             {
                 PluginIFaceMap::const_iterator iface = mIFaces.find (i->first);
                 if (iface == mIFaces.end ())
-                    EXCEPTION ("Unknown interface '" + i->first + "'");
+                    EXCEPTION (format (_("Unknown interface '%1%'")) % i->first);
                 
                 iface->second->addClass (i->second);
             }
@@ -150,7 +151,7 @@ namespace openSpeak
         /* Check if the plugin is unloaded */
             PluginMap::const_iterator it = mPlugins.find (plugin);
             if (it == mPlugins.end ())
-                EXCEPTION ("Unknown plugin " + plugin);
+                EXCEPTION (format (_("Unknown plugin %1%")) % plugin);
             else if (!it->second->Loaded)
                 return;
 
@@ -166,7 +167,7 @@ namespace openSpeak
             {
                 PluginIFaceMap::const_iterator iface = mIFaces.find (i->first);
                 if (iface == mIFaces.end ())
-                    EXCEPTION ("Unknown interface '" + i->first + "' found while unloading");
+                    EXCEPTION (format (_("Unknown interface '%1%' found while unloading")) % i->first);
 
                 iface->second->removeClass (i->second);
             }
@@ -175,7 +176,7 @@ namespace openSpeak
         void PluginMgr::registerEventMgr (EventMgr *ptr)
         {
             if (!ptr)
-                EXCEPTION ("Recieved a null pointer");
+                EXCEPTION (_("Recieved a null pointer"));
                 
             mEventMgr = ptr;
         }
@@ -183,9 +184,9 @@ namespace openSpeak
         void PluginMgr::registerIFaceProvider (PluginInterfaceProvider *provider)
         {
             if (!provider)
-                EXCEPTION ("Recieved a null pointer");
+                EXCEPTION (_("Recieved a null pointer"));
             else if (provider->Type.empty ())
-                EXCEPTION ("Recieved pointer with empty type");
+                EXCEPTION (_("Recieved pointer with empty type"));
             
             mIFaces.insert (std::make_pair (provider->Type, provider));
         }

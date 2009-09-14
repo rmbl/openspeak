@@ -19,6 +19,7 @@
 #include "Exception.hpp"
 #include "EventMgr.hpp"
 #include "LogMgr.hpp"
+#include "NLS.hpp"
 
 #include <boost/assign/ptr_map_inserter.hpp>
 
@@ -48,11 +49,9 @@ namespace openSpeak
         EventMgr::EventConnection EventMgr::connect (const std::string &event,
                 EventFunction function)
         {
-            LOG_DEBUG ("Adding event from plugin ");
-
             EventMap::iterator it = mEvents.find (event);
             if (it == mEvents.end ())
-                EXCEPTION ("Event doesn't exist");
+                EXCEPTION (_("Event doesn't exist"));
 
             return it->second->connect (function);
         }
@@ -60,7 +59,7 @@ namespace openSpeak
         void EventMgr::disconnect (EventConnection con)
         {
             if (!con.connected ())
-                EXCEPTION ("Event is not connected");
+                EXCEPTION (_("Event is not connected"));
 
             con.disconnect ();
         }
@@ -69,7 +68,7 @@ namespace openSpeak
         {
             EventMap::iterator it = mEvents.find (event);
             if (it == mEvents.end ())
-                EXCEPTION ("Event doesn't exist");
+                EXCEPTION (_("Event doesn't exist"));
 
             (*it->second) (evt);
         }

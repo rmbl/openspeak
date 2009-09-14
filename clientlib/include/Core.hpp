@@ -26,6 +26,7 @@
 #include "CmdLineParser.hpp"
 #include "Log.hpp"
 #include "PluginMgr.hpp"
+#include "NLS.hpp"
 
 namespace openSpeak
 {
@@ -83,6 +84,15 @@ namespace openSpeak
              *  \param lvl The level of importance of the message
              */
             inline void logMsg (const std::string &msg, const Log::Level &lvl) const
+            {
+                mLog->logMsg (msg, lvl);
+            }
+            
+            /** \brief Log a message in the user specified log
+             *  \param msg The message to log
+             *  \param lvl The level of importance of the message
+             */
+            inline void logMsg (const format &msg, const Log::Level &lvl) const
             {
                 mLog->logMsg (msg, lvl);
             }

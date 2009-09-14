@@ -19,6 +19,7 @@
 #include "PluginInterfaceProvider.hpp"
 #include "PluginMgr.hpp"
 #include "Exception.hpp"
+#include "NLS.hpp"
 
 namespace openSpeak
 {
@@ -44,7 +45,7 @@ namespace openSpeak
         void PluginInterfaceProvider::addClass (PluginInterface *plugin)
         {
             if (!plugin)
-                EXCEPTION ("Recieved a null pointer");
+                EXCEPTION (_("Recieved a null pointer"));
             
             mIFaces.push_back (plugin);
         }
@@ -52,7 +53,7 @@ namespace openSpeak
         void PluginInterfaceProvider::removeClass (PluginInterface *plugin)
         {
             if (!plugin)
-                EXCEPTION ("Recieved a null pointer");
+                EXCEPTION (_("Recieved a null pointer"));
                 
             for (InterfaceVector::iterator it = mIFaces.begin (); it != mIFaces.end ();
                     ++it)

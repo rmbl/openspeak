@@ -18,6 +18,7 @@
 
 #include "Core.hpp"
 #include "Exception.hpp"
+#include "NLS.hpp"
 
 #include "AudioInputProvider.hpp"
 #include "AudioOutputProvider.hpp"
@@ -35,17 +36,17 @@ namespace openSpeak
 
         Core::~Core ()
         {
-            logMsg ("Core: Shutting down", Log::LVL_INFO);
+            logMsg (_("Core: Shutting down"), Log::LVL_INFO);
             if (mPluginMgr)
             {
                 delete mPluginMgr;
-                logMsg ("Core: Closed PluginMgr", Log::LVL_INFO);
+                logMsg (_("Core: Closed PluginMgr"), Log::LVL_INFO);
             }
         }
 
         void Core::entry ()
         {
-            logMsg ("Core: Starting up", Log::LVL_INFO);
+            logMsg (_("Core: Starting up"), Log::LVL_INFO);
         
         /* Create PluginMgr and add Core as eventmgr */
             mPluginMgr = new PluginMgr ();
@@ -58,9 +59,9 @@ namespace openSpeak
         /* Try to load all plugins */
             try
             {
-                logMsg ("Core: Loading plugins", Log::LVL_INFO);
+                logMsg (_("Core: Loading plugins"), Log::LVL_INFO);
                 mPluginMgr->loadPlugins (mConfig);
-                logMsg ("Core: Finished loading plugins", Log::LVL_INFO);
+                logMsg (_("Core: Finished loading plugins"), Log::LVL_INFO);
             }
             catch (openSpeak::Exception &ex)
             {

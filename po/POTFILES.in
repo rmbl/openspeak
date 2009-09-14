@@ -6,3 +6,9 @@ lib/src/Log.cpp
 lib/src/Thread.cpp
 server/src/main.cpp
 client/src/main.cpp
+clientlib/src/AudioInputProvider.cpp
+clientlib/src/AudioOutputProvider.cpp
+clientlib/src/Core.cpp
+clientlib/src/EventMgr.cpp
+clientlib/src/PluginInterfaceProvider.cpp
+clientlib/src/PluginMgr.cpp

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openspeak 0.1-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-09-14 15:54+0200\n"
+"POT-Creation-Date: 2009-09-14 16:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,4 +166,104 @@ msgstr ""
 
 #: client/src/main.cpp:103
 msgid "Finished logging"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:39
+#: clientlib/src/AudioOutputProvider.cpp:39
+msgid "Given name is empty"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:53
+#: clientlib/src/AudioOutputProvider.cpp:53
+msgid "Interface %1% is invalid"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:59
+#: clientlib/src/AudioOutputProvider.cpp:59
+msgid "Interface %1% not found"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:75
+#: clientlib/src/AudioOutputProvider.cpp:75
+msgid "Removing invalid interface %1%"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:84
+#: clientlib/src/AudioOutputProvider.cpp:84
+msgid "No valid interface available"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:90
+#: clientlib/src/AudioOutputProvider.cpp:90
+msgid "No interface chosen"
+msgstr ""
+
+#: clientlib/src/Core.cpp:39
+msgid "Core: Shutting down"
+msgstr ""
+
+#: clientlib/src/Core.cpp:43
+msgid "Core: Closed PluginMgr"
+msgstr ""
+
+#: clientlib/src/Core.cpp:49
+msgid "Core: Starting up"
+msgstr ""
+
+#: clientlib/src/Core.cpp:62
+msgid "Core: Loading plugins"
+msgstr ""
+
+#: clientlib/src/Core.cpp:64
+msgid "Core: Finished loading plugins"
+msgstr ""
+
+#: clientlib/src/EventMgr.cpp:54 clientlib/src/EventMgr.cpp:71
+msgid "Event doesn't exist"
+msgstr ""
+
+#: clientlib/src/EventMgr.cpp:62
+msgid "Event is not connected"
+msgstr ""
+
+#: clientlib/src/PluginInterfaceProvider.cpp:48
+#: clientlib/src/PluginInterfaceProvider.cpp:56
+#: clientlib/src/PluginMgr.cpp:179 clientlib/src/PluginMgr.cpp:187
+msgid "Recieved a null pointer"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:64
+msgid "Can't load plugins without an event mgr registered"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:77
+msgid "Loading plugin %1% failed"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:87
+msgid "Plugin %1% is not a valid openSpeak Plugin"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:104
+msgid "Loaded plugin %1% (%2%) %3% from %4%"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:123 clientlib/src/PluginMgr.cpp:154
+msgid "Unknown plugin %1%"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:127
+msgid "Activating plugin %1% with %2% events"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:142
+msgid "Unknown interface '%1%'"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:170
+msgid "Unknown interface '%1%' found while unloading"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:189
+msgid "Recieved pointer with empty type"
 msgstr ""

@@ -19,26 +19,27 @@
 #include "AudioInputProvider.hpp"
 #include "Exception.hpp"
 #include "LogMgr.hpp"
+#include "NLS.hpp"
 
 namespace openSpeak
 {
 
     namespace Client
     {
-    
+
         AudioInputProvider::AudioInputProvider ()
             : PluginInterfaceProvider ("AudioInput")
         {
             mInput = 0;
         }
-        
+
         void AudioInputProvider::useInterface (const std::string &name)
         {
             if (name.empty ())
-                EXCEPTION ("Given name is empty");
-            
+                EXCEPTION (_("Given name is empty"));
+
         /* Search for the interface and set it for later usage */
-            for (InterfaceVector::const_iterator it = mIFaces.begin (); 
+            for (InterfaceVector::const_iterator it = mIFaces.begin ();
                     it != mIFaces.end (); ++it)
             {
                 if ((*it)->Name == name)
@@ -48,32 +49,31 @@ namespace openSpeak
                     if (!mInput)
                     {
                         delete *mIFaces.begin ();
-                        mIFaces.erase (mIFaces.end ()); 
-                        EXCEPTION ("Interface " + name + " is invalid");
+                        mIFaces.erase (mIFaces.end ());
+                        EXCEPTION (format (_("Interface %1% is invalid")) % name);
                     }
-                    break;
+                    return;
                 }
             }
-            
-            EXCEPTION ("Interface " + name + " not found");
+
+            EXCEPTION (format (_("Interface %1% not found")) % name);
         }
-        
+
         void AudioInputProvider::useDefaultInterface ()
         {
             mInput = 0;
-                    
+
         /* Get the first one available */
             while (mIFaces.size () > 0)
             {
             /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
                 mInput = dynamic_cast <AudioInput*> (*mIFaces.begin ());
-                
+
             /* Delete the interface if it's incorrect */
                 if (!mInput)
                 {
-                    LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                            "Removing invalid interface " + (*mIFaces.begin ())->Name,
-                            Log::LVL_DEBUG);
+                    LOG_DEBUG (format (_("Removing invalid interface %1%")) %
+                            (*mIFaces.begin ())->Name);
                     delete *mIFaces.begin ();
                     mIFaces.erase (mIFaces.end ());
                 }
@@ -81,16 +81,16 @@ namespace openSpeak
 
         /* Check if a valid interface was found */
             if (!mInput)
-                EXCEPTION ("No valid interface available");
+                EXCEPTION (_("No valid interface available"));
         }
-        
+
         char* AudioInputProvider::getAudioInput () const
         {
             if (!mInput)
-                EXCEPTION ("No interface chosen");
+                EXCEPTION (_("No interface chosen"));
             return mInput->getAudioInput ();
         }
-            
+
     }
 
 }

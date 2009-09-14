@@ -19,6 +19,7 @@
 #include "AudioOutputProvider.hpp"
 #include "Exception.hpp"
 #include "LogMgr.hpp"
+#include "NLS.hpp"
 
 namespace openSpeak
 {
@@ -35,7 +36,7 @@ namespace openSpeak
         void AudioOutputProvider::useInterface (const std::string &name)
         {
             if (name.empty ())
-                EXCEPTION ("Given name is empty");
+                EXCEPTION (_("Given name is empty"));
 
         /* Search for the interface and set it for later usage */
             for (InterfaceVector::const_iterator it = mIFaces.begin ();
@@ -49,13 +50,13 @@ namespace openSpeak
                     {
                         delete *mIFaces.begin ();
                         mIFaces.erase (mIFaces.end ());
-                        EXCEPTION ("Interface " + name + " is invalid");
+                        EXCEPTION (format (_("Interface %1% is invalid")) % name);
                     }
-                    break;
+                    return;
                 }
             }
 
-            EXCEPTION ("Interface " + name + " not found");
+            EXCEPTION (format (_("Interface %1% not found")) % name);
         }
 
         void AudioOutputProvider::useDefaultInterface ()
@@ -71,9 +72,8 @@ namespace openSpeak
             /* Delete the interface if it's incorrect */
                 if (!mOutput)
                 {
-                    LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                            "Removing invalid interface " + (*mIFaces.begin ())->Name,
-                            Log::LVL_DEBUG);
+                    LOG_DEBUG (format (_("Removing invalid interface %1%")) % 
+                            (*mIFaces.begin ())->Name);
                     delete *mIFaces.begin ();
                     mIFaces.erase (mIFaces.end ());
                 }
@@ -81,13 +81,13 @@ namespace openSpeak
 
         /* Check if a valid interface was found */
             if (!mOutput)
-                EXCEPTION ("No valid interface available");
+                EXCEPTION (_("No valid interface available"));
         }
 
         void AudioOutputProvider::setAudioOutput (char *out) const
         {
             if (!mOutput)
-                EXCEPTION ("No interface chosen");
+                EXCEPTION (_("No interface chosen"));
             mOutput->setAudioOutput (out);
         }
 
