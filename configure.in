@@ -55,6 +55,7 @@ AC_STRUCT_TM
 AX_BOOST_BASE([1.39.0])
 AX_BOOST_SIGNALS2
 AX_BOOST_THREAD
+AC_CHECK_HEADERS([boost/format.hpp])
 
 # Set ${datadir}
 if test "x${datadir}" = 'x${prefix}/share' -o "x${datarootdir}" = 'x${prefix}/share'; then

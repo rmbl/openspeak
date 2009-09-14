@@ -23,6 +23,7 @@
 #include "StringUtils.hpp"
 #include <exception>
 #include <iostream>
+#include <boost/format.hpp>
 
 namespace openSpeak
 {
@@ -44,6 +45,14 @@ namespace openSpeak
 		 */
 		Exception (const std::string &msg, const std::string &file, const ushort &line) 
                 : mMessage (msg), mFile (file), mLine (line) { }
+
+        /** \brief Alternative constructor of the Exception class
+         *  \param msg The message as boost::format
+         *  \param file The file in which the exception got thrown
+         *  \param line The line in the file where the exception got thrown
+         */
+        Exception (const boost::format &form, const std::string &file, const ushort &line)
+                : mMessage (form.str ()), mFile (file), mLine (line) { }
 
 		/** \brief The destructor of the Exception class */
 		virtual ~Exception (void) throw () { } 

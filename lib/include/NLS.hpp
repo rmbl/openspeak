@@ -23,7 +23,11 @@
 #include <locale.h>
 #include <string>
 
+#include <boost/format.hpp>
+
 #define _(x) gettext(x)
+
+using boost::format;
 
 namespace openSpeak
 {
