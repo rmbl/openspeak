@@ -6,6 +6,7 @@ libopenspeak_la_SOURCES = \
 	FileUtils.cpp \
 	LogMgr.cpp \
 	Log.cpp \
+	NLS.cpp \
 	StringUtils.cpp \
 	Thread.cpp
 

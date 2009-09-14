@@ -68,6 +68,11 @@ namespace openSpeak
          *  \return The path where plugins should be
          */
         std::string getLibPath (void);
+        
+        /** \brief Return the path where locale files are located
+         *  \return The path where locale files are located
+         */
+        std::string getLocalePath (void);
 
         /** \brief Return the current working dir
          *  \return The path the binary is working in
