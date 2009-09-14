@@ -18,6 +18,9 @@ if test "x$?" != "x0"; then
 	AC_MSG_ERROR([No C++ compiler not found. Please install a C++ compiler.])
 fi
 
+# Enable external gettext support
+AM_GNU_GETTEXT([external])
+
 #AC_PROG_RANLIB
 AC_PROG_INSTALL
 AC_PROG_LN_S
@@ -68,7 +71,7 @@ AC_SUBST(OS_DATA_DIR)
 AC_SUBST(OS_PREFIX)
 AC_SUBST(OS_CPPFLAGS)
 
-AC_OUTPUT([
+AC_OUTPUT([ po/Makefile.in
     Makefile
     lib/Makefile
     lib/src/Makefile
