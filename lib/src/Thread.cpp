@@ -18,6 +18,7 @@
 
 #include "Thread.hpp"
 #include "Exception.hpp"
+#include "NLS.hpp"
 
 namespace openSpeak
 {
@@ -37,7 +38,7 @@ namespace openSpeak
 	{
 		MutexLocker lock (mMutex);
 		if (mThread)
-            EXCEPTION ("Thread was already created");
+            EXCEPTION (_("Thread was already created"));
 
 		mThread = new boost::thread (boost::bind (&Thread::entry, this));
 	}
@@ -46,7 +47,7 @@ namespace openSpeak
 	{
 		MutexLocker lock (mMutex);
         if (!mThread)
-            EXCEPTION ("Thread is not running");
+            EXCEPTION (_("Thread is not running"));
 		boost::xtime time;
 		time.sec = 0;
 		time.nsec = ms * 1000;
@@ -56,7 +57,7 @@ namespace openSpeak
     void Thread::join () const
     {
         if (!mThread)
-            EXCEPTION ("Thread is not running");
+            EXCEPTION (_("Thread is not running"));
         mThread->join ();
     }
 

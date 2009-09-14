@@ -1,1 +1,6 @@
 # List of source files which contain translatable strings.
+lib/src/CmdLineParser.cpp
+lib/src/Config.cpp
+lib/src/FileUtils.cpp
+lib/src/Log.cpp
+lib/src/Thread.cpp

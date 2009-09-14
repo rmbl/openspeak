@@ -20,6 +20,7 @@
 #include "Exception.hpp"
 #include "FileUtils.hpp"
 #include "StringUtils.hpp"
+#include "NLS.hpp"
 
 namespace openSpeak
 {
@@ -42,7 +43,7 @@ namespace openSpeak
     void Config::parse()
     {
         if (mFilename.empty ())
-            EXCEPTION ("The filename is empty");
+            EXCEPTION (_("The filename is empty"));
 
         bool found = false;
         std::string file = FileUtils::getConfigPath () + mFilename;
@@ -95,11 +96,8 @@ namespace openSpeak
             else
             {
                 std::vector <std::string> str = StringUtils::split (line, '=');
-                if (str.size () > 2)
-                {
-                    EXCEPTION ("Invalid line in " + mFilename + " (Line: " +
-                            StringUtils::toString (lineno));
-                }
+                if (str.size () > 2)                
+                    EXCEPTION (format (_("Invalid line in %1% (Line: %2%)")) % mFilename % lineno);
 
                 StringUtils::trim (str[0]); StringUtils::trim (str[1]);
                 key = section + "." + str[0];
@@ -114,7 +112,7 @@ namespace openSpeak
     void Config::save ()
     {
         if (!mParsed)
-            EXCEPTION ("Can't save a unparsed file");
+            EXCEPTION (_("Can't save a unparsed file"));
 
         if (mFile.is_open ())
             mFile.close ();
@@ -162,7 +160,7 @@ namespace openSpeak
         mFile.flush ();
         mFile.close ();
         if (mFile.fail ())
-            EXCEPTION ("Saving file " + mFilename + " failed");
+            EXCEPTION (format (_("Saving file %1% failed")) % mFilename);
     }
 
     std::string Config::getOption (const std::string &option, const std::string &def)
@@ -182,7 +180,7 @@ namespace openSpeak
         MutexLocker lock (mMutex);
 
         if (option.empty ())
-            EXCEPTION ("Can't set an empty option");
+            EXCEPTION (_("Can't set an empty option"));
 
         mOptions[option] = value;
         save();

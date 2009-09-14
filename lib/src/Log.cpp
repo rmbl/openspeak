@@ -17,6 +17,7 @@
   */
 
 #include "Log.hpp"
+#include "NLS.hpp"
 #include <iostream>
 #include <ctime>
 
@@ -61,15 +62,15 @@ namespace openSpeak
 		switch (lvl)
 		{
 			case LVL_DEBUG:
-				return (color) ? "\033[0;34m DEBUG \033[0m" : " DEBUG ";
+				return (color) ? _("\033[0;34m DEBUG \033[0m") : _(" DEBUG ");
 			case LVL_INFO:
-				return (color) ? "\033[0;32m INFO  \033[0m" : " INFO  ";
+				return (color) ? _("\033[0;32m INFO  \033[0m") : _(" INFO  ");
 			case LVL_ERROR:
-				return (color) ? "\033[1;31m ERROR \033[0m" : " ERROR ";
+				return (color) ? _("\033[1;31m ERROR \033[0m") : _(" ERROR ");
 			case LVL_FATAL:
-				return (color) ? "\033[0;31m FATAL \033[0m" : " FATAL ";
+				return (color) ? _("\033[0;31m FATAL \033[0m") : _(" FATAL ");
 			default:
-				return "DEFAULT";
+				return _("DEFAULT");
 		}
 	}
 }

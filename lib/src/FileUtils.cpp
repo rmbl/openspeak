@@ -19,6 +19,7 @@
 #include "Platform.hpp"
 #include "Exception.hpp"
 #include "FileUtils.hpp"
+#include "NLS.hpp"
 
 #include <fstream>
 #include <cstdlib>
@@ -75,7 +76,7 @@ namespace openSpeak
 #elif defined (OS_PLATFORM_WIN32)
             if (_mkdir (dir.c_str ()) == -1)
 #endif
-                EXCEPTION ("Can't create directory " + dir);
+                EXCEPTION (format (_("Can't create directory %1%")) % dir);
         }
 
         StringVector findFiles (const std::string &pattern)

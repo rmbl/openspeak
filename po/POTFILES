@@ -1,0 +1,5 @@
+     ../lib/src/CmdLineParser.cpp \
+     ../lib/src/Config.cpp \
+     ../lib/src/FileUtils.cpp \
+     ../lib/src/Log.cpp \
+     ../lib/src/Thread.cpp

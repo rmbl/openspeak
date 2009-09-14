@@ -23,6 +23,7 @@
 #include "CmdLineParser.hpp"
 #include "Exception.hpp"
 #include "Types.hpp"
+#include "NLS.hpp"
 
 #include <cstring>
 #include <iostream>
@@ -67,7 +68,7 @@ namespace openSpeak
             if (strlen (argv[i]) == 2)
             {
                 if (argv[i][0] != '-' || argv[i][1] == '-')
-                    EXCEPTION ("Invalid short option " + std::string (argv[i]));
+                    EXCEPTION (format (_("Invalid short option %1%")) % argv[i]);
                     
             /* Search for the short option */
                 option = std::string (argv[i]).substr (1);
@@ -75,14 +76,14 @@ namespace openSpeak
             else if (strlen (argv[i]) > 2)
             {
                 if (argv[i][0] != '-' || argv[i][1] != '-')
-                    EXCEPTION ("Invalid long option " + std::string (argv[i]));
+                    EXCEPTION (format (_("Invalid long option %1%")) % argv[i]);
                     
             /* Search for the long option */
                 option = std::string (argv[i]).substr (2);
             }
             else
             {
-                EXCEPTION ("Argument " + std::string (argv[i]) + " is invalid");
+                EXCEPTION (format (_("Argument %1% is invalid")) % argv[i]);
             }
 
             if (option == "help" || option == "h")
@@ -93,12 +94,12 @@ namespace openSpeak
 
         /* Throw error if it hasn't been found */
             if (!found)
-                EXCEPTION ("Unknown option " + std::string (argv[i]));
+                EXCEPTION (format (_("Unknown option %1%")) % argv[i]);
 
             if (found->Type != OPTION_ARG_NONE)
             {
                 if (++i == (uint)argc)
-                    EXCEPTION ("Option " + std::string (argv[i]) + " takes an argument");
+                    EXCEPTION (format (_("Option %1% takes an argument")) % argv[i]);
                 mValues.insert (std::make_pair (found->Long, argv[i]));
             }
             else
@@ -130,9 +131,8 @@ namespace openSpeak
     void CmdLineParser::showHelp(char* command) const
     {
     /* Print some general informatins about the program */
-        std::cout << "This is the command line help for " << mApplicationTitle;
-        std::cout << " " << mApplicationVersion << "\n";
-        
+        std::cout << format (_("This is the command line help for %1% %2%")) % 
+                mApplicationTitle % mApplicationVersion << "\n";        
         
     /* Print all possible options */
         std::cout << command << " [-h|--help] [-v|--version]";
@@ -149,8 +149,8 @@ namespace openSpeak
         std::cout << "\n\n";
 
     /* Print the options with detailed informations */
-        std::cout << "-h,--help\n\t\tPrint out this help\n";
-        std::cout << "-v,--version\n\t\tPrint out version informations\n";
+        std::cout << "-h,--help\n\t\t" << _("Print out this help") << "\n";
+        std::cout << "-v,--version\n\t\t" << _("Print out version informations") << "\n";
     
         for (OptionsVector::const_iterator it = mOptions.begin ();
                 it != mOptions.end (); ++it)
@@ -173,11 +173,10 @@ namespace openSpeak
     /* Show some version informations */
         std::cout << mApplicationTitle << " " << mApplicationVersion << "\n\n";
         
-        std::cout << mApplicationTitle << " is licensed under the terms of the GPL.";
-        std::cout << " See COPYING for more informations.\nCopyright (c)";
-        
-        std::cout << "2006 - 2009 openSpeak Team (http://openspeak-project.org)\n";
-        std::cout << "For authors see the AUTHORS file\n";
+        std::cout << format (_("%1% is licensed under the terms of the GPL.\n"
+                " See COPYING for more informations.\n"
+                "Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
+                "For authors see the AUTHORS file\n"));
         
     /* Throw an empty exception to terminate the program */
         EXCEPTION ("");
