@@ -18,6 +18,9 @@ if test "x$?" != "x0"; then
 	AC_MSG_ERROR([No C++ compiler not found. Please install a C++ compiler.])
 fi
 
+# Enable external gettext support
+AM_GNU_GETTEXT([external])
+
 #AC_PROG_RANLIB
 AC_PROG_INSTALL
 AC_PROG_LN_S
@@ -52,6 +55,7 @@ AC_STRUCT_TM
 AX_BOOST_BASE([1.40.0])
 AX_BOOST_SIGNALS2
 AX_BOOST_THREAD
+AC_CHECK_HEADERS([boost/format.hpp])
 
 # Set ${datadir}
 if test "x${datadir}" = 'x${prefix}/share' -o "x${datarootdir}" = 'x${prefix}/share'; then
@@ -68,7 +72,7 @@ AC_SUBST(OS_DATA_DIR)
 AC_SUBST(OS_PREFIX)
 AC_SUBST(OS_CPPFLAGS)
 
-AC_OUTPUT([
+AC_OUTPUT([ po/Makefile.in
     Makefile
     lib/Makefile
     lib/src/Makefile

@@ -142,6 +142,15 @@ namespace openSpeak
             return getCurrentPath () + "/plugins/";
 #endif
         }
+        
+        std::string getLocalePath ()
+        {
+#if defined (OS_POSIX_COMPAT)
+            return OS_PREFIX + std::string ("/share/locale/");
+#else
+            return getCurrentPath () + "/locale/";
+#endif
+        }
 
         std::string getCurrentPath ()
         {

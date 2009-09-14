@@ -21,6 +21,7 @@
 #include "LogMgr.hpp"
 #include "Config.hpp"
 #include "CmdLineParser.hpp"
+#include "NLS.hpp"
 
 using namespace openSpeak;
 
@@ -29,6 +30,12 @@ int main (int argc, char** argv)
     int ret = 0;
     CmdLineParser *cmdline = 0;
     Config *config = 0;
+
+    if (!initNLS ("openspeak"))
+    {
+        std::cerr << "Initialising NLS failed!\n";
+        return -1;
+    }
 
     try
     {

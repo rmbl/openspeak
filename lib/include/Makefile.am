@@ -6,6 +6,7 @@ openspeak_include_HEADERS = \
 	FileUtils.hpp \
 	LogMgr.hpp \
 	Log.hpp \
+	NLS.hpp \
 	Platform.hpp \
 	Singleton.hpp \
 	StringUtils.hpp \

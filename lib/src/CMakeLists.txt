@@ -9,6 +9,7 @@ set (SOURCE
 	FileUtils.cpp
 	Log.cpp
 	LogMgr.cpp
+	NLS.cpp
 	StringUtils.cpp
 	Thread.cpp
 )
