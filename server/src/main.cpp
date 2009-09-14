@@ -40,9 +40,9 @@ int main (int argc, char** argv)
     try
     {
     /* Parse the commandline */
-        cmdline = new CmdLineParser ("openSpeak Server", "0.1-git");
+        cmdline = new CmdLineParser (_("openSpeak Server"), "0.1-git");
         CmdLineParser::CmdLineOption options[] = {
-            { "debug", 'd', CmdLineParser::OPTION_ARG_NONE, "Display more informations", "" },
+            { "debug", 'd', CmdLineParser::OPTION_ARG_NONE, _("Display more informations"), "" },
             {0}
         };
         cmdline->addOption (options);
@@ -61,17 +61,17 @@ int main (int argc, char** argv)
         new LogMgr (confdir + "log/openspeakd.log",
                 StringUtils::toBool (cmdline->getOption ("debug")) ?
                 Log::LVL_DEBUG : Log::LVL_SILENT);
-        LOG_SILENT (" ~*~ Started logging ~*~ ");
+        LOG_SILENT (_("Started logging"));
 
     /* Open the config file and parse it */
         config = new Config ("openspeakd.conf");
         config->parse ();
-        LOG_DEBUG ("Parsed config file " + confdir + "openspeakd.conf");
+        LOG_DEBUG (format (_("Parsed config file %1%openspeakd.conf")) % confdir);
     }
     catch (Exception ex)
     {
         if (LogMgr::getSingleton () && !ex.empty ())
-            LOG_FATAL ("Exception: " + std::string (ex.what ()));
+            LOG_FATAL (format (_("Exception: %1%")) % ex.what ());
         else if (!ex.empty ())
             ex.print ();
         ret = -1;
@@ -79,9 +79,9 @@ int main (int argc, char** argv)
     catch (...)
     {
         if (LogMgr::getSingleton ())
-            LOG_FATAL ("Catched unknown exception.");
+            LOG_FATAL (_("Catched unknown exception."));
         else
-            std::cout << "Catched unknown exception";
+            std::cout << _("Catched unknown exception");
         ret = -1;
     }
 
@@ -91,7 +91,7 @@ int main (int argc, char** argv)
 
     if (LogMgr::getSingleton ())
     {
-        LOG_SILENT (" ~*~ Finished logging ~*~");
+        LOG_SILENT (_("Finished logging "));
         delete LogMgr::getSingleton ();
     }
 

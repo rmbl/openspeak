@@ -21,6 +21,10 @@ Makefile.in
 *~
 docs*
 
+# Gettext stuff
+POTFILES
+stamp-po
+
 # CMake stuff
 CMakeFiles*
 CMakeCache*

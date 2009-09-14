@@ -21,6 +21,7 @@
 
 #include "Platform.hpp"
 #include "Thread.hpp"
+#include "NLS.hpp"
 #include <string>
 #include <fstream>
 
@@ -60,6 +61,15 @@ namespace openSpeak
 		 *	\param lvl The level of the message
 		 */
 		void logMsg (const std::string &msg, const Level &lvl = LVL_INFO);
+        
+        /** \brief Log a message into file/to console
+         *  \param msg The message we want to log
+         *  \param lvl The level of the message
+         */
+        inline void logMsg (const format &msg, const Level &lvl = LVL_INFO)
+        {
+            logMsg (msg.str (), lvl);
+        }
 
 	 protected:
 		 /** \brief Get the logging level as a string

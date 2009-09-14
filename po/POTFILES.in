@@ -4,3 +4,5 @@ lib/src/Config.cpp
 lib/src/FileUtils.cpp
 lib/src/Log.cpp
 lib/src/Thread.cpp
+server/src/main.cpp
+client/src/main.cpp

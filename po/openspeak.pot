@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR openSpeak Team
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: openspeak 0.1-git\n"
+"Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
+"POT-Creation-Date: 2009-09-14 15:54+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lib/src/CmdLineParser.cpp:71
+msgid "Invalid short option %1%"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:79
+msgid "Invalid long option %1%"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:86
+msgid "Argument %1% is invalid"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:97
+msgid "Unknown option %1%"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:102
+msgid "Option %1% takes an argument"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:134
+msgid "This is the command line help for %1% %2%"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:152
+msgid "Print out this help"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:153
+msgid "Print out version informations"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:176
+msgid ""
+"%1% is licensed under the terms of the GPL.\n"
+" See COPYING for more informations.\n"
+"Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
+"For authors see the AUTHORS file\n"
+msgstr ""
+
+#: lib/src/Config.cpp:46
+msgid "The filename is empty"
+msgstr ""
+
+#: lib/src/Config.cpp:100
+msgid "Invalid line in %1% (Line: %2%)"
+msgstr ""
+
+#: lib/src/Config.cpp:115
+msgid "Can't save a unparsed file"
+msgstr ""
+
+#: lib/src/Config.cpp:163
+msgid "Saving file %1% failed"
+msgstr ""
+
+#: lib/src/Config.cpp:183
+msgid "Can't set an empty option"
+msgstr ""
+
+#: lib/src/FileUtils.cpp:79
+msgid "Can't create directory %1%"
+msgstr ""
+
+#: lib/src/Log.cpp:65
+msgid "[0;34m DEBUG [0m"
+msgstr ""
+
+#: lib/src/Log.cpp:65
+msgid " DEBUG "
+msgstr ""
+
+#: lib/src/Log.cpp:67
+msgid "[0;32m INFO  [0m"
+msgstr ""
+
+#: lib/src/Log.cpp:67
+msgid " INFO  "
+msgstr ""
+
+#: lib/src/Log.cpp:69
+msgid "[1;31m ERROR [0m"
+msgstr ""
+
+#: lib/src/Log.cpp:69
+msgid " ERROR "
+msgstr ""
+
+#: lib/src/Log.cpp:71
+msgid "[0;31m FATAL [0m"
+msgstr ""
+
+#: lib/src/Log.cpp:71
+msgid " FATAL "
+msgstr ""
+
+#: lib/src/Log.cpp:73
+msgid "DEFAULT"
+msgstr ""
+
+#: lib/src/Thread.cpp:41
+msgid "Thread was already created"
+msgstr ""
+
+#: lib/src/Thread.cpp:50 lib/src/Thread.cpp:60
+msgid "Thread is not running"
+msgstr ""
+
+#: server/src/main.cpp:43
+msgid "openSpeak Server"
+msgstr ""
+
+#: server/src/main.cpp:45 client/src/main.cpp:47
+msgid "Display more informations"
+msgstr ""
+
+#: server/src/main.cpp:64 client/src/main.cpp:66
+msgid "Started logging"
+msgstr ""
+
+#: server/src/main.cpp:69
+msgid "Parsed config file %1%openspeakd.conf"
+msgstr ""
+
+#: server/src/main.cpp:74 client/src/main.cpp:80
+msgid "Exception: %1%"
+msgstr ""
+
+#: server/src/main.cpp:82 client/src/main.cpp:87
+msgid "Catched unknown exception."
+msgstr ""
+
+#: server/src/main.cpp:84 client/src/main.cpp:89
+msgid "Catched unknown exception"
+msgstr ""
+
+#: server/src/main.cpp:94
+msgid "Finished logging "
+msgstr ""
+
+#: client/src/main.cpp:45
+msgid "openSpeak"
+msgstr ""
+
+#: client/src/main.cpp:71
+msgid "Parsed config file %1%openspeak.conf"
+msgstr ""
+
+#: client/src/main.cpp:103
+msgid "Finished logging"
+msgstr ""
