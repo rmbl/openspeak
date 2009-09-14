@@ -23,6 +23,7 @@
 #include "CmdLineParser.hpp"
 #include "Core.hpp"
 #include "StringUtils.hpp"
+#include "NLS.hpp"
 
 using namespace openSpeak;
 
@@ -31,6 +32,12 @@ int main (int argc, char** argv)
     CmdLineParser *cmdline = 0;
     Config *config = 0;
     Client::Core *core = 0;
+
+    if (!initNLS ("openspeak"))
+    {
+        std::cerr << "Initialising NLS failed!\n";
+        return -1;
+    }
 
     try
     {

@@ -25,7 +25,7 @@ namespace openSpeak
     bool initNLS (const std::string &domain)
     {
         if (setlocale (LC_ALL, "") == 0 || bindtextdomain 
-                (domain.c_str (), FileUtils::getLocalePath ().c_str ()) == 0) ||
+                (domain.c_str (), FileUtils::getLocalePath ().c_str ()) == 0 ||
                 textdomain (domain.c_str ()) == 0)
             return false;
         
