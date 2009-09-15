@@ -24,6 +24,8 @@ docs*
 # Gettext stuff
 POTFILES
 stamp-po
+*.gmo
+*.mo
 
 # CMake stuff
 CMakeFiles*
