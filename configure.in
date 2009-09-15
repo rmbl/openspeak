@@ -5,6 +5,7 @@ AC_INIT(configure.in)
 AM_INIT_AUTOMAKE(openspeak, 0.1-git)
 
 AM_CONFIG_HEADER(config.h)
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_PROG_CC
 AC_PROG_CXX
@@ -19,7 +20,11 @@ if test "x$?" != "x0"; then
 fi
 
 # Enable external gettext support
+GETTEXT_PACKAGE=openspeak
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package.])
 AM_GNU_GETTEXT([external])
+
 
 #AC_PROG_RANLIB
 AC_PROG_INSTALL

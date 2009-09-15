@@ -60,6 +60,7 @@ fi
 
 echo "Processing configure.ac"
 
+touch config.rpath
 libtoolize --copy --force -q || glibtoolize --copy --force
 aclocal -I m4
 autoheader
