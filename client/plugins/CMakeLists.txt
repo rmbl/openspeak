@@ -1,4 +1,4 @@
-include (./MacroAddPlugin.cmake)
+include (MacroAddPlugin)
 
 include_directories (${openSpeak_SOURCE_DIR}/lib/include ${openSpeak_SOURCE_DIR}/clientlib/include ${Boost_INCLUDE_DIRS})
 

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: openspeak 0.1-git\n"
+"Project-Id-Version: openSpeak 0.1-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-09-14 16:13+0200\n"
+"POT-Creation-Date: 2009-09-15 14:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,88 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lib/src/CmdLineParser.cpp:71
-msgid "Invalid short option %1%"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:79
-msgid "Invalid long option %1%"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:86
-msgid "Argument %1% is invalid"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:97
-msgid "Unknown option %1%"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:102
-msgid "Option %1% takes an argument"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:134
-msgid "This is the command line help for %1% %2%"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:152
-msgid "Print out this help"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:153
-msgid "Print out version informations"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:176
-msgid ""
-"%1% is licensed under the terms of the GPL.\n"
-" See COPYING for more informations.\n"
-"Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
-"For authors see the AUTHORS file\n"
-msgstr ""
-
-#: lib/src/Config.cpp:46
-msgid "The filename is empty"
-msgstr ""
-
-#: lib/src/Config.cpp:100
-msgid "Invalid line in %1% (Line: %2%)"
-msgstr ""
-
-#: lib/src/Config.cpp:115
-msgid "Can't save a unparsed file"
-msgstr ""
-
-#: lib/src/Config.cpp:163
-msgid "Saving file %1% failed"
-msgstr ""
-
-#: lib/src/Config.cpp:183
-msgid "Can't set an empty option"
-msgstr ""
-
-#: lib/src/FileUtils.cpp:79
-msgid "Can't create directory %1%"
-msgstr ""
-
-#: lib/src/Log.cpp:65
-msgid "[0;34m DEBUG [0m"
-msgstr ""
-
-#: lib/src/Log.cpp:65
-msgid " DEBUG "
+#: lib/src/Log.cpp:71
+msgid "[0;31m FATAL [0m"
 msgstr ""
 
 #: lib/src/Log.cpp:67
 msgid "[0;32m INFO  [0m"
 msgstr ""
 
-#: lib/src/Log.cpp:67
-msgid " INFO  "
+#: lib/src/Log.cpp:65
+msgid "[0;34m DEBUG [0m"
 msgstr ""
 
 #: lib/src/Log.cpp:69
 msgid "[1;31m ERROR [0m"
+msgstr ""
+
+#: lib/src/Log.cpp:65
+msgid " DEBUG "
 msgstr ""
 
 #: lib/src/Log.cpp:69
@@ -105,117 +41,83 @@ msgid " ERROR "
 msgstr ""
 
 #: lib/src/Log.cpp:71
-msgid "[0;31m FATAL [0m"
-msgstr ""
-
-#: lib/src/Log.cpp:71
 msgid " FATAL "
 msgstr ""
 
-#: lib/src/Log.cpp:73
-msgid "DEFAULT"
+#: lib/src/Log.cpp:67
+msgid " INFO  "
 msgstr ""
 
-#: lib/src/Thread.cpp:41
-msgid "Thread was already created"
+#: lib/src/CmdLineParser.cpp:176
+#, boost-format
+msgid ""
+"%1% is licensed under the terms of the GPL.\n"
+" See COPYING for more informations.\n"
+"Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
+"For authors see the AUTHORS file\n"
 msgstr ""
 
-#: lib/src/Thread.cpp:50 lib/src/Thread.cpp:60
-msgid "Thread is not running"
+#: clientlib/src/PluginMgr.cpp:127
+#, boost-format
+msgid "Activating plugin %1% with %2% events"
 msgstr ""
 
-#: server/src/main.cpp:43
-msgid "openSpeak Server"
+#: lib/src/CmdLineParser.cpp:86
+#, boost-format
+msgid "Argument %1% is invalid"
 msgstr ""
 
-#: server/src/main.cpp:45 client/src/main.cpp:47
-msgid "Display more informations"
+#: lib/src/FileUtils.cpp:79
+#, boost-format
+msgid "Can't create directory %1%"
 msgstr ""
 
-#: server/src/main.cpp:64 client/src/main.cpp:66
-msgid "Started logging"
+#: clientlib/src/PluginMgr.cpp:64
+msgid "Can't load plugins without an event mgr registered"
 msgstr ""
 
-#: server/src/main.cpp:69
-msgid "Parsed config file %1%openspeakd.conf"
+#: lib/src/Config.cpp:115
+msgid "Can't save a unparsed file"
 msgstr ""
 
-#: server/src/main.cpp:74 client/src/main.cpp:80
-msgid "Exception: %1%"
-msgstr ""
-
-#: server/src/main.cpp:82 client/src/main.cpp:87
-msgid "Catched unknown exception."
+#: lib/src/Config.cpp:183
+msgid "Can't set an empty option"
 msgstr ""
 
 #: server/src/main.cpp:84 client/src/main.cpp:89
 msgid "Catched unknown exception"
 msgstr ""
 
-#: server/src/main.cpp:94
-msgid "Finished logging "
-msgstr ""
-
-#: client/src/main.cpp:45
-msgid "openSpeak"
-msgstr ""
-
-#: client/src/main.cpp:71
-msgid "Parsed config file %1%openspeak.conf"
-msgstr ""
-
-#: client/src/main.cpp:103
-msgid "Finished logging"
-msgstr ""
-
-#: clientlib/src/AudioInputProvider.cpp:39
-#: clientlib/src/AudioOutputProvider.cpp:39
-msgid "Given name is empty"
-msgstr ""
-
-#: clientlib/src/AudioInputProvider.cpp:53
-#: clientlib/src/AudioOutputProvider.cpp:53
-msgid "Interface %1% is invalid"
-msgstr ""
-
-#: clientlib/src/AudioInputProvider.cpp:59
-#: clientlib/src/AudioOutputProvider.cpp:59
-msgid "Interface %1% not found"
-msgstr ""
-
-#: clientlib/src/AudioInputProvider.cpp:75
-#: clientlib/src/AudioOutputProvider.cpp:75
-msgid "Removing invalid interface %1%"
-msgstr ""
-
-#: clientlib/src/AudioInputProvider.cpp:84
-#: clientlib/src/AudioOutputProvider.cpp:84
-msgid "No valid interface available"
-msgstr ""
-
-#: clientlib/src/AudioInputProvider.cpp:90
-#: clientlib/src/AudioOutputProvider.cpp:90
-msgid "No interface chosen"
-msgstr ""
-
-#: clientlib/src/Core.cpp:39
-msgid "Core: Shutting down"
+#: server/src/main.cpp:82 client/src/main.cpp:87
+msgid "Catched unknown exception."
 msgstr ""
 
 #: clientlib/src/Core.cpp:43
 msgid "Core: Closed PluginMgr"
 msgstr ""
 
-#: clientlib/src/Core.cpp:49
-msgid "Core: Starting up"
+#: clientlib/src/Core.cpp:64
+msgid "Core: Finished loading plugins"
 msgstr ""
 
 #: clientlib/src/Core.cpp:62
 msgid "Core: Loading plugins"
 msgstr ""
 
-#: clientlib/src/Core.cpp:64
-msgid "Core: Finished loading plugins"
+#: clientlib/src/Core.cpp:39
+msgid "Core: Shutting down"
+msgstr ""
+
+#: clientlib/src/Core.cpp:49
+msgid "Core: Starting up"
+msgstr ""
+
+#: lib/src/Log.cpp:73
+msgid "DEFAULT"
+msgstr ""
+
+#: server/src/main.cpp:45 client/src/main.cpp:47
+msgid "Display more informations"
 msgstr ""
 
 #: clientlib/src/EventMgr.cpp:54 clientlib/src/EventMgr.cpp:71
@@ -226,44 +128,165 @@ msgstr ""
 msgid "Event is not connected"
 msgstr ""
 
+#: server/src/main.cpp:74 client/src/main.cpp:80
+#, boost-format
+msgid "Exception: %1%"
+msgstr ""
+
+#: client/src/main.cpp:103
+msgid "Finished logging"
+msgstr ""
+
+#: server/src/main.cpp:94
+msgid "Finished logging "
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:39
+#: clientlib/src/AudioOutputProvider.cpp:39
+msgid "Given name is empty"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:53
+#: clientlib/src/AudioOutputProvider.cpp:53
+#, boost-format
+msgid "Interface %1% is invalid"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:59
+#: clientlib/src/AudioOutputProvider.cpp:59
+#, boost-format
+msgid "Interface %1% not found"
+msgstr ""
+
+#: lib/src/Config.cpp:100
+#, boost-format
+msgid "Invalid line in %1% (Line: %2%)"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:79
+#, boost-format
+msgid "Invalid long option %1%"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:71
+#, boost-format
+msgid "Invalid short option %1%"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:104
+#, boost-format
+msgid "Loaded plugin %1% (%2%) %3% from %4%"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:77
+#, boost-format
+msgid "Loading plugin %1% failed"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:90
+#: clientlib/src/AudioOutputProvider.cpp:90
+msgid "No interface chosen"
+msgstr ""
+
+#: clientlib/src/AudioInputProvider.cpp:84
+#: clientlib/src/AudioOutputProvider.cpp:84
+msgid "No valid interface available"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:102
+#, boost-format
+msgid "Option %1% takes an argument"
+msgstr ""
+
+#: client/src/main.cpp:71
+#, boost-format
+msgid "Parsed config file %1%openspeak.conf"
+msgstr ""
+
+#: server/src/main.cpp:69
+#, boost-format
+msgid "Parsed config file %1%openspeakd.conf"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:87
+#, boost-format
+msgid "Plugin %1% is not a valid openSpeak Plugin"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:152
+msgid "Print out this help"
+msgstr ""
+
+#: lib/src/CmdLineParser.cpp:153
+msgid "Print out version informations"
+msgstr ""
+
 #: clientlib/src/PluginInterfaceProvider.cpp:48
 #: clientlib/src/PluginInterfaceProvider.cpp:56
 #: clientlib/src/PluginMgr.cpp:179 clientlib/src/PluginMgr.cpp:187
 msgid "Recieved a null pointer"
 msgstr ""
 
-#: clientlib/src/PluginMgr.cpp:64
-msgid "Can't load plugins without an event mgr registered"
+#: clientlib/src/PluginMgr.cpp:189
+msgid "Recieved pointer with empty type"
 msgstr ""
 
-#: clientlib/src/PluginMgr.cpp:77
-msgid "Loading plugin %1% failed"
+#: clientlib/src/AudioInputProvider.cpp:75
+#: clientlib/src/AudioOutputProvider.cpp:75
+#, boost-format
+msgid "Removing invalid interface %1%"
 msgstr ""
 
-#: clientlib/src/PluginMgr.cpp:87
-msgid "Plugin %1% is not a valid openSpeak Plugin"
+#: lib/src/Config.cpp:163
+#, boost-format
+msgid "Saving file %1% failed"
 msgstr ""
 
-#: clientlib/src/PluginMgr.cpp:104
-msgid "Loaded plugin %1% (%2%) %3% from %4%"
+#: server/src/main.cpp:64 client/src/main.cpp:66
+msgid "Started logging"
 msgstr ""
 
-#: clientlib/src/PluginMgr.cpp:123 clientlib/src/PluginMgr.cpp:154
-msgid "Unknown plugin %1%"
+#: lib/src/Config.cpp:46
+msgid "The filename is empty"
 msgstr ""
 
-#: clientlib/src/PluginMgr.cpp:127
-msgid "Activating plugin %1% with %2% events"
+#: lib/src/CmdLineParser.cpp:134
+#, boost-format
+msgid "This is the command line help for %1% %2%"
+msgstr ""
+
+#: lib/src/Thread.cpp:50 lib/src/Thread.cpp:60
+msgid "Thread is not running"
+msgstr ""
+
+#: lib/src/Thread.cpp:41
+msgid "Thread was already created"
 msgstr ""
 
 #: clientlib/src/PluginMgr.cpp:142
+#, boost-format
 msgid "Unknown interface '%1%'"
 msgstr ""
 
 #: clientlib/src/PluginMgr.cpp:170
+#, boost-format
 msgid "Unknown interface '%1%' found while unloading"
 msgstr ""
 
-#: clientlib/src/PluginMgr.cpp:189
-msgid "Recieved pointer with empty type"
+#: lib/src/CmdLineParser.cpp:97
+#, boost-format
+msgid "Unknown option %1%"
+msgstr ""
+
+#: clientlib/src/PluginMgr.cpp:123 clientlib/src/PluginMgr.cpp:154
+#, boost-format
+msgid "Unknown plugin %1%"
+msgstr ""
+
+#: client/src/main.cpp:45
+msgid "openSpeak"
+msgstr ""
+
+#: server/src/main.cpp:43
+msgid "openSpeak Server"
 msgstr ""

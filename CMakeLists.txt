@@ -1,6 +1,11 @@
 cmake_minimum_required (VERSION 2.6)
 project (openSpeak C CXX)
 
+# Some variables used for .po(t) creation
+set (PACKAGE_NAME openSpeak)
+set (PACKAGE_VERSION 0.1-git)
+set (BUG_EMAIL bugs@openspeak-project.org)
+
 # Also include our custom cmake files in ./cmake
 set (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
@@ -9,6 +14,7 @@ if (WIN32)
 	set (BOOST_ROOT $ENV{BOOST_ROOT})
 endif (WIN32)
 
+# Check for boost >= 1.40.0
 set (Boost_USE_MULTITHREAD ON)
 find_package (Boost 1.40 REQUIRED COMPONENTS thread date_time)
 
@@ -17,6 +23,14 @@ if (NOT Boost_FOUND)
             or update your version")
 endif (NOT Boost_FOUND)
 
+# Check for gettext
+find_package (Gettext REQUIRED)
+
+if (NOT GETTEXT_FOUND)
+    message (FATAL_ERROR "Gettext couldn't be found! Please install it!")
+endif (NOT GETTEXT_FOUND)
+
+# Check for libdl for plugin support
 if (UNIX)
 	include (CheckLibraryExists)
 	check_library_exists (dl dlopen "" HAVE_LIBDL)
@@ -26,11 +40,14 @@ if (UNIX)
     endif (NOT HAVE_LIBDL)
 endif (UNIX)
 
+# Add all required subdirectories
+add_subdirectory (po)
 add_subdirectory (lib)
 add_subdirectory (server)
 add_subdirectory (clientlib)
 add_subdirectory (client)
 
+# Set important CPack variables
 set (CPACK_PACKAGE_NAME "openSpeak")
 set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "VoIP tool for gamer")
 set (CPACK_PACKAGE_VENDOR "The openSpeak Team")
@@ -47,8 +64,6 @@ if (WIN32 AND NOT UNIX)
     set (CPACK_NSIS_URL_INFO "http:\\\\\\openspeak-project.org")
     set (CPACK_NSIS_CONTACT "rmbl@openspeak-project.org")
     set (CPACK_NSIS_MODIFY_PATH ON)
-else (WIN32 AND NOT UNIX)
-
 endif (WIN32 AND NOT UNIX)
 
 set (CPACK_PACKAGE_EXECUTABLES "client/src/openspeak;server/src/openspeakd")
