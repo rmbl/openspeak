@@ -37,7 +37,7 @@ namespace openSpeak
          public:
             /** \brief The virtual deconstructor of the AudioInput class */
             virtual ~AudioOutput (void) { }
-            
+
             /** \brief Initialise the output device and return a status
              *  \return True if everything worked
              *  \throw Can also throw an openSpeak::Exception to signal failure
@@ -90,6 +90,11 @@ namespace openSpeak
             void setAudioOutput (char* out) const;
 
          protected:
+            /** \brief Try to initialise the interface
+             *  \return True if everything worked
+             */
+            bool _tryInterface () const;
+
             AudioOutput *mOutput;    /**< The interface used to output sound */
         };
 

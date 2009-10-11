@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openSpeak 0.1-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-09-15 14:18+0200\n"
+"POT-Creation-Date: 2009-10-11 21:37+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Philipp Gildein <rmbl@openspeak-project.org>\n"
 "Language-Team: german <rmbl@openspeak-project.org>\n"
@@ -86,13 +86,11 @@ msgstr "Kann keine ungeparste Datei speichern"
 msgid "Can't set an empty option"
 msgstr "Kann keine leere Option setzen"
 
-#: server/src/main.cpp:84
-#: client/src/main.cpp:89
+#: server/src/main.cpp:84 client/src/main.cpp:89
 msgid "Catched unknown exception"
 msgstr "Unbekannte Ausnahme aufgefangen"
 
-#: server/src/main.cpp:82
-#: client/src/main.cpp:87
+#: server/src/main.cpp:82 client/src/main.cpp:87
 msgid "Catched unknown exception."
 msgstr "Unbekannte Ausnahme aufgefangen"
 
@@ -120,13 +118,11 @@ msgstr "Core: Beginne mit Startvorgang"
 msgid "DEFAULT"
 msgstr "STANDARD"
 
-#: server/src/main.cpp:45
-#: client/src/main.cpp:47
+#: server/src/main.cpp:45 client/src/main.cpp:47
 msgid "Display more informations"
 msgstr "Mehr Informationen anzeigen"
 
-#: clientlib/src/EventMgr.cpp:54
-#: clientlib/src/EventMgr.cpp:71
+#: clientlib/src/EventMgr.cpp:54 clientlib/src/EventMgr.cpp:71
 msgid "Event doesn't exist"
 msgstr "Ereignis existiert nicht"
 
@@ -134,8 +130,7 @@ msgstr "Ereignis existiert nicht"
 msgid "Event is not connected"
 msgstr "Ereignis ist nicht verbunden"
 
-#: server/src/main.cpp:74
-#: client/src/main.cpp:80
+#: server/src/main.cpp:74 client/src/main.cpp:80
 #, boost-format
 msgid "Exception: %1%"
 msgstr "Ausnahme: %1%"
@@ -153,14 +148,22 @@ msgstr "Aufzeichnung abgeschlossen"
 msgid "Given name is empty"
 msgstr "Der übergebene Name ist leer"
 
+#: clientlib/src/AudioInputProvider.cpp:59
+#: clientlib/src/AudioInputProvider.cpp:90
+#: clientlib/src/AudioOutputProvider.cpp:59
+#: clientlib/src/AudioOutputProvider.cpp:91
+#, fuzzy, boost-format
+msgid "Interface %1% failed to initialise"
+msgstr "Schnittstelle %1% ist ungültig"
+
 #: clientlib/src/AudioInputProvider.cpp:53
 #: clientlib/src/AudioOutputProvider.cpp:53
 #, boost-format
 msgid "Interface %1% is invalid"
 msgstr "Schnittstelle %1% ist ungültig"
 
-#: clientlib/src/AudioInputProvider.cpp:59
-#: clientlib/src/AudioOutputProvider.cpp:59
+#: clientlib/src/AudioInputProvider.cpp:66
+#: clientlib/src/AudioOutputProvider.cpp:66
 #, boost-format
 msgid "Interface %1% not found"
 msgstr "Schnittstelle %1% nicht gefunden"
@@ -190,13 +193,13 @@ msgstr "Plugin %1% (%2%) %3% von %4% geladen"
 msgid "Loading plugin %1% failed"
 msgstr "Das Laden des Plugins %1% ist fehlgeschlagen"
 
-#: clientlib/src/AudioInputProvider.cpp:90
-#: clientlib/src/AudioOutputProvider.cpp:90
+#: clientlib/src/AudioInputProvider.cpp:105
+#: clientlib/src/AudioOutputProvider.cpp:106
 msgid "No interface chosen"
 msgstr "Keine Schnittstelle ausgewählt"
 
-#: clientlib/src/AudioInputProvider.cpp:84
-#: clientlib/src/AudioOutputProvider.cpp:84
+#: clientlib/src/AudioInputProvider.cpp:99
+#: clientlib/src/AudioOutputProvider.cpp:100
 msgid "No valid interface available"
 msgstr "Keine gültige Schnittstelle vorhanden"
 
@@ -230,8 +233,7 @@ msgstr "Versionsinformationen anzeigen"
 
 #: clientlib/src/PluginInterfaceProvider.cpp:48
 #: clientlib/src/PluginInterfaceProvider.cpp:56
-#: clientlib/src/PluginMgr.cpp:179
-#: clientlib/src/PluginMgr.cpp:187
+#: clientlib/src/PluginMgr.cpp:179 clientlib/src/PluginMgr.cpp:187
 msgid "Recieved a null pointer"
 msgstr "Null-Zeiger erhalten"
 
@@ -239,8 +241,8 @@ msgstr "Null-Zeiger erhalten"
 msgid "Recieved pointer with empty type"
 msgstr "Null-Zeiger mit leerem Typ erhalten"
 
-#: clientlib/src/AudioInputProvider.cpp:75
-#: clientlib/src/AudioOutputProvider.cpp:75
+#: clientlib/src/AudioInputProvider.cpp:82
+#: clientlib/src/AudioOutputProvider.cpp:82
 #, boost-format
 msgid "Removing invalid interface %1%"
 msgstr "Entferne ungültige Schnittstelle %1%"
@@ -250,8 +252,7 @@ msgstr "Entferne ungültige Schnittstelle %1%"
 msgid "Saving file %1% failed"
 msgstr "Speichern der Datei %1% fehlgeschlagen"
 
-#: server/src/main.cpp:64
-#: client/src/main.cpp:66
+#: server/src/main.cpp:64 client/src/main.cpp:66
 msgid "Started logging"
 msgstr "Aufzeichnung gestartet"
 
@@ -264,8 +265,7 @@ msgstr "Der Dateiname ist leer"
 msgid "This is the command line help for %1% %2%"
 msgstr "Dies ist die Kommandozeilenhilfe für %1% %2%"
 
-#: lib/src/Thread.cpp:50
-#: lib/src/Thread.cpp:60
+#: lib/src/Thread.cpp:50 lib/src/Thread.cpp:60
 msgid "Thread is not running"
 msgstr "Thread ist nicht am Laufen"
 
@@ -288,8 +288,7 @@ msgstr "Unbekannte Schnittstelle '%1%' beim Entladen gefunden"
 msgid "Unknown option %1%"
 msgstr "Ungültige lange Option %1%"
 
-#: clientlib/src/PluginMgr.cpp:123
-#: clientlib/src/PluginMgr.cpp:154
+#: clientlib/src/PluginMgr.cpp:123 clientlib/src/PluginMgr.cpp:154
 #, boost-format
 msgid "Unknown plugin %1%"
 msgstr "Unbekanntes Plugin %1%"
@@ -301,4 +300,3 @@ msgstr "openSpeak"
 #: server/src/main.cpp:43
 msgid "openSpeak Server"
 msgstr "openSpeak Server"
-

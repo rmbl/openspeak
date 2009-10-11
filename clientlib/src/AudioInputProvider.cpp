@@ -52,6 +52,13 @@ namespace openSpeak
                         mIFaces.erase (mIFaces.end ());
                         EXCEPTION (format (_("Interface %1% is invalid")) % name);
                     }
+                /* Try to initialise it and delete it if it fails */
+                    else if (!_tryInterface ())
+                    {
+                        delete mInput;
+                        EXCEPTION (format (_("Interface %1% failed to initialise")) %
+                                name);
+                    }
                     return;
                 }
             }
@@ -64,7 +71,7 @@ namespace openSpeak
             mInput = 0;
 
         /* Get the first one available */
-            while (mIFaces.size () > 0)
+            while (mIFaces.size () > 0 && !mInput)
             {
             /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
                 mInput = dynamic_cast <AudioInput*> (*mIFaces.begin ());
@@ -76,6 +83,14 @@ namespace openSpeak
                             (*mIFaces.begin ())->Name);
                     delete *mIFaces.begin ();
                     mIFaces.erase (mIFaces.end ());
+                }
+            /* Try to initialise it and delete it if it fails */
+                else if (!_tryInterface ())
+                {
+                    LOG_ERROR (format (_("Interface %1% failed to initialise")) %
+                            (*mIFaces.begin ())->Name);
+                    delete mInput;
+                    mInput = 0;
                 }
             }
 
@@ -89,6 +104,22 @@ namespace openSpeak
             if (!mInput)
                 EXCEPTION (_("No interface chosen"));
             return mInput->getAudioInput ();
+        }
+
+        bool AudioInputProvider::_tryInterface () const
+        {
+            bool ret = false;
+
+            try
+            {
+                ret = mInput->init ();
+            }
+            catch (openSpeak::Exception &e)
+            {
+                LOG_ERROR (e.what ());
+            }
+
+            return ret;
         }
 
     }
