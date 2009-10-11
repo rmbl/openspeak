@@ -40,7 +40,7 @@ int main (int argc, char** argv)
     try
     {
     /* Parse the commandline */
-        cmdline = new CmdLineParser (_("openSpeak Server"), "0.1-git");
+        cmdline = new CmdLineParser (_("openSpeak Server"), "0.2-git");
         CmdLineParser::CmdLineOption options[] = {
             { "debug", 'd', CmdLineParser::OPTION_ARG_NONE, _("Display more informations"), "" },
             {0}

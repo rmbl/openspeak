@@ -3,7 +3,7 @@ project (openSpeak C CXX)
 
 # Some variables used for .po(t) creation
 set (PACKAGE_NAME openSpeak)
-set (PACKAGE_VERSION 0.1-git)
+set (PACKAGE_VERSION 0.2-git)
 set (BUG_EMAIL bugs@openspeak-project.org)
 
 # Also include our custom cmake files in ./cmake
