@@ -79,7 +79,7 @@ int main (int argc, char** argv)
     catch (...)
     {
         if (LogMgr::getSingleton ())
-            LOG_FATAL (_("Catched unknown exception."));
+            LOG_FATAL (_("Catched unknown exception"));
         else
             std::cout << _("Catched unknown exception");
         ret = -1;
@@ -91,7 +91,7 @@ int main (int argc, char** argv)
 
     if (LogMgr::getSingleton ())
     {
-        LOG_SILENT (_("Finished logging "));
+        LOG_SILENT (_("Finished logging"));
         delete LogMgr::getSingleton ();
     }
 

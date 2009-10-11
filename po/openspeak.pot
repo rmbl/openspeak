@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openSpeak 0.2-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-10-11 22:21+0200\n"
+"POT-Creation-Date: 2009-10-11 23:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,12 +93,9 @@ msgstr ""
 msgid "Can't set an empty option"
 msgstr ""
 
-#: server/src/main.cpp:84 client/src/main.cpp:96
+#: server/src/main.cpp:84 client/src/main.cpp:96 server/src/main.cpp:82
+#: client/src/main.cpp:94
 msgid "Catched unknown exception"
-msgstr ""
-
-#: server/src/main.cpp:82 client/src/main.cpp:94
-msgid "Catched unknown exception."
 msgstr ""
 
 #: clientlib/src/Core.cpp:43
@@ -143,12 +140,8 @@ msgstr ""
 msgid "Exception: %1%"
 msgstr ""
 
-#: client/src/main.cpp:110
+#: client/src/main.cpp:110 server/src/main.cpp:94
 msgid "Finished logging"
-msgstr ""
-
-#: server/src/main.cpp:94
-msgid "Finished logging "
 msgstr ""
 
 #: clientlib/src/AudioInputProvider.cpp:39

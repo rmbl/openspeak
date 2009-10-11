@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openSpeak 0.1-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-10-11 22:21+0200\n"
+"POT-Creation-Date: 2009-10-11 23:39+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Philipp Gildein <rmbl@openspeak-project.org>\n"
 "Language-Team: german <rmbl@openspeak-project.org>\n"
@@ -99,12 +99,9 @@ msgstr "Kann keine ungeparste Datei speichern"
 msgid "Can't set an empty option"
 msgstr "Kann keine leere Option setzen"
 
-#: server/src/main.cpp:84 client/src/main.cpp:96
+#: server/src/main.cpp:84 client/src/main.cpp:96 server/src/main.cpp:82
+#: client/src/main.cpp:94
 msgid "Catched unknown exception"
-msgstr "Unbekannte Ausnahme aufgefangen"
-
-#: server/src/main.cpp:82 client/src/main.cpp:94
-msgid "Catched unknown exception."
 msgstr "Unbekannte Ausnahme aufgefangen"
 
 #: clientlib/src/Core.cpp:43
@@ -149,12 +146,8 @@ msgstr "Ereignis ist nicht verbunden"
 msgid "Exception: %1%"
 msgstr "Ausnahme: %1%"
 
-#: client/src/main.cpp:110
+#: client/src/main.cpp:110 server/src/main.cpp:94
 msgid "Finished logging"
-msgstr "Aufzeichnung abgeschlossen"
-
-#: server/src/main.cpp:94
-msgid "Finished logging "
 msgstr "Aufzeichnung abgeschlossen"
 
 #: clientlib/src/AudioInputProvider.cpp:39
@@ -306,3 +299,9 @@ msgstr "openSpeak"
 #: server/src/main.cpp:43
 msgid "openSpeak Server"
 msgstr "openSpeak Server"
+
+#~ msgid "Catched unknown exception."
+#~ msgstr "Unbekannte Ausnahme aufgefangen"
+
+#~ msgid "Finished logging "
+#~ msgstr "Aufzeichnung abgeschlossen"
