@@ -37,6 +37,13 @@ namespace openSpeak
          public:
             /** \brief The virtual deconstructor of the AudioInput class */
             virtual ~AudioOutput (void) { }
+            
+            /** \brief Initialise the output device and return a status
+             *  \return True if everything worked
+             *  \throw Can also throw an openSpeak::Exception to signal failure
+             *      and supply an error message
+             */
+            virtual bool init (void) = 0;
 
             /** \brief Set the next frame on the choosen interface
              *  \param out The audio output frame
