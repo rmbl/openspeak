@@ -87,6 +87,7 @@ AC_SUBST(OS_CPPFLAGS)
 
 AC_OUTPUT([ po/Makefile.in
     Makefile
+    m4/Makefile
     lib/Makefile
     lib/src/Makefile
     lib/include/Makefile
