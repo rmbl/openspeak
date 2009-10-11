@@ -74,19 +74,26 @@ int main (int argc, char** argv)
         core = new Client::Core (config, cmdline, LogMgr::getSingleton ()->getDefaultLog ());
         core->run ();
     }
-    catch (Exception ex)
+    catch (Exception &ex)
     {
         if (LogMgr::getSingleton () && !ex.empty ())
             LOG_FATAL (format (_("Exception: %1%")) % ex.what ());
         else if (!ex.empty ())
             ex.print ();
     }
+    catch (std::exception &ex)
+    {
+        if (LogMgr::getSingleton ())
+            LOG_FATAL (format (_("Exception: %1%")) % ex.what ());
+        else
+            std::cerr << format (_("Exception: %1%")) % ex.what ();
+    }
     catch (...)
     {
         if (LogMgr::getSingleton ())
             LOG_FATAL (_("Catched unknown exception."));
         else
-            std::cout << _("Catched unknown exception");
+            std::cerr << _("Catched unknown exception");
     }
 
     if (core)

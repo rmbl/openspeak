@@ -174,9 +174,9 @@ namespace openSpeak
         std::cout << mApplicationTitle << " " << mApplicationVersion << "\n\n";
         
         std::cout << format (_("%1% is licensed under the terms of the GPL.\n"
-                " See COPYING for more informations.\n"
+                "See COPYING for more informations.\n"
                 "Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
-                "For authors see the AUTHORS file\n"));
+                "For authors see the AUTHORS file\n")) % mApplicationTitle;
         
     /* Throw an empty exception to terminate the program */
         EXCEPTION ("");

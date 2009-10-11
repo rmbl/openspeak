@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openSpeak 0.1-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-09-15 14:18+0200\n"
+"POT-Creation-Date: 2009-10-11 22:21+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Philipp Gildein <rmbl@openspeak-project.org>\n"
 "Language-Team: german <rmbl@openspeak-project.org>\n"
@@ -57,6 +57,19 @@ msgstr ""
 "Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
 "Für alle Autoren siehe AUTHORS.\n"
 
+#: lib/src/CmdLineParser.cpp:176
+#, fuzzy, boost-format
+msgid ""
+"%1% is licensed under the terms of the GPL.\n"
+"See COPYING for more informations.\n"
+"Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
+"For authors see the AUTHORS file\n"
+msgstr ""
+"%1% ist unter der GPL lizensiert.\n"
+"Für mehr Informationen siehe COPYING.\n"
+"Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
+"Für alle Autoren siehe AUTHORS.\n"
+
 #: clientlib/src/PluginMgr.cpp:127
 #, boost-format
 msgid "Activating plugin %1% with %2% events"
@@ -86,13 +99,11 @@ msgstr "Kann keine ungeparste Datei speichern"
 msgid "Can't set an empty option"
 msgstr "Kann keine leere Option setzen"
 
-#: server/src/main.cpp:84
-#: client/src/main.cpp:89
+#: server/src/main.cpp:84 client/src/main.cpp:96
 msgid "Catched unknown exception"
 msgstr "Unbekannte Ausnahme aufgefangen"
 
-#: server/src/main.cpp:82
-#: client/src/main.cpp:87
+#: server/src/main.cpp:82 client/src/main.cpp:94
 msgid "Catched unknown exception."
 msgstr "Unbekannte Ausnahme aufgefangen"
 
@@ -120,13 +131,11 @@ msgstr "Core: Beginne mit Startvorgang"
 msgid "DEFAULT"
 msgstr "STANDARD"
 
-#: server/src/main.cpp:45
-#: client/src/main.cpp:47
+#: server/src/main.cpp:45 client/src/main.cpp:47
 msgid "Display more informations"
 msgstr "Mehr Informationen anzeigen"
 
-#: clientlib/src/EventMgr.cpp:54
-#: clientlib/src/EventMgr.cpp:71
+#: clientlib/src/EventMgr.cpp:54 clientlib/src/EventMgr.cpp:71
 msgid "Event doesn't exist"
 msgstr "Ereignis existiert nicht"
 
@@ -134,13 +143,13 @@ msgstr "Ereignis existiert nicht"
 msgid "Event is not connected"
 msgstr "Ereignis ist nicht verbunden"
 
-#: server/src/main.cpp:74
-#: client/src/main.cpp:80
+#: server/src/main.cpp:74 client/src/main.cpp:80 client/src/main.cpp:87
+#: client/src/main.cpp:89
 #, boost-format
 msgid "Exception: %1%"
 msgstr "Ausnahme: %1%"
 
-#: client/src/main.cpp:103
+#: client/src/main.cpp:110
 msgid "Finished logging"
 msgstr "Aufzeichnung abgeschlossen"
 
@@ -230,8 +239,7 @@ msgstr "Versionsinformationen anzeigen"
 
 #: clientlib/src/PluginInterfaceProvider.cpp:48
 #: clientlib/src/PluginInterfaceProvider.cpp:56
-#: clientlib/src/PluginMgr.cpp:179
-#: clientlib/src/PluginMgr.cpp:187
+#: clientlib/src/PluginMgr.cpp:179 clientlib/src/PluginMgr.cpp:187
 msgid "Recieved a null pointer"
 msgstr "Null-Zeiger erhalten"
 
@@ -250,8 +258,7 @@ msgstr "Entferne ungültige Schnittstelle %1%"
 msgid "Saving file %1% failed"
 msgstr "Speichern der Datei %1% fehlgeschlagen"
 
-#: server/src/main.cpp:64
-#: client/src/main.cpp:66
+#: server/src/main.cpp:64 client/src/main.cpp:66
 msgid "Started logging"
 msgstr "Aufzeichnung gestartet"
 
@@ -264,8 +271,7 @@ msgstr "Der Dateiname ist leer"
 msgid "This is the command line help for %1% %2%"
 msgstr "Dies ist die Kommandozeilenhilfe für %1% %2%"
 
-#: lib/src/Thread.cpp:50
-#: lib/src/Thread.cpp:60
+#: lib/src/Thread.cpp:50 lib/src/Thread.cpp:60
 msgid "Thread is not running"
 msgstr "Thread ist nicht am Laufen"
 
@@ -288,8 +294,7 @@ msgstr "Unbekannte Schnittstelle '%1%' beim Entladen gefunden"
 msgid "Unknown option %1%"
 msgstr "Ungültige lange Option %1%"
 
-#: clientlib/src/PluginMgr.cpp:123
-#: clientlib/src/PluginMgr.cpp:154
+#: clientlib/src/PluginMgr.cpp:123 clientlib/src/PluginMgr.cpp:154
 #, boost-format
 msgid "Unknown plugin %1%"
 msgstr "Unbekanntes Plugin %1%"
@@ -301,4 +306,3 @@ msgstr "openSpeak"
 #: server/src/main.cpp:43
 msgid "openSpeak Server"
 msgstr "openSpeak Server"
-
