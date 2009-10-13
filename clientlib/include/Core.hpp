@@ -28,6 +28,9 @@
 #include "PluginMgr.hpp"
 #include "NLS.hpp"
 
+#include "AudioInputProvider.hpp"
+#include "AudioOutputProvider.hpp"
+
 namespace openSpeak
 {
 
@@ -87,7 +90,7 @@ namespace openSpeak
             {
                 mLog->logMsg (msg, lvl);
             }
-            
+
             /** \brief Log a message in the user specified log
              *  \param msg The message to log
              *  \param lvl The level of importance of the message
@@ -98,6 +101,9 @@ namespace openSpeak
             }
 
          protected:
+            /** \brief Initialize the audio interfaces */
+            void _initAudio (AudioInputProvider *in, AudioOutputProvider *out);
+
             Config          *mConfig;       /**< The used configuration file */
             CmdLineParser   *mCmdLine;      /**< The commandline of the client */
             Log             *mLog;          /**< The log to use */

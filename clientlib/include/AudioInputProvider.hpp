@@ -83,6 +83,11 @@ namespace openSpeak
              */
             virtual void useDefaultInterface (void);
 
+            /** \brief Check if an interface is loaded
+             *  \return True if an interface is loaded
+             */
+            virtual bool hasInterface (void) const { return mInput; }
+
             /** \brief Get the input from the choosen interface
              *  \return The audio input frame
              *  \throw Throws an exception if no interface got chosen

@@ -83,6 +83,11 @@ namespace openSpeak
              */
             virtual void useDefaultInterface (void);
 
+            /** \brief Check if an interface is loaded
+             *  \return True if an interface is loaded
+             */
+            virtual bool hasInterface (void) const { return mOutput; }
+
             /** \brief Set the next frame on the choosen interface
              *  \param out The audio output frame
              *  \throw Throws an exception if no interface got chosen

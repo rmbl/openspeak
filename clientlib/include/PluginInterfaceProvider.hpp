@@ -29,10 +29,10 @@ namespace openSpeak
 
     namespace Client
     {
- 
-        /** \class PluginInterfaceProvider 
+
+        /** \class PluginInterfaceProvider
          *  \brief Provides plugin classes with a specified interface
-         * 
+         *
          *  The PluginInterfaceProvider class is used as a base class for
          *  classes providing an interface for plugins to use.
          */
@@ -41,19 +41,19 @@ namespace openSpeak
          protected:
             /** \brief The vector in which all classes are stored */
             typedef std::vector <PluginInterface*> InterfaceVector;
-            
+
          public:
             /** \brief The constructor of the PluginInterfaceProvider class
              *  \param type The typename of the provided interface
              */
             PluginInterfaceProvider (const std::string &type);
-            
+
             /** \brief The destructor of the PluginInterfaceProvider class
-             * 
+             *
              *  Cleans up all PluginInterfaces
-             */ 
+             */
             virtual ~PluginInterfaceProvider (void);
-            
+
             /** \brief Add a class to the interface by loading it from the Plugin
              *  \param plugin The plugin to load from
              *  \throw Throws an exception if the pointer is null
@@ -65,34 +65,39 @@ namespace openSpeak
              *  \throw Throws an exception if the pointer is null
              */
             void removeClass (PluginInterface *plugin);
-            
+
             /** \brief Get a list with the names of all interfaces
              *  \return List with the names of all interfaces
              */
             StringVector getInterfaces (void);
-            
+
             /** \brief Use the specified interface for all operations
              *  \param name The name of the interface to use
              *  \throw Throws an exception if the interface is unknown
              */
             virtual void useInterface (const std::string &name) = 0;
-            
+
             /** \brief Use a "default" interface
              *  \throw Throws an exception if no interface is available
              *          or the interface fails to load.
-             * 
+             *
              *  Which interface to use is in the responsibility of the
              *  subclass developers. Possiblities include using the first one
              *  in the vector or including a list of favorites.
              */
             virtual void useDefaultInterface (void) = 0;
 
+            /** \brief Check if an interface is loaded
+             *  \return True if an interface is loaded
+             */
+            virtual bool hasInterface (void) const = 0;
+
             std::string     Type;       /**< The type of interface to provide */
-            
+
          protected:
             InterfaceVector mIFaces;    /**< Vector containing all interfaces */
         };
-    
+
     }
 
 }
