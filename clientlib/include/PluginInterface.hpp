@@ -33,19 +33,14 @@ namespace openSpeak
          */
         class DLL_SPEC PluginInterface
         {
-         public:
-            /** \brief The constructor of the PluginInterface class
-             *  \param name The name to use in config dialogs
-             */
-            PluginInterface (const std::string &name)
-                    : Name (name)
-            {                
-            }
-            
+         public:           
             /** \brief The destructor for the PluginInterface class */
             virtual ~PluginInterface () { }    
             
-            std::string Name;   /**< The name to use in config dialogs */
+            /** \brief Get the name of the interface
+             *  \return The name of the interface
+             */
+            virtual std::string getName () = 0;
         };
     
     }

@@ -32,15 +32,9 @@ namespace openSpeak
         /** \class AudioInput
          *  \brief Abstract class to implement an AudioInput interface
          */
-        class DLL_SPEC AudioInput : public PluginInterface
+        class DLL_SPEC AudioInput : virtual public PluginInterface
         {
          public:
-            /** \brief The constructor of the AudioInput class
-             *  \param name The name of the class used in config dialogs
-             */
-            AudioInput (const std::string &name) : PluginInterface (name)
-            { }
-
             /** \brief The virtual deconstructor of the AudioInput class */
             virtual ~AudioInput (void) { }
 

@@ -72,8 +72,8 @@ namespace openSpeak
             for (InterfaceVector::const_iterator it = mIFaces.begin (); 
                     it != mIFaces.end (); ++it)
             {
-                if (!(*it)->Name.empty ())
-                    ret.push_back ((*it)->Name);
+                if (!(*it)->getName().empty ())
+                    ret.push_back ((*it)->getName ());
             }
             
             return ret;
