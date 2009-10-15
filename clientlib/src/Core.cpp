@@ -100,7 +100,7 @@ namespace openSpeak
                 }
                 catch (openSpeak::Exception &ex)
                 {
-                    logMsg ("Core: Using the default audio input interface failed",
+                    logMsg (_("Core: Using the default audio input interface failed"),
                             Log::LVL_ERROR);
                     logMsg (ex.what (), Log::LVL_ERROR);
                 }
@@ -115,7 +115,7 @@ namespace openSpeak
                 }
                 catch (openSpeak::Exception &ex)
                 {
-                    logMsg (format (_("Core: Using audio input interface %1% failed")) %
+                    logMsg (format (_("Core: Using audio output interface %1% failed")) %
                             mConfig->getOption ("audio.output"), Log::LVL_ERROR);
                     logMsg (ex.what (), Log::LVL_ERROR);
                 }
@@ -130,7 +130,7 @@ namespace openSpeak
                 }
                 catch (openSpeak::Exception &ex)
                 {
-                    logMsg ("Core: Using the default audio input interface failed",
+                    logMsg (_("Core: Using the default audio output interface failed"),
                             Log::LVL_ERROR);
                     logMsg (ex.what (), Log::LVL_ERROR);
                 }

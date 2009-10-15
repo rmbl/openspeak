@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openSpeak 0.2-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-10-11 23:39+0200\n"
+"POT-Creation-Date: 2009-10-15 22:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,24 +98,46 @@ msgstr ""
 msgid "Catched unknown exception"
 msgstr ""
 
-#: clientlib/src/Core.cpp:43
+#: clientlib/src/Core.cpp:43 clientlib/src/Core.cpp:41
 msgid "Core: Closed PluginMgr"
 msgstr ""
 
-#: clientlib/src/Core.cpp:64
+#: clientlib/src/Core.cpp:64 clientlib/src/Core.cpp:62
 msgid "Core: Finished loading plugins"
 msgstr ""
 
-#: clientlib/src/Core.cpp:62
+#: clientlib/src/Core.cpp:55
+msgid "Core: Initialized interface providers"
+msgstr ""
+
+#: clientlib/src/Core.cpp:62 clientlib/src/Core.cpp:60
 msgid "Core: Loading plugins"
 msgstr ""
 
-#: clientlib/src/Core.cpp:39
+#: clientlib/src/Core.cpp:39 clientlib/src/Core.cpp:37
 msgid "Core: Shutting down"
 msgstr ""
 
-#: clientlib/src/Core.cpp:49
+#: clientlib/src/Core.cpp:49 clientlib/src/Core.cpp:32
 msgid "Core: Starting up"
+msgstr ""
+
+#: clientlib/src/Core.cpp:88 clientlib/src/Core.cpp:118
+#, boost-format
+msgid "Core: Using audio input interface %1% failed"
+msgstr ""
+
+#: clientlib/src/Core.cpp:118
+#, boost-format
+msgid "Core: Using audio output interface %1% failed"
+msgstr ""
+
+#: clientlib/src/Core.cpp:103
+msgid "Core: Using the default audio input interface failed"
+msgstr ""
+
+#: clientlib/src/Core.cpp:133
+msgid "Core: Using the default audio output interface failed"
 msgstr ""
 
 #: lib/src/Log.cpp:73
@@ -124,6 +146,14 @@ msgstr ""
 
 #: server/src/main.cpp:45 client/src/main.cpp:47
 msgid "Display more informations"
+msgstr ""
+
+#: client/plugins/portaudio.cpp:80
+msgid "Error while reading from stream"
+msgstr ""
+
+#: client/plugins/portaudio.cpp:91
+msgid "Error while writing to stream"
 msgstr ""
 
 #: clientlib/src/EventMgr.cpp:54 clientlib/src/EventMgr.cpp:71
