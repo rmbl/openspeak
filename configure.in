@@ -70,6 +70,20 @@ AC_CHECK_HEADERS([boost/format.hpp])
 # Check what we should build
 OS_BUILD_WHAT
 
+# Check for client build dependecies
+if test "$OS_WITH_CLIENT" = "yes"; then
+    PKG_PROG_PKG_CONFIG
+    
+    # Check for Portaudio
+    PKG_CHECK_MODULES([PORTAUDIO], [portaudio-2.0],,AC_MSG_ERROR([
+        Portaudio couldn't be found.
+        Please install it before trying it again.
+        You can find Portaudio v19 at http://www.portaudio.com]))
+        
+    AC_SUBST(PORTAUDIO_LIBS)
+    AC_SUBST(PORTAUDIO_CFLAGS)
+fi
+
 # Set ${datadir}
 if test "x${datadir}" = 'x${prefix}/share' -o "x${datarootdir}" = 'x${prefix}/share'; then
 	if test "x${prefix}" = "xNONE"; then
