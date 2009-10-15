@@ -99,11 +99,22 @@ msgstr "Kann keine ungeparste Datei speichern"
 msgid "Can't set an empty option"
 msgstr "Kann keine leere Option setzen"
 
+<<<<<<< HEAD
 #: server/src/main.cpp:84 client/src/main.cpp:96 server/src/main.cpp:82
 #: client/src/main.cpp:94
 msgid "Catched unknown exception"
 msgstr "Unbekannte Ausnahme aufgefangen"
 
+=======
+#: server/src/main.cpp:84 client/src/main.cpp:89
+msgid "Catched unknown exception"
+msgstr "Unbekannte Ausnahme aufgefangen"
+
+#: server/src/main.cpp:82 client/src/main.cpp:87
+msgid "Catched unknown exception."
+msgstr "Unbekannte Ausnahme aufgefangen"
+
+>>>>>>> audioio
 #: clientlib/src/Core.cpp:43
 msgid "Core: Closed PluginMgr"
 msgstr "Core: PluginMgr geschlossen"
@@ -140,8 +151,12 @@ msgstr "Ereignis existiert nicht"
 msgid "Event is not connected"
 msgstr "Ereignis ist nicht verbunden"
 
+<<<<<<< HEAD
 #: server/src/main.cpp:74 client/src/main.cpp:80 client/src/main.cpp:87
 #: client/src/main.cpp:89
+=======
+#: server/src/main.cpp:74 client/src/main.cpp:80
+>>>>>>> audioio
 #, boost-format
 msgid "Exception: %1%"
 msgstr "Ausnahme: %1%"
@@ -155,14 +170,22 @@ msgstr "Aufzeichnung abgeschlossen"
 msgid "Given name is empty"
 msgstr "Der übergebene Name ist leer"
 
+#: clientlib/src/AudioInputProvider.cpp:59
+#: clientlib/src/AudioInputProvider.cpp:90
+#: clientlib/src/AudioOutputProvider.cpp:59
+#: clientlib/src/AudioOutputProvider.cpp:91
+#, fuzzy, boost-format
+msgid "Interface %1% failed to initialise"
+msgstr "Schnittstelle %1% ist ungültig"
+
 #: clientlib/src/AudioInputProvider.cpp:53
 #: clientlib/src/AudioOutputProvider.cpp:53
 #, boost-format
 msgid "Interface %1% is invalid"
 msgstr "Schnittstelle %1% ist ungültig"
 
-#: clientlib/src/AudioInputProvider.cpp:59
-#: clientlib/src/AudioOutputProvider.cpp:59
+#: clientlib/src/AudioInputProvider.cpp:66
+#: clientlib/src/AudioOutputProvider.cpp:66
 #, boost-format
 msgid "Interface %1% not found"
 msgstr "Schnittstelle %1% nicht gefunden"
@@ -192,13 +215,13 @@ msgstr "Plugin %1% (%2%) %3% von %4% geladen"
 msgid "Loading plugin %1% failed"
 msgstr "Das Laden des Plugins %1% ist fehlgeschlagen"
 
-#: clientlib/src/AudioInputProvider.cpp:90
-#: clientlib/src/AudioOutputProvider.cpp:90
+#: clientlib/src/AudioInputProvider.cpp:105
+#: clientlib/src/AudioOutputProvider.cpp:106
 msgid "No interface chosen"
 msgstr "Keine Schnittstelle ausgewählt"
 
-#: clientlib/src/AudioInputProvider.cpp:84
-#: clientlib/src/AudioOutputProvider.cpp:84
+#: clientlib/src/AudioInputProvider.cpp:99
+#: clientlib/src/AudioOutputProvider.cpp:100
 msgid "No valid interface available"
 msgstr "Keine gültige Schnittstelle vorhanden"
 
@@ -240,8 +263,8 @@ msgstr "Null-Zeiger erhalten"
 msgid "Recieved pointer with empty type"
 msgstr "Null-Zeiger mit leerem Typ erhalten"
 
-#: clientlib/src/AudioInputProvider.cpp:75
-#: clientlib/src/AudioOutputProvider.cpp:75
+#: clientlib/src/AudioInputProvider.cpp:82
+#: clientlib/src/AudioOutputProvider.cpp:82
 #, boost-format
 msgid "Removing invalid interface %1%"
 msgstr "Entferne ungültige Schnittstelle %1%"

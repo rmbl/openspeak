@@ -20,9 +20,6 @@
 #include "Exception.hpp"
 #include "NLS.hpp"
 
-#include "AudioInputProvider.hpp"
-#include "AudioOutputProvider.hpp"
-
 namespace openSpeak
 {
 
@@ -32,6 +29,7 @@ namespace openSpeak
         Core::Core (Config *cfg, CmdLineParser *cmdline, Log *log)
                 : mConfig (cfg), mCmdLine (cmdline), mLog (log)
         {
+            logMsg (_("Core: Starting up"), Log::LVL_INFO);
         }
 
         Core::~Core ()
@@ -46,15 +44,15 @@ namespace openSpeak
 
         void Core::entry ()
         {
-            logMsg (_("Core: Starting up"), Log::LVL_INFO);
-        
         /* Create PluginMgr and add Core as eventmgr */
             mPluginMgr = new PluginMgr ();
             mPluginMgr->registerEventMgr (this);
-            
+
         /* Create all needed PluginInterfaceProviders */
             AudioInputProvider *audioin = new AudioInputProvider ();
             AudioOutputProvider *audioout = new AudioOutputProvider ();
+
+            logMsg (_("Core: Initialized interface providers"), Log::LVL_INFO);
 
         /* Try to load all plugins */
             try
@@ -67,10 +65,76 @@ namespace openSpeak
             {
                 logMsg (ex.what (), Log::LVL_ERROR);
             }
-        
+
+        /* Initialize the audio stuff */
+            _initAudio (audioin, audioout);
+
         /* Delete all PluginInterfaceProviders after we're finished */
             delete audioin;
             delete audioout;
+        }
+
+        void Core::_initAudio (AudioInputProvider *in, AudioOutputProvider *out)
+        {
+        /* Try to initialize audio input */
+            if (mConfig->optionExists ("audio.input"))
+            {
+                try
+                {
+                    in->useInterface (mConfig->getOption ("audio.input"));
+                }
+                catch (openSpeak::Exception &ex)
+                {
+                    logMsg (format (_("Core: Using audio input interface %1% failed")) %
+                            mConfig->getOption ("audio.input"), Log::LVL_ERROR);
+                    logMsg (ex.what (), Log::LVL_ERROR);
+                }
+            }
+
+        /* If it failed or no option is set, try to use default interface */
+            if (!in->hasInterface ())
+            {
+                try
+                {
+                    in->useDefaultInterface ();
+                }
+                catch (openSpeak::Exception &ex)
+                {
+                    logMsg ("Core: Using the default audio input interface failed",
+                            Log::LVL_ERROR);
+                    logMsg (ex.what (), Log::LVL_ERROR);
+                }
+            }
+
+        /* Try to initialize audio input */
+            if (mConfig->optionExists ("audio.output"))
+            {
+                try
+                {
+                    out->useInterface (mConfig->getOption ("audio.output"));
+                }
+                catch (openSpeak::Exception &ex)
+                {
+                    logMsg (format (_("Core: Using audio input interface %1% failed")) %
+                            mConfig->getOption ("audio.output"), Log::LVL_ERROR);
+                    logMsg (ex.what (), Log::LVL_ERROR);
+                }
+            }
+
+        /* If it failed or no option is set, try to use default interface */
+            if (!out->hasInterface ())
+            {
+                try
+                {
+                    out->useDefaultInterface ();
+                }
+                catch (openSpeak::Exception &ex)
+                {
+                    logMsg ("Core: Using the default audio input interface failed",
+                            Log::LVL_ERROR);
+                    logMsg (ex.what (), Log::LVL_ERROR);
+                }
+            }
         }
 
     }

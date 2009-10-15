@@ -149,14 +149,22 @@ msgstr ""
 msgid "Given name is empty"
 msgstr ""
 
+#: clientlib/src/AudioInputProvider.cpp:59
+#: clientlib/src/AudioInputProvider.cpp:90
+#: clientlib/src/AudioOutputProvider.cpp:59
+#: clientlib/src/AudioOutputProvider.cpp:91
+#, boost-format
+msgid "Interface %1% failed to initialise"
+msgstr ""
+
 #: clientlib/src/AudioInputProvider.cpp:53
 #: clientlib/src/AudioOutputProvider.cpp:53
 #, boost-format
 msgid "Interface %1% is invalid"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:59
-#: clientlib/src/AudioOutputProvider.cpp:59
+#: clientlib/src/AudioInputProvider.cpp:66
+#: clientlib/src/AudioOutputProvider.cpp:66
 #, boost-format
 msgid "Interface %1% not found"
 msgstr ""
@@ -186,13 +194,13 @@ msgstr ""
 msgid "Loading plugin %1% failed"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:90
-#: clientlib/src/AudioOutputProvider.cpp:90
+#: clientlib/src/AudioInputProvider.cpp:105
+#: clientlib/src/AudioOutputProvider.cpp:106
 msgid "No interface chosen"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:84
-#: clientlib/src/AudioOutputProvider.cpp:84
+#: clientlib/src/AudioInputProvider.cpp:99
+#: clientlib/src/AudioOutputProvider.cpp:100
 msgid "No valid interface available"
 msgstr ""
 
@@ -234,8 +242,8 @@ msgstr ""
 msgid "Recieved pointer with empty type"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:75
-#: clientlib/src/AudioOutputProvider.cpp:75
+#: clientlib/src/AudioInputProvider.cpp:82
+#: clientlib/src/AudioOutputProvider.cpp:82
 #, boost-format
 msgid "Removing invalid interface %1%"
 msgstr ""

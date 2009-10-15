@@ -41,7 +41,7 @@ namespace openSpeak
             for (InterfaceVector::const_iterator it = mIFaces.begin ();
                     it != mIFaces.end (); ++it)
             {
-                if ((*it)->Name == name)
+                if ((*it)->getName () == name)
                 {
                 /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
                     mCodec = dynamic_cast <VoiceCodec*> ((PluginInterface*)*it);
@@ -72,7 +72,7 @@ namespace openSpeak
                 if (!mCodec)
                 {
                     LogMgr::getSingleton ()->getDefaultLog ()->logMsg (
-                            "Removing invalid interface " + (*mIFaces.begin ())->Name,
+                            "Removing invalid interface " + (*mIFaces.begin ())->getName (),
                             Log::LVL_DEBUG);
                     delete *mIFaces.begin ();
                     mIFaces.erase (mIFaces.end ());

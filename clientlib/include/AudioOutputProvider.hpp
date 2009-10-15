@@ -32,11 +32,18 @@ namespace openSpeak
         /** \class AudioOutput
          *  \brief Abstract class to implement an AudioOutput interface
          */
-        class DLL_SPEC AudioOutput : public PluginInterface
+        class DLL_SPEC AudioOutput : virtual public PluginInterface
         {
          public:
             /** \brief The virtual deconstructor of the AudioInput class */
             virtual ~AudioOutput (void) { }
+
+            /** \brief Initialise the output device and return a status
+             *  \return True if everything worked
+             *  \throw Can also throw an openSpeak::Exception to signal failure
+             *      and supply an error message
+             */
+            virtual bool init (void) = 0;
 
             /** \brief Set the next frame on the choosen interface
              *  \param out The audio output frame
@@ -76,6 +83,11 @@ namespace openSpeak
              */
             virtual void useDefaultInterface (void);
 
+            /** \brief Check if an interface is loaded
+             *  \return True if an interface is loaded
+             */
+            virtual bool hasInterface (void) const { return mOutput; }
+
             /** \brief Set the next frame on the choosen interface
              *  \param out The audio output frame
              *  \throw Throws an exception if no interface got chosen
@@ -83,6 +95,11 @@ namespace openSpeak
             void setAudioOutput (char* out) const;
 
          protected:
+            /** \brief Try to initialise the interface
+             *  \return True if everything worked
+             */
+            bool _tryInterface () const;
+
             AudioOutput *mOutput;    /**< The interface used to output sound */
         };
 

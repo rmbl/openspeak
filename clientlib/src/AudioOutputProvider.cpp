@@ -42,7 +42,7 @@ namespace openSpeak
             for (InterfaceVector::const_iterator it = mIFaces.begin ();
                     it != mIFaces.end (); ++it)
             {
-                if ((*it)->Name == name)
+                if ((*it)->getName () == name)
                 {
                 /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
                     mOutput = dynamic_cast <AudioOutput*> ((PluginInterface*)*it);
@@ -51,6 +51,13 @@ namespace openSpeak
                         delete *mIFaces.begin ();
                         mIFaces.erase (mIFaces.end ());
                         EXCEPTION (format (_("Interface %1% is invalid")) % name);
+                    }
+                /* Try to initialise it and delete it if it fails */
+                    else if (!_tryInterface ())
+                    {
+                        delete mOutput;
+                        EXCEPTION (format (_("Interface %1% failed to initialise")) %
+                                name);
                     }
                     return;
                 }
@@ -64,7 +71,7 @@ namespace openSpeak
             mOutput = 0;
 
         /* Get the first one available */
-            while (mIFaces.size () > 0)
+            while (mIFaces.size () > 0 && !mOutput)
             {
             /* Do a typesafe-cast to avoid having incorrect PluginInterfaces */
                 mOutput = dynamic_cast <AudioOutput*> (*mIFaces.begin ());
@@ -72,10 +79,19 @@ namespace openSpeak
             /* Delete the interface if it's incorrect */
                 if (!mOutput)
                 {
-                    LOG_DEBUG (format (_("Removing invalid interface %1%")) % 
-                            (*mIFaces.begin ())->Name);
+                    LOG_DEBUG (format (_("Removing invalid interface %1%")) %
+                            (*mIFaces.begin ())->getName ());
                     delete *mIFaces.begin ();
                     mIFaces.erase (mIFaces.end ());
+                    mOutput = 0;
+                }
+            /* Try to initialise it and delete it if it fails */
+                else if (!_tryInterface ())
+                {
+                    LOG_ERROR (format (_("Interface %1% failed to initialise")) %
+                            (*mIFaces.begin ())->getName ());
+                    delete mOutput;
+                    mOutput = 0;
                 }
             }
 
@@ -89,6 +105,22 @@ namespace openSpeak
             if (!mOutput)
                 EXCEPTION (_("No interface chosen"));
             mOutput->setAudioOutput (out);
+        }
+
+        bool AudioOutputProvider::_tryInterface () const
+        {
+            bool ret = false;
+
+            try
+            {
+                ret = mOutput->init ();
+            }
+            catch (openSpeak::Exception &e)
+            {
+                LOG_ERROR (e.what ());
+            }
+
+            return ret;
         }
 
     }

@@ -1,5 +1,13 @@
 openspeak_libdir = $(libdir)/openspeak
+
 openspeak_lib_LTLIBRARIES = test.la
 test_la_SOURCES = test.cpp
 test_la_LDFLAGS = -module -avoid-version
 INCLUDES = -I../../clientlib/include -I../../lib/include
+
+openspeak_lib_LTLIBRARIES = portaudio.la
+portaudio_la_SOURCES = portaudio.cpp
+portaudio_la_LDFLAGS = -module -avoid-version
+INCLUDES = -I../../clientlib/include -I../../lib/include
+
+
