@@ -16,3 +16,6 @@ EXTRA_DIST = config.rpath
 	autogen.sh
 
 ACLOCAL_AMFLAGS = -I m4
+
+plugin-install:
+	make -C client/plugins install

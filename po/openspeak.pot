@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openSpeak 0.2-git\n"
 "Report-Msgid-Bugs-To: bugs@openspeak-project.org\n"
-"POT-Creation-Date: 2009-10-15 22:19+0200\n"
+"POT-Creation-Date: 2009-10-16 21:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,15 +52,6 @@ msgstr ""
 #, boost-format
 msgid ""
 "%1% is licensed under the terms of the GPL.\n"
-" See COPYING for more informations.\n"
-"Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
-"For authors see the AUTHORS file\n"
-msgstr ""
-
-#: lib/src/CmdLineParser.cpp:176
-#, boost-format
-msgid ""
-"%1% is licensed under the terms of the GPL.\n"
 "See COPYING for more informations.\n"
 "Copyright (c) 2006 - 2009 openSpeak Team (http://openspeak-project.org)\n"
 "For authors see the AUTHORS file\n"
@@ -68,7 +59,11 @@ msgstr ""
 
 #: clientlib/src/PluginMgr.cpp:127
 #, boost-format
-msgid "Activating plugin %1% with %2% events"
+msgid "Activating plugin %1% (%2% events, %3% classes)"
+msgstr ""
+
+#: client/plugins/portaudio.cpp:113
+msgid "Adds audio in/output through the portaudio library"
 msgstr ""
 
 #: lib/src/CmdLineParser.cpp:86
@@ -93,16 +88,16 @@ msgstr ""
 msgid "Can't set an empty option"
 msgstr ""
 
-#: server/src/main.cpp:84 client/src/main.cpp:96 server/src/main.cpp:82
-#: client/src/main.cpp:94
+#: server/src/main.cpp:82 server/src/main.cpp:84 client/src/main.cpp:94
+#: client/src/main.cpp:96
 msgid "Catched unknown exception"
 msgstr ""
 
-#: clientlib/src/Core.cpp:43 clientlib/src/Core.cpp:41
+#: clientlib/src/Core.cpp:41
 msgid "Core: Closed PluginMgr"
 msgstr ""
 
-#: clientlib/src/Core.cpp:64 clientlib/src/Core.cpp:62
+#: clientlib/src/Core.cpp:62
 msgid "Core: Finished loading plugins"
 msgstr ""
 
@@ -110,19 +105,19 @@ msgstr ""
 msgid "Core: Initialized interface providers"
 msgstr ""
 
-#: clientlib/src/Core.cpp:62 clientlib/src/Core.cpp:60
+#: clientlib/src/Core.cpp:60
 msgid "Core: Loading plugins"
 msgstr ""
 
-#: clientlib/src/Core.cpp:39 clientlib/src/Core.cpp:37
+#: clientlib/src/Core.cpp:37
 msgid "Core: Shutting down"
 msgstr ""
 
-#: clientlib/src/Core.cpp:49 clientlib/src/Core.cpp:32
+#: clientlib/src/Core.cpp:32
 msgid "Core: Starting up"
 msgstr ""
 
-#: clientlib/src/Core.cpp:88 clientlib/src/Core.cpp:118
+#: clientlib/src/Core.cpp:88
 #, boost-format
 msgid "Core: Using audio input interface %1% failed"
 msgstr ""
@@ -170,7 +165,7 @@ msgstr ""
 msgid "Exception: %1%"
 msgstr ""
 
-#: client/src/main.cpp:110 server/src/main.cpp:94
+#: server/src/main.cpp:94 client/src/main.cpp:110
 msgid "Finished logging"
 msgstr ""
 
@@ -179,22 +174,22 @@ msgstr ""
 msgid "Given name is empty"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:59
-#: clientlib/src/AudioInputProvider.cpp:90
-#: clientlib/src/AudioOutputProvider.cpp:59
-#: clientlib/src/AudioOutputProvider.cpp:91
+#: clientlib/src/AudioInputProvider.cpp:57
+#: clientlib/src/AudioInputProvider.cpp:87
+#: clientlib/src/AudioOutputProvider.cpp:57
+#: clientlib/src/AudioOutputProvider.cpp:87
 #, boost-format
 msgid "Interface %1% failed to initialise"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:53
-#: clientlib/src/AudioOutputProvider.cpp:53
+#: clientlib/src/AudioInputProvider.cpp:52
+#: clientlib/src/AudioOutputProvider.cpp:52
 #, boost-format
 msgid "Interface %1% is invalid"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:66
-#: clientlib/src/AudioOutputProvider.cpp:66
+#: clientlib/src/AudioInputProvider.cpp:64
+#: clientlib/src/AudioOutputProvider.cpp:64
 #, boost-format
 msgid "Interface %1% not found"
 msgstr ""
@@ -224,13 +219,13 @@ msgstr ""
 msgid "Loading plugin %1% failed"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:105
-#: clientlib/src/AudioOutputProvider.cpp:106
+#: clientlib/src/AudioInputProvider.cpp:102
+#: clientlib/src/AudioOutputProvider.cpp:102
 msgid "No interface chosen"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:99
-#: clientlib/src/AudioOutputProvider.cpp:100
+#: clientlib/src/AudioInputProvider.cpp:96
+#: clientlib/src/AudioOutputProvider.cpp:96
 msgid "No valid interface available"
 msgstr ""
 
@@ -272,8 +267,8 @@ msgstr ""
 msgid "Recieved pointer with empty type"
 msgstr ""
 
-#: clientlib/src/AudioInputProvider.cpp:82
-#: clientlib/src/AudioOutputProvider.cpp:82
+#: clientlib/src/AudioInputProvider.cpp:80
+#: clientlib/src/AudioOutputProvider.cpp:80
 #, boost-format
 msgid "Removing invalid interface %1%"
 msgstr ""

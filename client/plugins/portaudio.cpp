@@ -38,9 +38,9 @@ class PortAudioWrapper : public AudioInput, public AudioOutput
  public:
     PortAudioWrapper (void) : mRunning (false)
     { }
- 
+
     virtual ~PortAudioWrapper (void)
-    { 
+    {
         if (mRunning)
         {
             Pa_CloseStream (mStream);
@@ -61,41 +61,41 @@ class PortAudioWrapper : public AudioInput, public AudioOutput
                 paInt16, SAMPLERATE, FRAMESIZE, 0, 0);
         if (error != paNoError)
             return false;
-        
+
         error = Pa_StartStream (mStream);
         if (error != paNoError)
             return false;
 
-        return mRunning = true;        
+        return mRunning = true;
     }
-    
+
     virtual char* getAudioInput (void)
     {
         if (!mRunning)
             return 0;
-            
+
         char *buffer = new char[2*FRAMESIZE];
         PaError error = Pa_ReadStream (mStream, buffer, FRAMESIZE);
         if (error != paNoError)
             EXCEPTION (_("Error while reading from stream"));
         return buffer;
     }
-    
+
     virtual void setAudioOutput(char* out)
     {
         if (!mRunning)
             return;
-        
+
         PaError error = Pa_WriteStream (mStream, out, FRAMESIZE);
         if (error != paNoError)
             EXCEPTION (_("Error while writing to stream"));
     }
-    
-    virtual std::string getName ()
+
+    virtual std::string getName (void)
     {
         return "PortAudio";
     }
-    
+
  protected:
     bool mRunning;
 
@@ -110,11 +110,14 @@ class PortAudioPlugin : public Plugin
     PortAudioPlugin (void) : Plugin ("PortAudio Plugin", "0.1",
             "Philipp Gildein <rmbl@openspeak-project.org>")
     {
-        Description = "Adds audio in/output through the portaudio library";
-        PortAudioWrapper *wrap = new PortAudioWrapper ();
-        registerClass ("AudioInput", wrap);
-        registerClass ("AudioOutput", wrap);
+        Description = _("Adds audio in/output through the portaudio library");
+        mWrap = new PortAudioWrapper ();
+        registerClass ("AudioInput", mWrap);
+        registerClass ("AudioOutput", mWrap);
     }
+
+ protected:
+    PortAudioWrapper *mWrap;
 };
 
 PLUGIN (PortAudioPlugin);
