@@ -48,14 +48,12 @@ namespace openSpeak
                     mInput = dynamic_cast <AudioInput*> ((PluginInterface*)*it);
                     if (!mInput)
                     {
-                        delete *mIFaces.begin ();
                         mIFaces.erase (mIFaces.end ());
                         EXCEPTION (format (_("Interface %1% is invalid")) % name);
                     }
                 /* Try to initialise it and delete it if it fails */
                     else if (!_tryInterface ())
                     {
-                        delete mInput;
                         EXCEPTION (format (_("Interface %1% failed to initialise")) %
                                 name);
                     }
@@ -81,7 +79,6 @@ namespace openSpeak
                 {
                     LOG_DEBUG (format (_("Removing invalid interface %1%")) %
                             (*mIFaces.begin ())->getName ());
-                    delete *mIFaces.begin ();
                     mIFaces.erase (mIFaces.begin ());
                 }
             /* Try to initialise it and delete it if it fails */
@@ -89,7 +86,6 @@ namespace openSpeak
                 {
                     LOG_ERROR (format (_("Interface %1% failed to initialise")) %
                             (*mIFaces.begin ())->getName ());
-                    delete mInput;
                     mInput = 0;
                     mIFaces.erase (mIFaces.begin ());
                 }
