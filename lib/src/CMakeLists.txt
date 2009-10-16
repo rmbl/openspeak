@@ -1,6 +1,6 @@
 include_directories (${openSpeak_SOURCE_DIR}/lib/include ${Boost_INCLUDE_DIRS})
 link_directories (${Boost_LIBRARY_DIRS})
-add_definitions (-DOS_PREFIX=\"/usr\" -DOS_BUILD_DLL)
+add_definitions (-DOS_PREFIX=\"${CMAKE_INSTALL_PREFIX}\" -DOS_BUILD_DLL)
 
 set (SOURCE
 	dummy.cpp
