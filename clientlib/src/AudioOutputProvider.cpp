@@ -82,8 +82,7 @@ namespace openSpeak
                     LOG_DEBUG (format (_("Removing invalid interface %1%")) %
                             (*mIFaces.begin ())->getName ());
                     delete *mIFaces.begin ();
-                    mIFaces.erase (mIFaces.end ());
-                    mOutput = 0;
+                    mIFaces.erase (mIFaces.begin ());
                 }
             /* Try to initialise it and delete it if it fails */
                 else if (!_tryInterface ())
@@ -92,6 +91,7 @@ namespace openSpeak
                             (*mIFaces.begin ())->getName ());
                     delete mOutput;
                     mOutput = 0;
+                    mIFaces.erase (mIFaces.begin ());
                 }
             }
 

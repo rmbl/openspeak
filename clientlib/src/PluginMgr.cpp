@@ -124,8 +124,8 @@ namespace openSpeak
             else if (it->second->Loaded)
                 return;
 
-            LOG_DEBUG (format (_("Activating plugin %1% with %2% events")) %
-                    plugin % it->second->Events.size ());
+            LOG_DEBUG (format (_("Activating plugin %1% (%2% events, %3% classes)")) %
+                    plugin % it->second->Events.size () % it->second->Classes.size ());
 
         /* Load it if its not, begin with the events */
             for (Plugin::EventVector::const_iterator i = it->second->Events.begin ();
