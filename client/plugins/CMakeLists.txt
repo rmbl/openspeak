@@ -6,6 +6,6 @@ add_plugin (test test.cpp)
 target_link_libraries (test openspeakclient openspeaklib)
 
 add_plugin (portaudio portaudio.cpp)
-target_link_libraries (portaudio openspeakclient openspeaklib)
+target_link_libraries (portaudio openspeakclient openspeaklib -lportaudio)
 
-install (TARGETS test LIBRARY DESTINATION lib/openspeak ARCHIVE DESTINATION lib/openspeak)
+install (TARGETS test portaudio LIBRARY DESTINATION lib/openspeak ARCHIVE DESTINATION lib/openspeak)
